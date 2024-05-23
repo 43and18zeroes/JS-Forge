@@ -1,3 +1,6 @@
+// It takes a couple a bit of time to log the result. The eventlistener can’t be fired until the loop is complete.
+// Single-Threading in action: The eventlistener is blocked until the operations in the loop are done.
+
 const button = document.querySelector('button');
 const output = document.querySelector('p');
 
