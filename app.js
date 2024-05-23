@@ -5,4 +5,4 @@ function trackUserHandler() {
   console.log('Clicked!');
 }
 
-button.addEventListener('click', trackUserHandler);
+button.addEventListener('click', trackUserHandler); // Callback Function
