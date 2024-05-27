@@ -6,11 +6,11 @@ const output = document.querySelector('p');
 
 function trackUserHandler() {
   navigator.geolocation.getCurrentPosition(
-    posData => {
-      console.log(posData);
+    testVar123 => {
+      console.log(testVar123);
     },
-    error => {
-      console.log(error);
+    errorVar123 => {
+      console.log(errorVar123);
     }
   );
 }
