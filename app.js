@@ -27,11 +27,15 @@ button.addEventListener('click', trackUserHandler); // Callback Function
 // console.log(result);
 
 
-let promise = new Promise((resolve, reject) => {
-  setTimeout(() => {
-    resolve('Promise resolved!');
-  }, 3000);
-});
+async function fetchData() {
+  try {
+    let response = await fetch('https://api.example.com/data');
+    let data = await response.json();
+    console.log(data);
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}
 
-promise.then(message => console.log(message));
-console.log('Promise created...');
+fetchData();
+console.log('Data fetching initiated...');
