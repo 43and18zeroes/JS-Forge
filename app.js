@@ -28,8 +28,7 @@ button.addEventListener('click', trackUserHandler); // Callback Function
 
 
 
-
-setInterval(() => {
-  console.log('Executed every 1 second');
-}, 1000);
-console.log('Interval set...');
+setTimeout(() => {
+  console.log('Executed after 2 seconds');
+}, 2000);
+console.log('Timeout set...');
