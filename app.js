@@ -25,3 +25,21 @@ button.addEventListener('click', trackUserHandler); // Callback Function
 // }
 
 // console.log(result);
+
+
+
+
+
+
+
+
+
+
+
+
+fetch('https://api.example.com/data')
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(error => console.error('Error:', error));
+console.log('Request sent...');
+
