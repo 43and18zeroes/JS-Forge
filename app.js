@@ -37,9 +37,7 @@ button.addEventListener('click', trackUserHandler); // Callback Function
 
 
 
-fetch('https://api.example.com/data')
-  .then(response => response.json())
-  .then(data => console.log(data))
-  .catch(error => console.error('Error:', error));
-console.log('Request sent...');
-
+setTimeout(() => {
+  console.log('Executed after 2 seconds');
+}, 2000);
+console.log('Timeout set...');
