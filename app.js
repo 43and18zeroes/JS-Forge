@@ -17,3 +17,6 @@ for (let i = 0; i < 100000000; i++) {
 }
 
 console.log(result);
+
+const regex4 = /.ello/
+console.log(regex4.exec('jello jellojello'));
