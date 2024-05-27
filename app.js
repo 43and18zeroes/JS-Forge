@@ -27,8 +27,11 @@ button.addEventListener('click', trackUserHandler); // Callback Function
 // console.log(result);
 
 
+let promise = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve('Promise resolved!');
+  }, 3000);
+});
 
-setTimeout(() => {
-  console.log('Executed after 2 seconds');
-}, 2000);
-console.log('Timeout set...');
+promise.then(message => console.log(message));
+console.log('Promise created...');
