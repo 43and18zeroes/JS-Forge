@@ -7,7 +7,9 @@ const output = document.querySelector('p');
 function trackUserHandler() {
   navigator.geolocation.getCurrentPosition(
     posData => {
-      console.log(posData);
+      setTimeout(() => {
+        console.log(posData);
+      }, 2000);
     },
     error => {
       console.log(error);
@@ -25,17 +27,3 @@ button.addEventListener('click', trackUserHandler); // Callback Function
 // }
 
 // console.log(result);
-
-
-async function fetchData() {
-  try {
-    let response = await fetch('https://api.example.com/data');
-    let data = await response.json();
-    console.log(data);
-  } catch (error) {
-    console.error('Error:', error);
-  }
-}
-
-fetchData();
-console.log('Data fetching initiated...');
