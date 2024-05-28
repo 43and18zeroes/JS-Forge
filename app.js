@@ -16,17 +16,17 @@ const setTimer = duraction => {
 function trackUserHandler() {
   navigator.geolocation.getCurrentPosition(
     posData => {
-      setTimeout(() => {
-        console.log(posData);
-      }, 2000);
+      setTimer(2000).then(data => {
+        console.log(data, posData);
+      });
     },
     error => {
       console.log(error);
     }
   );
-  setTimeout(() => {
-    console.log('Timer done!');
-  }, 0);
+  setTimer(1000).then(() => {
+    console.log('Timer done');
+  })
   console.log('Getting position...');
 }
 
