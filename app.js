@@ -39,3 +39,28 @@ button.addEventListener('click', trackUserHandler); // Callback Function
 // }
 
 // console.log(result);
+
+// Erstellen eines neuen Promises
+let myPromise = new Promise((resolve, reject) => {
+  // Eine asynchrone Operation simulieren (z.B. einen Datenabruf)
+  setTimeout(() => {
+      let success = true; // Simuliere, dass die Operation erfolgreich war
+
+      if (success) {
+          resolve("Daten erfolgreich abgerufen!"); // Versprechen erfüllt
+      } else {
+          reject("Fehler beim Abrufen der Daten."); // Versprechen abgelehnt
+      }
+  }, 2000); // Warte 2 Sekunden, um die asynchrone Operation zu simulieren
+});
+
+// Verwenden des Promises
+myPromise
+  .then((message) => {
+      // Dieser Block wird ausgeführt, wenn das Promise erfüllt wurde
+      console.log(message); // Ausgabe: "Daten erfolgreich abgerufen!"
+  })
+  .catch((error) => {
+      // Dieser Block wird ausgeführt, wenn das Promise abgelehnt wurde
+      console.error(error); // Ausgabe im Falle eines Fehlers: "Fehler beim Abrufen der Daten."
+  });
