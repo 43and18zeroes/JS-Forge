@@ -8,12 +8,14 @@ function startAdding() {
   let number = 0;
   setTimeout(() => {
     number++;
-    console.log('First number: ', number)
+    console.log('First number: ', number);
+    if (number === 1) {
+      setTimeout(() => {
+        number++;
+        console.log('Second number: ', number);
+      }, 1000);
+    } else console.log("Second operation wasn't executed");
   }, 1000);
-  setTimeout(() => {
-    number++;
-    console.log('Second number: ', number)
-  }, 2000);
 }
 
 button.addEventListener('click', startAdding); // Callback Function
