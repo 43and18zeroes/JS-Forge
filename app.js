@@ -18,7 +18,29 @@ function startAdding() {
   }, 1000);
 }
 
-button.addEventListener('click', startAdding); // Callback Function
+function operation1(number) {
+  setTimeout(() => {
+    number++;
+    console.log('First number: ', number);
+    return number;
+  }, 1000);
+}
+
+function operation2(number) {
+  setTimeout(() => {
+    number++;
+    console.log('Second number: ', number);
+    return number;
+  }, 1000);
+}
+
+function startSequence() {
+  let number = 0;
+  operation1(number);
+  operation2(number);
+}
+
+button.addEventListener('click', startSequence); // Callback Function
 
 // let result = 0;
 
