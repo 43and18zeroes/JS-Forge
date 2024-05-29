@@ -40,27 +40,45 @@ button.addEventListener('click', trackUserHandler); // Callback Function
 
 // console.log(result);
 
-// Erstellen eines neuen Promises
-const myPromise = new Promise((resolve, reject) => {
-  // Eine asynchrone Operation simulieren (z.B. einen Datenabruf)
-  setTimeout(() => {
-    const success = true; // Simuliere, dass die Operation erfolgreich war
+function operation1() {
+  return new Promise((resolve, reject) => {
+    setTimeout(function () {
+      console.log('Operation 1 completed');
+      resolve('Result of operation 1');
+    }, 1000);
+  });
+}
 
-    if (success) {
-      resolve('Daten erfolgreich abgerufen!'); // Versprechen erfüllt
-    } else {
-      reject('Fehler beim Abrufen der Daten.'); // Versprechen abgelehnt
-    }
-  }, 2000); // Warte 2 Sekunden, um die asynchrone Operation zu simulieren
-});
+function operation2(result1) {
+  return new Promise((resolve, reject) => {
+    setTimeout(function () {
+      console.log('Operation 2 completed with result: ' + result1);
+      resolve('Result of operation 2');
+    }, 1000);
+  });
+}
 
-// Verwenden des Promises
-myPromise
-  .then(message => {
-    // Dieser Block wird ausgeführt, wenn das Promise erfüllt wurde
-    console.log(message); // Ausgabe: "Daten erfolgreich abgerufen!"
+function operation3(result2) {
+  return new Promise((resolve, reject) => {
+    setTimeout(function () {
+      console.log('Operation 3 completed with result: ' + result2);
+      resolve('Result of operation 3');
+    }, 1000);
+  });
+}
+
+// Using Promises
+operation1()
+  .then(result1 => {
+    return operation2(result1);
   })
-  .catch(error => {
-    // Dieser Block wird ausgeführt, wenn das Promise abgelehnt wurde
-    console.error(error); // Ausgabe im Falle eines Fehlers: "Fehler beim Abrufen der Daten."
+  .then(result2 => {
+    return operation3(result2);
+  })
+  .then(result3 => {
+    console.log('All operations completed successfully');
+    console.log('Final result: ' + result3);
+  })
+  .catch(err => {
+    console.error(err);
   });
