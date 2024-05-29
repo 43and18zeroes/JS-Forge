@@ -40,45 +40,45 @@ button.addEventListener('click', trackUserHandler); // Callback Function
 
 // console.log(result);
 
-function operation1() {
-  return new Promise((resolve, reject) => {
-    setTimeout(function () {
-      console.log('Operation 1 completed');
-      resolve('Result of operation 1');
-    }, 1000);
-  });
+function operation1(callback) {
+  setTimeout(function () {
+    console.log('Operation 1 completed');
+    callback(null, 'Result of operation 1');
+  }, 1000);
 }
 
-function operation2(result1) {
-  return new Promise((resolve, reject) => {
-    setTimeout(function () {
-      console.log('Operation 2 completed with result: ' + result1);
-      resolve('Result of operation 2');
-    }, 1000);
-  });
+function operation2(result1, callback) {
+  setTimeout(function () {
+    console.log('Operation 2 completed with result: ' + result1);
+    callback(null, 'Result of operation 2');
+  }, 1000);
 }
 
-function operation3(result2) {
-  return new Promise((resolve, reject) => {
-    setTimeout(function () {
-      console.log('Operation 3 completed with result: ' + result2);
-      resolve('Result of operation 3');
-    }, 1000);
-  });
+function operation3(result2, callback) {
+  setTimeout(function () {
+    console.log('Operation 3 completed with result: ' + result2);
+    callback(null, 'Result of operation 3');
+  }, 1000);
 }
 
-// Using Promises
-operation1()
-  .then(result1 => {
-    return operation2(result1);
-  })
-  .then(result2 => {
-    return operation3(result2);
-  })
-  .then(result3 => {
-    console.log('All operations completed successfully');
-    console.log('Final result: ' + result3);
-  })
-  .catch(err => {
+// Callback Hell
+operation1(function (err, result1) {
+  if (err) {
     console.error(err);
-  });
+  } else {
+    operation2(result1, function (err, result2) {
+      if (err) {
+        console.error(err);
+      } else {
+        operation3(result2, function (err, result3) {
+          if (err) {
+            console.error(err);
+          } else {
+            console.log('All operations completed successfully');
+            console.log('Final result: ' + result3);
+          }
+        });
+      }
+    });
+  }
+});
