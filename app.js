@@ -36,8 +36,10 @@ function operation2(number) {
 
 function startSequence() {
   let number = 0;
-  operation1(number);
-  operation2(number);
+  number = operation1(number);
+  setTimeout(() => {
+    operation2(number);
+  }, 1500);
 }
 
 button.addEventListener('click', startSequence); // Callback Function
