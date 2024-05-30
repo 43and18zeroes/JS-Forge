@@ -51,91 +51,10 @@ button.addEventListener('click', startSequence); // Callback Function
 // }
 
 // console.log(result);
-
-function startSequence() {
-  let number = 0;
-  number = operation1(number);
-  setTimeout(() => {
-    operation2(number);
-  }, 1500);
-}
-
-function startSequence() {
-  let number = 0;
-  number = operation1(number);
-  setTimeout(() => {
-    operation2(number);
-  }, 1500);
-}
-
-function startSequence() {
-  let number = 0;
-  number = operation1(number);
-  setTimeout(() => {
-    operation2(number);
-  }, 1500);
-}
-
-function startSequence() {
-  let number = 0;
-  number = operation1(number);
-  setTimeout(() => {
-    operation2(number);
-  }, 1500);
-}
-
-function startSequence() {
-  let number = 0;
-  number = operation1(number);
-  setTimeout(() => {
-    operation2(number);
-  }, 1500);
-}
-
-function startSequence() {
-  let number = 0;
-  number = operation1(number);
-  setTimeout(() => {
-    operation2(number);
-  }, 1500);
-}
-
-function startSequence() {
-  let number = 0;
-  number = operation1(number);
-  setTimeout(() => {
-    operation2(number);
-  }, 1500);
-}
-
-function startSequence() {
-  let number = 0;
-  number = operation1(number);
-  setTimeout(() => {
-    operation2(number);
-  }, 1500);
-}
-
-function startSequence() {
-  let number = 0;
-  number = operation1(number);
-  setTimeout(() => {
-    operation2(number);
-  }, 1500);
-}
-
-function startSequence() {
-  let number = 0;
-  number = operation1(number);
-  setTimeout(() => {
-    operation2(number);
-  }, 1500);
-}
-
-function startSequence() {
-  let number = 0;
-  number = operation1(number);
-  setTimeout(() => {
-    operation2(number);
-  }, 1500);
-}
+// function startSequence() {
+//   let number = 0;
+//   number = operation1(number);
+//   setTimeout(() => {
+//     operation2(number);
+//   }, 1500);
+// }
