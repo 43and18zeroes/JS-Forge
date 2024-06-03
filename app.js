@@ -51,3 +51,14 @@ button.addEventListener('click', startSequence); // Callback Function
 // }
 
 // console.log(result);
+
+
+function fetchData(callback) {
+  setTimeout(() => {
+      callback("Daten geladen");
+  }, 1000);
+}
+
+fetchData((data) => {
+  console.log(data);  // Ausgabe: Daten geladen
+});
