@@ -52,21 +52,13 @@ button.addEventListener('click', startSequence); // Callback Function
 
 // console.log(result);
 
-async function fetchData() {
-  return new Promise((resolve, reject) => {
-      setTimeout(() => {
-          resolve("Daten geladen");
-      }, 1000);
-  });
-}
+const promise1 = new Promise((resolve, reject) =>
+  setTimeout(resolve, 500, 'one')
+);
+const promise2 = new Promise((resolve, reject) =>
+  setTimeout(resolve, 100, 'two')
+);
 
-async function main() {
-  try {
-      const data = await fetchData();
-      console.log(data);  // Ausgabe: Daten geladen
-  } catch (error) {
-      console.error(error);
-  }
-}
-
-main();
+Promise.race([promise1, promise2]).then(value => {
+  console.log(value); // Ausgabe: 'two'
+});
