@@ -52,12 +52,18 @@ button.addEventListener('click', startSequence); // Callback Function
 
 // console.log(result);
 
-const promise1 = Promise.resolve('resolved');
-const promise2 = Promise.reject('rejected');
+async function* asyncGenerator() {
+  yield 'Hello';
+  yield 'Async';
+  yield 'Iterator';
+}
 
-Promise.allSettled([promise1, promise2]).then(results => {
-  results.forEach((result) => console.log(result.status));
-});
-// Ausgabe: 
-// fulfilled
-// rejected
+(async () => {
+  for await (const val of asyncGenerator()) {
+    console.log(val);
+  }
+})();
+// Ausgabe:
+// Hello
+// Async
+// Iterator
