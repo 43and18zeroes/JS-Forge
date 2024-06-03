@@ -52,13 +52,12 @@ button.addEventListener('click', startSequence); // Callback Function
 
 // console.log(result);
 
-const promise1 = new Promise((resolve, reject) =>
-  setTimeout(resolve, 500, 'one')
-);
-const promise2 = new Promise((resolve, reject) =>
-  setTimeout(resolve, 100, 'two')
-);
+const promise1 = Promise.resolve('resolved');
+const promise2 = Promise.reject('rejected');
 
-Promise.race([promise1, promise2]).then(value => {
-  console.log(value); // Ausgabe: 'two'
+Promise.allSettled([promise1, promise2]).then(results => {
+  results.forEach((result) => console.log(result.status));
 });
+// Ausgabe: 
+// fulfilled
+// rejected
