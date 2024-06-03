@@ -52,8 +52,7 @@ button.addEventListener('click', startSequence); // Callback Function
 
 // console.log(result);
 
-
-function fetchData() {
+async function fetchData() {
   return new Promise((resolve, reject) => {
       setTimeout(() => {
           resolve("Daten geladen");
@@ -61,10 +60,13 @@ function fetchData() {
   });
 }
 
-fetchData()
-  .then((data) => {
+async function main() {
+  try {
+      const data = await fetchData();
       console.log(data);  // Ausgabe: Daten geladen
-  })
-  .catch((error) => {
+  } catch (error) {
       console.error(error);
-  });
+  }
+}
+
+main();
