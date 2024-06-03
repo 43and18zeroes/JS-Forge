@@ -52,18 +52,7 @@ button.addEventListener('click', startSequence); // Callback Function
 
 // console.log(result);
 
-async function* asyncGenerator() {
-  yield 'Hello';
-  yield 'Async';
-  yield 'Iterator';
-}
-
-(async () => {
-  for await (const val of asyncGenerator()) {
-    console.log(val);
-  }
-})();
-// Ausgabe:
-// Hello
-// Async
-// Iterator
+document.getElementById('myButton').addEventListener('click', async () => {
+  const data = await fetchData();
+  console.log(data);
+});
