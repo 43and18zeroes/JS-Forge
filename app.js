@@ -64,3 +64,35 @@ fileInput.addEventListener('change', (event) => {
   
   reader.readAsText(file);
 });
+
+
+const socket = new WebSocket('wss://example.com/socket');
+
+socket.addEventListener('open', (event) => {
+  socket.send('Hello Server!');
+});
+
+socket.addEventListener('message', (event) => {
+  console.log('Message from server:', event.data);
+});
+
+
+let db;
+const request = indexedDB.open('MyDatabase', 1);
+
+request.onupgradeneeded = (event) => {
+  db = event.target.result;
+  db.createObjectStore('store', { keyPath: 'id' });
+};
+
+request.onsuccess = (event) => {
+  db = event.target.result;
+  const transaction = db.transaction('store', 'readwrite');
+  const store = transaction.objectStore('store');
+
+  const addRequest = store.add({ id: 1, name: 'John Doe' });
+
+  addRequest.onsuccess = () => {
+    console.log('Eintrag hinzugefügt');
+  };
+};
