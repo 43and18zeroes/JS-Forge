@@ -51,8 +51,14 @@ button.addEventListener('click', startSequence); // Callback Function
 // }
 
 // console.log(result);
+function delay(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
 
-document.getElementById('myButton').addEventListener('click', async () => {
-  const data = await fetchData();
-  console.log(data);
-});
+async function asyncCall() {
+  console.log('Warten...');
+  await delay(2000);
+  console.log('Erledigt!');
+}
+
+asyncCall();
