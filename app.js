@@ -51,3 +51,18 @@ button.addEventListener('click', startSequence); // Callback Function
 // }
 
 // console.log(result);
+
+// Deklaration von Variablen
+var name = 'Max'; // String
+let age = 25; // Number
+const isStudent = true; // Boolean
+
+// Datentypen
+let score = null; // Null
+let data; // Undefined
+let colors = ['red', 'green', 'blue']; // Array
+let person = {
+  // Objekt
+  firstName: 'John',
+  lastName: 'Doe',
+};
