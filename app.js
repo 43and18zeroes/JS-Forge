@@ -44,22 +44,40 @@ function startSequence() {
 
 button.addEventListener('click', startSequence); // Callback Function
 
-// Funktionserklärung
-function greet(name) {
-  return 'Hello, ' + name + '!';
+
+
+
+
+
+// If-else-Anweisung
+let time = 10;
+if (time < 12) {
+  console.log("Guten Morgen");
+} else {
+  console.log("Guten Abend");
 }
 
-// Funktionsaufruf
-console.log(greet('Alice'));
+// Switch-Anweisung
+let day = "Montag";
+switch (day) {
+  case "Montag":
+    console.log("Es ist Montag");
+    break;
+  case "Dienstag":
+    console.log("Es ist Dienstag");
+    break;
+  default:
+    console.log("Unbekannter Tag");
+}
 
-// Anonyme Funktion
-let square = function (x) {
-  return x * x;
-};
+// For-Schleife
+for (let i = 0; i < 5; i++) {
+  console.log(i);
+}
 
-console.log(square(5));
-
-// Pfeilfunktion
-let add = (a, b) => a + b;
-
-console.log(add(3, 4));
+// While-Schleife
+let count = 0;
+while (count < 5) {
+  console.log(count);
+  count++;
+}
