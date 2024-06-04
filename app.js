@@ -49,25 +49,36 @@ button.addEventListener('click', startSequence); // Callback Function
 
 
 
-// Objekt
-let car = {
-  make: "Toyota",
-  model: "Camry",
-  year: 2020,
-  drive: function() {
-    console.log("Das Auto fährt");
+// SetTimeout
+setTimeout(() => {
+  console.log("Diese Nachricht erscheint nach 2 Sekunden");
+}, 2000);
+
+// Promises
+let promise = new Promise((resolve, reject) => {
+  let success = true;
+  if (success) {
+    resolve("Erfolg!");
+  } else {
+    reject("Fehler!");
   }
-};
+});
 
-console.log(car.make);
-car.drive();
+promise.then((message) => {
+  console.log(message);
+}).catch((error) => {
+  console.error(error);
+});
 
-// Array
-let fruits = ["Apple", "Banana", "Cherry"];
-console.log(fruits[1]);  // Banana
+// Async/Await
+async function fetchData() {
+  try {
+    let response = await fetch("https://api.example.com/data");
+    let data = await response.json();
+    console.log(data);
+  } catch (error) {
+    console.error("Fehler beim Abrufen der Daten", error);
+  }
+}
 
-// Array-Methoden
-fruits.push("Orange");
-console.log(fruits);
-fruits.pop();
-console.log(fruits);
+fetchData();
