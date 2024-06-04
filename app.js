@@ -44,25 +44,22 @@ function startSequence() {
 
 button.addEventListener('click', startSequence); // Callback Function
 
-// let result = 0;
+// Funktionserklärung
+function greet(name) {
+  return 'Hello, ' + name + '!';
+}
 
-// for (let i = 0; i < 100000000; i++) {
-//   result += i;
-// }
+// Funktionsaufruf
+console.log(greet('Alice'));
 
-// console.log(result);
-
-// Deklaration von Variablen
-var name = 'Max'; // String
-let age = 25; // Number
-const isStudent = true; // Boolean
-
-// Datentypen
-let score = null; // Null
-let data; // Undefined
-let colors = ['red', 'green', 'blue']; // Array
-let person = {
-  // Objekt
-  firstName: 'John',
-  lastName: 'Doe',
+// Anonyme Funktion
+let square = function (x) {
+  return x * x;
 };
+
+console.log(square(5));
+
+// Pfeilfunktion
+let add = (a, b) => a + b;
+
+console.log(add(3, 4));
