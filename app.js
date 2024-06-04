@@ -70,15 +70,13 @@ promise.then((message) => {
   console.error(error);
 });
 
-// Async/Await
-async function fetchData() {
-  try {
-    let response = await fetch("https://api.example.com/data");
-    let data = await response.json();
-    console.log(data);
-  } catch (error) {
-    console.error("Fehler beim Abrufen der Daten", error);
-  }
+// Closure-Beispiel
+function outerFunction(outerVariable) {
+  return function innerFunction(innerVariable) {
+    console.log('Outer Variable: ' + outerVariable);
+    console.log('Inner Variable: ' + innerVariable);
+  };
 }
 
-fetchData();
+const newFunction = outerFunction('outside');
+newFunction('inside');
