@@ -44,20 +44,19 @@ function startSequence() {
 
 button.addEventListener('click', startSequence); // Callback Function
 
+// let result = 0;
+
+// for (let i = 0; i < 100000000; i++) {
+//   result += i;
+// }
+
+// console.log(result);
 
 
-
-// Datei: math.js
-export function add(a, b) {
-  return a + b;
+// Funktion mit Standardparametern
+function multiply(a, b = 1) {
+  return a * b;
 }
 
-export function subtract(a, b) {
-  return a - b;
-}
-
-// Datei: main.js
-import { add, subtract } from './math.js';
-
-console.log(add(5, 3));        // 8
-console.log(subtract(9, 4));   // 5
+console.log(multiply(5));     // 5
+console.log(multiply(5, 2));  // 10
