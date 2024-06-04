@@ -47,36 +47,17 @@ button.addEventListener('click', startSequence); // Callback Function
 
 
 
-
-
-// SetTimeout
-setTimeout(() => {
-  console.log("Diese Nachricht erscheint nach 2 Sekunden");
-}, 2000);
-
-// Promises
-let promise = new Promise((resolve, reject) => {
-  let success = true;
-  if (success) {
-    resolve("Erfolg!");
-  } else {
-    reject("Fehler!");
-  }
-});
-
-promise.then((message) => {
-  console.log(message);
-}).catch((error) => {
-  console.error(error);
-});
-
-// Closure-Beispiel
-function outerFunction(outerVariable) {
-  return function innerFunction(innerVariable) {
-    console.log('Outer Variable: ' + outerVariable);
-    console.log('Inner Variable: ' + innerVariable);
-  };
+// Datei: math.js
+export function add(a, b) {
+  return a + b;
 }
 
-const newFunction = outerFunction('outside');
-newFunction('inside');
+export function subtract(a, b) {
+  return a - b;
+}
+
+// Datei: main.js
+import { add, subtract } from './math.js';
+
+console.log(add(5, 3));        // 8
+console.log(subtract(9, 4));   // 5
