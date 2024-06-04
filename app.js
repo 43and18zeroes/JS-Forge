@@ -49,35 +49,25 @@ button.addEventListener('click', startSequence); // Callback Function
 
 
 
-// If-else-Anweisung
-let time = 10;
-if (time < 12) {
-  console.log("Guten Morgen");
-} else {
-  console.log("Guten Abend");
-}
+// Objekt
+let car = {
+  make: "Toyota",
+  model: "Camry",
+  year: 2020,
+  drive: function() {
+    console.log("Das Auto fährt");
+  }
+};
 
-// Switch-Anweisung
-let day = "Montag";
-switch (day) {
-  case "Montag":
-    console.log("Es ist Montag");
-    break;
-  case "Dienstag":
-    console.log("Es ist Dienstag");
-    break;
-  default:
-    console.log("Unbekannter Tag");
-}
+console.log(car.make);
+car.drive();
 
-// For-Schleife
-for (let i = 0; i < 5; i++) {
-  console.log(i);
-}
+// Array
+let fruits = ["Apple", "Banana", "Cherry"];
+console.log(fruits[1]);  // Banana
 
-// While-Schleife
-let count = 0;
-while (count < 5) {
-  console.log(count);
-  count++;
-}
+// Array-Methoden
+fruits.push("Orange");
+console.log(fruits);
+fruits.pop();
+console.log(fruits);
