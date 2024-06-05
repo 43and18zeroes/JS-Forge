@@ -108,3 +108,14 @@ function fetchDataXMLHttpRequest() {
 }
 
 fetchDataXMLHttpRequest();
+
+
+function setupWebSocket() {
+  const socket = new WebSocket('ws://example.com/socket');
+
+  socket.onmessage = (event) => {
+    console.log('Message from server', event.data);
+  };
+}
+
+setupWebSocket();
