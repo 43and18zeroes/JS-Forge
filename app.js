@@ -59,3 +59,12 @@ function delayedGreeting() {
 }
 
 delayedGreeting();
+
+
+function repeatedGreeting() {
+  setInterval(() => {
+    console.log('Hello, again!');
+  }, 1000);
+}
+
+repeatedGreeting();
