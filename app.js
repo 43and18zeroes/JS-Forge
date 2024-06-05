@@ -79,3 +79,11 @@ function fetchData() {
 }
 
 fetchData().then(data => console.log(data));
+
+
+async function fetchDataAsync() {
+  const data = await fetchData();
+  console.log(data);
+}
+
+fetchDataAsync();
