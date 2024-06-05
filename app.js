@@ -87,3 +87,24 @@ async function fetchDataAsync() {
 }
 
 fetchDataAsync();
+
+async function fetchFromApi() {
+  const response = await fetch('https://api.example.com/data');
+  const data = await response.json();
+  console.log(data);
+}
+
+fetchFromApi();
+
+function fetchDataXMLHttpRequest() {
+  const xhr = new XMLHttpRequest();
+  xhr.open('GET', 'https://api.example.com/data', true);
+  xhr.onload = () => {
+    if (xhr.status === 200) {
+      console.log(JSON.parse(xhr.responseText));
+    }
+  };
+  xhr.send();
+}
+
+fetchDataXMLHttpRequest();
