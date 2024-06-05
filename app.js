@@ -51,3 +51,11 @@ button.addEventListener('click', startSequence); // Callback Function
 // }
 
 // console.log(result);
+
+function delayedGreeting() {
+  setTimeout(() => {
+    console.log('Hello, world!');
+  }, 1000);
+}
+
+delayedGreeting();
