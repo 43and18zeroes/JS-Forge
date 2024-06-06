@@ -1,14 +1,20 @@
-let p = new Promise((resolve, reject) => {
-  let a = 1 + 2; // Change
-  if (a == 2) {
-    resolve('Success');
-  } else {
-    reject('Failed');
-  }
-});
+const userLeft = false;
+const userWatchingCatMeme = false;
 
-p.then(message => {
-  console.log('This is in the then ' + message); // This is in the catch Failed
-}).catch(message => {
-  console.log('This is in the catch ' + message);
-});
+function watchTutorialPromise() {
+  return new Promise((resolve, reject) => {
+    if (userLeft) {
+      reject({
+        name: 'User Left',
+        message: ':(',
+      });
+    } else if (userWatchingCatMeme) {
+      reject({
+        name: 'User Watching Cat Meme',
+        message: 'WebDevSimplified < Cat',
+      });
+    } else {
+      resolve('Thumbs up and Subscribe');
+    }
+  });
+}
