@@ -9,3 +9,9 @@ const recordVideoTwo = new Promise((resolve, reject) => {
 const recordVideoThree = new Promise((resolve, reject) => {
   resolve('Video 3 Recorded');
 });
+
+Promise.all([recordVideoOne, recordVideoTwo, recordVideoThree]).then(
+  messages => {
+    console.log(messages); // ['Video 1 Recorded', 'Video 2 Recorded', 'Video 3 Recorded']
+  }
+);
