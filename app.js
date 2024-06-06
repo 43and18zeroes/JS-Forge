@@ -1,12 +1,12 @@
 const userLeft = false;
-const userWatchingCatMeme = false;
+const userWatchingCatMeme = true;
 
 function watchTutorialPromise() {
   return new Promise((resolve, reject) => {
     if (userLeft) {
       reject({
         name: 'User Left',
-        message: ' :(',
+        message: ':(',
       });
     } else if (userWatchingCatMeme) {
       reject({
@@ -24,5 +24,5 @@ watchTutorialPromise()
     console.log('Success: ' + message);
   })
   .catch(error => {
-    console.log(error.name + '' + error.message);
+    console.log(error.name + ' ' + error.message); // User Watching Cat Meme WebDevSimplified < Cat
   });
