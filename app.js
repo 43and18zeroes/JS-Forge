@@ -6,7 +6,7 @@ function watchTutorialPromise() {
     if (userLeft) {
       reject({
         name: 'User Left',
-        message: ':(',
+        message: ' :(',
       });
     } else if (userWatchingCatMeme) {
       reject({
@@ -18,3 +18,11 @@ function watchTutorialPromise() {
     }
   });
 }
+
+watchTutorialPromise()
+  .then(message => {
+    console.log('Success: ' + message);
+  })
+  .catch(error => {
+    console.log(error.name + '' + error.message);
+  });
