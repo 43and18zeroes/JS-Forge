@@ -140,3 +140,17 @@ async function fetchDataWithErrorHandling(url) {
 }
 
 fetchDataWithErrorHandling('https://jsonplaceholder.typicode.com/posts/1');
+
+
+async function sequentialTasks() {
+  const result1 = await new Promise((resolve) => setTimeout(() => resolve('Task 1 complete'), 1000));
+  console.log(result1);
+
+  const result2 = await new Promise((resolve) => setTimeout(() => resolve('Task 2 complete'), 1000));
+  console.log(result2);
+
+  const result3 = await new Promise((resolve) => setTimeout(() => resolve('Task 3 complete'), 1000));
+  console.log(result3);
+}
+
+sequentialTasks();
