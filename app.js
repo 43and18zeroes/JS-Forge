@@ -154,3 +154,22 @@ async function sequentialTasks() {
 }
 
 sequentialTasks();
+
+async function fetchWithRetry(url, retries = 3) {
+  for (let i = 0; i < retries; i++) {
+    try {
+      const response = await fetch(url);
+      if (response.ok) {
+        const data = await response.json();
+        return data;
+      }
+    } catch (error) {
+      if (i === retries - 1) throw error;
+    }
+  }
+}
+
+fetchWithRetry('https://jsonplaceholder.typicode.com/posts/1')
+  .then(data => console.log(data))
+  .catch(error => console.error('Fetch error:', error));
+
