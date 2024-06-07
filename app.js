@@ -40,3 +40,21 @@ function fetchData(callback) {
 fetchData((data) => {
   console.log("Callback received:", data);
 });
+
+
+function fetchData() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const data = "some data";
+      resolve(data);
+    }, 1000);
+  });
+}
+
+fetchData()
+  .then((data) => {
+    console.log("Promise resolved:", data);
+  })
+  .catch((error) => {
+    console.error("Promise rejected:", error);
+  });
