@@ -110,3 +110,20 @@ async function fetchMultipleData() {
 }
 
 fetchMultipleData();
+
+async function fetchMultipleData() {
+  const urls = [
+    'https://jsonplaceholder.typicode.com/users/1',
+    'https://jsonplaceholder.typicode.com/users/2'
+  ];
+
+  try {
+    const promises = urls.map(url => fetch(url).then(response => response.json()));
+    const results = await Promise.all(promises);
+    console.log("Results:", results);
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  }
+}
+
+fetchMultipleData();
