@@ -58,3 +58,26 @@ fetchData()
   .catch((error) => {
     console.error("Promise rejected:", error);
   });
+
+  async function fetchData() {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        const data = "some data";
+        resolve(data);
+      }, 1000);
+    });
+  }
+  
+  async function getData() {
+    try {
+      const data = await fetchData();
+      console.log("Async/Await received:", data);
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  }
+  
+  getData();
+
+  
+  
