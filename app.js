@@ -29,55 +29,67 @@ function trackUserHandler() {
 
 button.addEventListener('click', trackUserHandler);
 
-
 function fetchData(callback) {
   setTimeout(() => {
-    const data = "some data";
+    const data = 'some data';
     callback(data);
   }, 1000);
 }
 
-fetchData((data) => {
-  console.log("Callback received:", data);
+fetchData(data => {
+  console.log('Callback received:', data);
 });
-
 
 function fetchData() {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      const data = "some data";
+      const data = 'some data';
       resolve(data);
     }, 1000);
   });
 }
 
 fetchData()
-  .then((data) => {
-    console.log("Promise resolved:", data);
+  .then(data => {
+    console.log('Promise resolved:', data);
   })
-  .catch((error) => {
-    console.error("Promise rejected:", error);
+  .catch(error => {
+    console.error('Promise rejected:', error);
   });
 
-  async function fetchData() {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        const data = "some data";
-        resolve(data);
-      }, 1000);
-    });
-  }
-  
-  async function getData() {
-    try {
-      const data = await fetchData();
-      console.log("Async/Await received:", data);
-    } catch (error) {
-      console.error("Error:", error);
-    }
-  }
-  
-  getData();
+async function fetchData() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const data = 'some data';
+      resolve(data);
+    }, 1000);
+  });
+}
 
-  
-  
+async function getData() {
+  try {
+    const data = await fetchData();
+    console.log('Async/Await received:', data);
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}
+
+getData();
+
+async function fetchUserData() {
+  try {
+    const response = await fetch(
+      'https://jsonplaceholder.typicode.com/users/1'
+    );
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    const userData = await response.json();
+    console.log('User Data:', userData);
+  } catch (error) {
+    console.error('Fetch error:', error);
+  }
+}
+
+fetchUserData();
