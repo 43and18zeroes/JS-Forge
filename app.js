@@ -28,3 +28,15 @@ function trackUserHandler() {
 }
 
 button.addEventListener('click', trackUserHandler);
+
+
+function fetchData(callback) {
+  setTimeout(() => {
+    const data = "some data";
+    callback(data);
+  }, 1000);
+}
+
+fetchData((data) => {
+  console.log("Callback received:", data);
+});
