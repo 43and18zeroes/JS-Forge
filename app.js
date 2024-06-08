@@ -29,7 +29,6 @@ function trackUserHandler() {
 
 button.addEventListener('click', trackUserHandler);
 
-
 function fetchData(callback) {
   setTimeout(() => {
     const data = { user: 'John Doe', age: 25 };
@@ -37,10 +36,9 @@ function fetchData(callback) {
   }, 2000);
 }
 
-fetchData((data) => {
+fetchData(data => {
   console.log('Received data:', data);
 });
-
 
 const fetchData = () => {
   return new Promise((resolve, reject) => {
@@ -52,92 +50,116 @@ const fetchData = () => {
 };
 
 fetchData()
-  .then((data) => {
+  .then(data => {
     console.log('Received data:', data);
   })
-  .catch((error) => {
+  .catch(error => {
     console.error('Error:', error);
   });
 
-
-  async function* asyncGenerator() {
-    const data = [1, 2, 3];
-    for (const item of data) {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      yield item;
-    }
+async function* asyncGenerator() {
+  const data = [1, 2, 3];
+  for (const item of data) {
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    yield item;
   }
-  
-  (async () => {
-    for await (const value of asyncGenerator()) {
-      console.log(value); // Outputs 1, 2, 3 each after a 1-second delay
-    }
-  })();
-  
+}
 
-  function fetchData(callback) {
+(async () => {
+  for await (const value of asyncGenerator()) {
+    console.log(value); // Outputs 1, 2, 3 each after a 1-second delay
+  }
+})();
+
+function fetchData(callback) {
+  setTimeout(() => {
+    const data = { user: 'John Doe', age: 25 };
+    callback(data);
+  }, 2000);
+}
+
+fetchData(data => {
+  console.log('Received data:', data);
+});
+
+const fetchData = () => {
+  return new Promise((resolve, reject) => {
     setTimeout(() => {
-      const data = { user: 'John Doe', age: 25 };
-      callback(data);
+      const data = { user: 'Jane Doe', age: 30 };
+      resolve(data);
     }, 2000);
-  }
-  
-  fetchData((data) => {
-    console.log('Received data:', data);
   });
-  
+};
 
-  const fetchData = () => {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        const data = { user: 'Jane Doe', age: 30 };
-        resolve(data);
-      }, 2000);
-    });
-  };
-  
-  fetchData()
-    .then((data) => {
-      console.log('Received data:', data);
-    })
-    .catch((error) => {
-      console.error('Error:', error);
-    });
-  
+fetchData()
+  .then(data => {
+    console.log('Received data:', data);
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
 
-    const fetchData = () => {
-      return new Promise((resolve, reject) => {
-        setTimeout(() => {
-          const data = { user: 'Alice', age: 28 };
-          resolve(data);
-        }, 2000);
-      });
-    };
-    
-    const getData = async () => {
-      try {
-        const data = await fetchData();
-        console.log('Received data:', data);
-      } catch (error) {
-        console.error('Error:', error);
-      }
-    };
-    
-    getData();
-    
+const fetchData = () => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const data = { user: 'Alice', age: 28 };
+      resolve(data);
+    }, 2000);
+  });
+};
 
-    const fetchUserData = async () => {
-      try {
-        const response = await fetch('https://api.example.com/user');
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        const data = await response.json();
-        console.log('Received user data:', data);
-      } catch (error) {
-        console.error('Fetch error:', error);
-      }
-    };
-    
-    fetchUserData();
-    
+const getData = async () => {
+  try {
+    const data = await fetchData();
+    console.log('Received data:', data);
+  } catch (error) {
+    console.error('Error:', error);
+  }
+};
+
+getData();
+
+const fetchUserData = async () => {
+  try {
+    const response = await fetch('https://api.example.com/user');
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    const data = await response.json();
+    console.log('Received user data:', data);
+  } catch (error) {
+    console.error('Fetch error:', error);
+  }
+};
+
+fetchUserData();
+
+const fetchUser = () => {
+  return new Promise(resolve => {
+    setTimeout(() => resolve({ user: 'John' }), 1000);
+  });
+};
+
+const fetchAge = () => {
+  return new Promise(resolve => {
+    setTimeout(() => resolve({ age: 25 }), 2000);
+  });
+};
+
+const fetchData = async () => {
+  try {
+    const [user, age] = await Promise.all([fetchUser(), fetchAge()]);
+    console.log('Received data:', { ...user, ...age });
+  } catch (error) {
+    console.error('Error:', error);
+  }
+};
+
+fetchData();
+
+const promise1 = new Promise(resolve => setTimeout(resolve, 500, 'first'));
+const promise2 = new Promise(resolve => setTimeout(resolve, 100, 'second'));
+
+Promise.race([promise1, promise2]).then(value => {
+  console.log('Winner:', value); // Output: "Winner: second"
+});
