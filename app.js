@@ -177,3 +177,23 @@ async function* asyncGenerator() {
     console.log(value); // Outputs 1, 2, 3 each after a 1-second delay
   }
 })();
+
+
+const fetchData = () => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      reject('Fetch error');
+    }, 1000);
+  });
+};
+
+const getData = async () => {
+  try {
+    const data = await fetchData();
+    console.log('Received data:', data);
+  } catch (error) {
+    console.error('Error:', error); // Output: "Error: Fetch error"
+  }
+};
+
+getData();
