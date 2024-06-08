@@ -40,3 +40,21 @@ function fetchData(callback) {
 fetchData((data) => {
   console.log('Received data:', data);
 });
+
+
+const fetchData = () => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const data = { user: 'Jane Doe', age: 30 };
+      resolve(data);
+    }, 2000);
+  });
+};
+
+fetchData()
+  .then((data) => {
+    console.log('Received data:', data);
+  })
+  .catch((error) => {
+    console.error('Error:', error);
+  });
