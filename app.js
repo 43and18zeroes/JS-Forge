@@ -104,3 +104,24 @@ fetchData()
       console.error('Error:', error);
     });
   
+
+    const fetchData = () => {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          const data = { user: 'Alice', age: 28 };
+          resolve(data);
+        }, 2000);
+      });
+    };
+    
+    const getData = async () => {
+      try {
+        const data = await fetchData();
+        console.log('Received data:', data);
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    };
+    
+    getData();
+    
