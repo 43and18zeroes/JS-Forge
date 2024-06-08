@@ -58,3 +58,19 @@ fetchData()
   .catch((error) => {
     console.error('Error:', error);
   });
+
+
+  async function* asyncGenerator() {
+    const data = [1, 2, 3];
+    for (const item of data) {
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      yield item;
+    }
+  }
+  
+  (async () => {
+    for await (const value of asyncGenerator()) {
+      console.log(value); // Outputs 1, 2, 3 each after a 1-second delay
+    }
+  })();
+  
