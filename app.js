@@ -125,3 +125,19 @@ fetchData()
     
     getData();
     
+
+    const fetchUserData = async () => {
+      try {
+        const response = await fetch('https://api.example.com/user');
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        console.log('Received user data:', data);
+      } catch (error) {
+        console.error('Fetch error:', error);
+      }
+    };
+    
+    fetchUserData();
+    
