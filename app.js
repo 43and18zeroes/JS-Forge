@@ -67,3 +67,21 @@ fetch('https://api.example.com/data')
   
   fetchData();
   
+
+  let socket = new WebSocket('ws://example.com/socket');
+
+socket.onopen = function(event) {
+  console.log('Connected to the server');
+};
+
+socket.onmessage = function(event) {
+  console.log('Received:', event.data);
+};
+
+socket.onclose = function(event) {
+  console.log('Disconnected from the server');
+};
+
+socket.onerror = function(error) {
+  console.error('WebSocket error:', error);
+};
