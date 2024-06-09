@@ -107,3 +107,10 @@ Promise.resolve().then(() => {
 });
 
 console.log('End');
+
+
+setImmediate(() => {
+  console.log('Executed immediately after I/O events');
+});
+
+
