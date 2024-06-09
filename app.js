@@ -114,3 +114,9 @@ setImmediate(() => {
 });
 
 
+
+process.nextTick(() => {
+  console.log('Executed at the end of the current operation');
+});
+
+
