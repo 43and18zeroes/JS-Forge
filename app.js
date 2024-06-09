@@ -44,3 +44,13 @@ fetch('https://api.example.com/data')
   .then(response => response.json())
   .then(data => console.log(data))
   .catch(error => console.error('Error:', error));
+
+
+  let promise = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve('Promise resolved!');
+    }, 1000);
+  });
+  
+  promise.then(result => console.log(result));
+  
