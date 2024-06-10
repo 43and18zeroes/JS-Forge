@@ -49,3 +49,12 @@ let promise = new Promise((resolve, reject) => {
 promise.then((value) => {
   console.log(value); // "Success!"
 });
+
+
+async function fetchData() {
+  let response = await fetch('https://api.example.com/data');
+  let data = await response.json();
+  console.log(data);
+}
+
+fetchData();
