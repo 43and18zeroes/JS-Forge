@@ -40,3 +40,12 @@ setInterval(() => {
 }, 2000);
 
 
+let promise = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve('Success!');
+  }, 2000);
+});
+
+promise.then((value) => {
+  console.log(value); // "Success!"
+});
