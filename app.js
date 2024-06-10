@@ -33,12 +33,9 @@ setTimeout(() => {
   console.log('Executed after 2 seconds');
 }, 2000);
 
-
-
 setInterval(() => {
   console.log('Executed every 2 seconds');
 }, 2000);
-
 
 let promise = new Promise((resolve, reject) => {
   setTimeout(() => {
@@ -46,11 +43,10 @@ let promise = new Promise((resolve, reject) => {
   }, 2000);
 });
 
-promise.then((value) => {
+promise.then(value => {
   console.log(value); // "Success!"
 });
 
-
 async function fetchData() {
   let response = await fetch('https://api.example.com/data');
   let data = await response.json();
@@ -59,8 +55,6 @@ async function fetchData() {
 
 fetchData();
 
-
-
 async function fetchData() {
   let response = await fetch('https://api.example.com/data');
   let data = await response.json();
@@ -68,9 +62,17 @@ async function fetchData() {
 }
 
 fetchData();
-
 
 fetch('https://api.example.com/data')
   .then(response => response.json())
   .then(data => console.log(data))
   .catch(error => console.error('Error:', error));
+
+let xhr = new XMLHttpRequest();
+xhr.open('GET', 'https://api.example.com/data', true);
+xhr.onload = function () {
+  if (xhr.status === 200) {
+    console.log(xhr.responseText);
+  }
+};
+xhr.send();
