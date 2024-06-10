@@ -86,3 +86,11 @@ setImmediate(() => {
 process.nextTick(() => {
   console.log('Executed before the next event loop iteration');
 });
+
+
+function animate() {
+  requestAnimationFrame(animate);
+  // Animation code here
+}
+
+animate();
