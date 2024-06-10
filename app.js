@@ -82,3 +82,7 @@ xhr.send();
 setImmediate(() => {
   console.log('Executed in the next iteration of the event loop');
 });
+
+process.nextTick(() => {
+  console.log('Executed before the next event loop iteration');
+});
