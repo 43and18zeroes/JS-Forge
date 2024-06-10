@@ -76,3 +76,9 @@ xhr.onload = function () {
   }
 };
 xhr.send();
+
+
+
+setImmediate(() => {
+  console.log('Executed in the next iteration of the event loop');
+});
