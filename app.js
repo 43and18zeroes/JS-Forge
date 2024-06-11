@@ -41,15 +41,11 @@ function trackUserHandler() {
 
 button.addEventListener('click', trackUserHandler);
 
-getWeather(displayIcon);
+function getWeather() {
+  return new Promise(function(resolve, reject) {
 
-function displayIcon(data) {
-  if(data === 'Sunny') console.log('Sunny Weather Icon');
-  if(data === 'Cloudy') console.log('Cloudy Weather Icon');
+  })
 }
 
-function getWeather(callback) {
-  setTimeout(() => {
-    callback('Sunny');
-  });
-}
+const promise = getWeather();
+console.log(promise);
