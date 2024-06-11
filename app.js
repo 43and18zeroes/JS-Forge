@@ -11,6 +11,7 @@ const getPosition = opts => {
       opts
     );
   });
+  return promise;
 };
 
 const setTimer = duraction => {
@@ -25,6 +26,9 @@ const setTimer = duraction => {
 function trackUserHandler() {
   getPosition().then(posData => {
     console.log(posData);
+    setTimer(2000).then(data => {
+      console.log(posData);
+    })
   });
   setTimer(1000).then(() => {
     console.log('Time done!');
