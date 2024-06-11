@@ -28,10 +28,10 @@ function trackUserHandler() {
   getPosition()
     .then(posData => {
       positionData = posData;
-      return setTimer();
+      return setTimer(2000);
     })
     .then(data => {
-      console.log(data);
+      console.log(data, positionData);
     });
   setTimer(1000).then(() => {
     console.log('Time done!');
