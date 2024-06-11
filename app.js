@@ -40,3 +40,16 @@ function trackUserHandler() {
 }
 
 button.addEventListener('click', trackUserHandler);
+
+getWeather(weatherReceived);
+
+function weatherReceived(data) {
+  let weather = data;
+  document.body.innerText(weather);
+}
+
+function getWeather(callback) {
+  setTimeout(() => {
+    callback('Sunny');
+  });
+}
