@@ -41,11 +41,11 @@ function trackUserHandler() {
 
 button.addEventListener('click', trackUserHandler);
 
-getWeather(weatherReceived);
+getWeather(displayIcon);
 
-function weatherReceived(data) {
-  let weather = data;
-  document.body.innerText(weather);
+function displayIcon(data) {
+  if(data === 'Sunny') console.log('Sunny Weather Icon');
+  if(data === 'Cloudy') console.log('Cloudy Weather Icon');
 }
 
 function getWeather(callback) {
