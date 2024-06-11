@@ -24,12 +24,15 @@ const setTimer = duraction => {
 };
 
 function trackUserHandler() {
-  getPosition().then(posData => {
-    console.log(posData);
-    setTimer(2000).then(data => {
-      console.log(posData);
+  let positionData;
+  getPosition()
+    .then(posData => {
+      positionData = posData;
+      return setTimer();
     })
-  });
+    .then(data => {
+      console.log(data);
+    });
   setTimer(1000).then(() => {
     console.log('Time done!');
   });
