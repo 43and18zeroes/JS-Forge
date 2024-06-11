@@ -1,6 +1,10 @@
 const button = document.querySelector('button');
 const output = document.querySelector('p');
 
+const getPosition = (opts) => {
+  navigator.geolocation.getCurrentPosition();
+}
+
 const setTimer = duraction => {
   const promise = new Promise((resolve, reject) => {
     setTimeout(() => {
