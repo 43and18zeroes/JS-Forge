@@ -43,9 +43,11 @@ button.addEventListener('click', trackUserHandler);
 
 function getWeather() {
   return new Promise(function(resolve, reject) {
-
+    resolve('Sunny')
   })
 }
 
 const promise = getWeather();
-console.log(promise);
+promise.then(function(data) {
+  console.log(data);
+})
