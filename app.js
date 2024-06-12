@@ -44,12 +44,13 @@ button.addEventListener('click', trackUserHandler);
 function fun1() {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      reject('404');
+      resolve('404');
     }, 100);
   });
 }
 
 function fun2() {
+  console.log('Function 2');
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve('Mustache Emoji');
