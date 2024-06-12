@@ -44,29 +44,29 @@ button.addEventListener('click', trackUserHandler);
 function getWeather() {
   return new Promise(function (resolve, reject) {
     setTimeout(() => {
-      resolve('Rainy');
-    }, 100)
+      resolve('Cloudy');
+    }, 100);
   });
 }
 
 function getWeatherIcon(weather) {
-  return new Promise(function(resolve, reject) {
+  return new Promise(function (resolve, reject) {
     setTimeout(() => {
-      switch(weather) {
+      switch (weather) {
         case 'Sunny':
-          resolve('Sunny Icon')
-          break
+          resolve('Sunny Icon');
+          break;
         case 'Cloudy':
-          resolve('Cloudy Icon')
-          break
+          resolve('Cloudy Icon');
+          break;
         case 'Rainy':
-          resolve('Rainy Icon')
-          break
+          resolve('Rainy Icon');
+          break;
         default:
-          reject('NO ICON FOUND')
+          reject('NO ICON FOUND');
       }
-    }, 100)
-  })
+    }, 100);
+  });
 }
 
 function onSuccess(data) {
@@ -79,4 +79,4 @@ function onError(error) {
 
 getWeather()
   .then(getWeatherIcon)
-  .then(onSuccess, onError)
+  .then(onSuccess, onError);
