@@ -65,8 +65,8 @@ function getWeatherIcon(weather) {
         default:
           reject('NO ICON FOUND')
       }
-    }
-  }, 100)
+    }, 100)
+  })
 }
 
 function onSuccess(data) {
