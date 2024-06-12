@@ -44,7 +44,7 @@ button.addEventListener('click', trackUserHandler);
 function getWeather() {
   return new Promise(function (resolve, reject) {
     setTimeout(() => {
-      resolve('Cloudy');
+      reject('Cloudy'); // reject leads to the catch
     }, 100);
   });
 }
@@ -70,13 +70,14 @@ function getWeatherIcon(weather) {
 }
 
 function onSuccess(data) {
-  console.log(`Success ${data}`);
+  console.log(`Success: ${data}`);
 }
 
 function onError(error) {
-  console.log(`Error ${error}`);
+  console.log(`Error: ${error}`);
 }
 
 getWeather()
   .then(getWeatherIcon)
-  .then(onSuccess, onError);
+  .then(onSuccess, onError)
+  .catch(onError)
