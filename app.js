@@ -43,16 +43,16 @@ button.addEventListener('click', trackUserHandler);
 
 function getWeather() {
   return new Promise(function (resolve, reject) {
-    reject('Sunny');
+    resolve('Sunny');
   });
 }
 
-const promise = getWeather();
-promise.then(
-  function (data) {
-    console.log(`First param ${data}`);
-  },
-  function (data) {
-    console.log(`Second param ${data}`);
-  }
-);
+function onSuccess(data) {
+  console.log(`Success: ${data}`);
+}
+
+function onError(error) {
+  console.log(`Error: ${error}`);
+}
+
+getWeather().then(onSuccess, onError);
