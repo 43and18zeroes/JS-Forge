@@ -51,7 +51,11 @@ if ("geolocation" in navigator) {
       });
 
       // Koordinaten des aktuellen Standorts
-      const { latitude, longitude } = position.coords;
+      let { latitude, longitude } = position.coords;
+
+      // Koordinaten auf zwei Dezimalstellen kürzen
+      latitude = Number(latitude.toFixed(0));
+      longitude = Number(longitude.toFixed(0));
 
       // Standortinformationen in der Konsole ausgeben
       console.log("Aktueller Standort:");
