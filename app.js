@@ -41,6 +41,8 @@ function trackUserHandler() {
 
 button.addEventListener('click', trackUserHandler);
 
+let latitude, longitude;
+
 if ('geolocation' in navigator) {
   // Funktion zum Abrufen des aktuellen Standorts
   const getCurrentLocation = async () => {
@@ -51,11 +53,8 @@ if ('geolocation' in navigator) {
       });
 
       // Koordinaten des aktuellen Standorts
-      let { latitude, longitude } = position.coords;
-
-      // Koordinaten auf zwei Dezimalstellen kürzen
-      latitude = Number(latitude.toFixed(0));
-      longitude = Number(longitude.toFixed(0));
+      latitude = Number(position.coords.latitude.toFixed(0));
+      longitude = Number(position.coords.longitude.toFixed(0));
 
       // Standortinformationen in der Konsole ausgeben
       console.log('Aktueller Standort:');
@@ -63,7 +62,7 @@ if ('geolocation' in navigator) {
       console.log(`Längengrad: ${longitude}`);
 
       // Wetterdaten abrufen und anzeigen
-      fetchData(latitude, longitude).then(displayData).catch(onError);
+      fetchData().then(displayData).catch(onError);
     } catch (error) {
       // Fehlerbehandlung
       console.error('Fehler beim Abrufen des Standorts: ', error.message);
@@ -76,12 +75,10 @@ if ('geolocation' in navigator) {
   console.error('Geolocation wird von diesem Browser nicht unterstützt.');
 }
 
-function fetchData(latitude, longitude) {
-  latitudeStr = latitude.toString();
-  longitudeStr = longitude.toString();
+function fetchData() {
   return new Promise(function (resolve, reject) {
     fetch(
-      `https://api.weather.gov/gridpoints/OKX/35,35/forecast`
+      `https://api.weather.gov/gridpoints/OKX/${latitude},${longitude}/forecast`
     )
       .then(response => response.json())
       .then(data => resolve(data.properties.periods[1].shortForecast))
