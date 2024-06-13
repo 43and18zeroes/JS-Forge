@@ -65,8 +65,12 @@ function onError(errorCode) {
   console.log(`ERROR: ${errorCode}`);
 }
 
+function onFinally() {
+  console.log('Finally we be done');
+}
+
 fun1()
   .then(fun2)
   .then(onSuccess)
   .catch(onError)
-  .finally()
+  .finally(onFinally)
