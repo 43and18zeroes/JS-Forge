@@ -41,36 +41,10 @@ function trackUserHandler() {
 
 button.addEventListener('click', trackUserHandler);
 
-function fun1() {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve('Good data');
-    }, 100);
-  });
+function fetchData() {
+  return new Promise(function(resolve, reject){
+    fetch('https://api.weather.gov/gridpoints/OKX/35,35/forecast')
+      .then(response => response.json())
+    .then(data => resolve(data.properties.periods[1].shortForecast));
+  })
 }
-
-function fun2() {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve('Mustache Emoji');
-    }, 100);
-  });
-}
-
-function onSuccess(data) {
-  console.log(`Success: ${data}`);
-}
-
-function onError(errorCode) {
-  console.log(`ERROR: ${errorCode}`);
-}
-
-function onFinally() {
-  console.log('Finally we be done');
-}
-
-fun1()
-  .then(fun2)
-  .then(onSuccess)
-  .catch(onError)
-  .finally(onFinally)
