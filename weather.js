@@ -33,13 +33,9 @@ if ('geolocation' in navigator) {
     console.error('Geolocation wird von diesem Browser nicht unterstützt.');
   }
   
-  function fetchData(lat, lon) {
-    // console.log(`https://api.weather.gov/gridpoints/OKX/${latitude},${longitude}/forecast`);
-    // console.log(`https://api.weather.gov/gridpoints/OKX/35,35/forecast`);
-    // lat = 35;
-    // lon = 35;
+  function fetchData(latitude, longitude) {
     const apiKey = 'd9425257f99d954ecdc16740272490d5';
-    const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+    const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
     return new Promise(function (resolve, reject) {
       fetch(url)
     .then(response => {
@@ -49,7 +45,6 @@ if ('geolocation' in navigator) {
         return response.json();
     })
     .then(weatherData => {
-        // Wetterdaten ausgeben
         console.log('Ort:', weatherData.name);
         console.log('Temperatur:', weatherData.main.temp, '°C');
         console.log('Wetter:', weatherData.weather[0].description);
