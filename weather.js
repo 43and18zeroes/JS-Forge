@@ -6,17 +6,14 @@ function fetchData() {
   });
 }
 
-
 function displayData(weather) {
   console.log(weather);
 }
-
 
 function onError(err) {
   console.log(`ERROR: ${err}`);
 }
 
-
 fetchData()
   .then(displayData)
-  .catch(onError)
+  .catch(onError);
