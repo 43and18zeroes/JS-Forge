@@ -33,21 +33,32 @@ if ('geolocation' in navigator) {
     console.error('Geolocation wird von diesem Browser nicht unterstützt.');
   }
   
-  function fetchData(latitude, longitude) {
+  function fetchData(lat, lon) {
     // console.log(`https://api.weather.gov/gridpoints/OKX/${latitude},${longitude}/forecast`);
     // console.log(`https://api.weather.gov/gridpoints/OKX/35,35/forecast`);
-    latitude = 35;
-    longitude = 35;
-    const apiUrl = `https://api.weather.gov/gridpoints/OKX/${latitude},${longitude}/forecast`;
+    // lat = 35;
+    // lon = 35;
+    const apiKey = 'd9425257f99d954ecdc16740272490d5';
+    const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
     return new Promise(function (resolve, reject) {
-      fetch(
-        // `https://api.weather.gov/gridpoints/OKX/${latitude},${longitude}/forecast`
-        // `https://api.weather.gov/gridpoints/OKX/35,35/forecast`
-        apiUrl
-      )
-        .then(response => response.json())
-        .then(data => resolve(data.properties.periods[1].shortForecast))
-        .catch(error => reject(error));
+      fetch(url)
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Netzwerkantwort war nicht ok');
+        }
+        return response.json();
+    })
+    .then(weatherData => {
+        // Wetterdaten ausgeben
+        console.log('Ort:', weatherData.name);
+        console.log('Temperatur:', weatherData.main.temp, '°C');
+        console.log('Wetter:', weatherData.weather[0].description);
+        console.log('Luftfeuchtigkeit:', weatherData.main.humidity, '%');
+        console.log('Windgeschwindigkeit:', weatherData.wind.speed, 'm/s');
+    })
+    .catch(error => {
+        console.error('Es gab ein Problem mit der Fetch-Operation:', error);
+    });
     });
   }
   
