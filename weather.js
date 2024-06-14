@@ -35,10 +35,12 @@ if ('geolocation' in navigator) {
   
   function fetchData(latitude, longitude) {
     console.log(latitude);
+    const apiUrl = `https://api.weather.gov/gridpoints/OKX/35,35/forecast`;
     return new Promise(function (resolve, reject) {
       fetch(
         // `https://api.weather.gov/gridpoints/OKX/${latitude},${longitude}/forecast`
-        `https://api.weather.gov/gridpoints/OKX/35,35/forecast`
+        // `https://api.weather.gov/gridpoints/OKX/35,35/forecast`
+        apiUrl
       )
         .then(response => response.json())
         .then(data => resolve(data.properties.periods[1].shortForecast))
