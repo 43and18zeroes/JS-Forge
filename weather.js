@@ -1,5 +1,8 @@
-console.log(this);
+const me = {
+  talk() {
+    return 'Talking';
+  },
+};
 
-if (true) {
-  console.log(this);
-}
+console.log(me);
+console.log(me.talk());
