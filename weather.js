@@ -1,19 +1,18 @@
-// class Person {
-//   talk() {
-//     return 'Talking';
-//   }
-// }
+class Person {
+  talk() {
+    return 'Talking';
+  }
+}
 
-// const me = new Person();
-// const you = new Person();
+const me = new Person();
+console.log(me.talk());
 
-// console.log(me.talk());
-// console.log(you.talk());
+class SuperHuman extends Person {
+  fly() {
+    return 'Flying';
+  }
+}
 
-// Person.prototype.talk = function () {
-//   return 'New Talk';
-// };
-
-// console.log(me.talk());
-// console.log(you.talk());
-
+const you = new SuperHuman();
+console.log(you.fly());
+console.log(you.talk());
