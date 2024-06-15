@@ -8,11 +8,11 @@ const me = new Person();
 const you = new Person();
 
 console.log(me.talk());
-console.log(me);
-console.log(me.__proto__.talk());
+console.log(you.talk());
 
-me.__proto__.talk = function () {
+Person.prototype.talk = function () {
   return 'New Talk';
 };
 
+console.log(me.talk());
 console.log(you.talk());
