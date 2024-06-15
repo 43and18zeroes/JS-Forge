@@ -18,12 +18,11 @@
 // console.log(you.talk());
 // console.log(me.fly());
 
-const person = {
-  talk() {
-    return 'Talking';
-  }
-}
+const dude = {};
+dude.name = 'Chris';
+dude.age = '38';
 
-const me = {}
-Object.setPrototypeOf(me, person)
-console.log(me.talk());
+console.log(dude.name);
+console.log(dude.age);
+console.log(dude.anything);
+console.log(dude.toString());
