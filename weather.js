@@ -16,3 +16,4 @@ class SuperHuman extends Person {
 const you = new SuperHuman();
 console.log(you.fly());
 console.log(you.talk());
+console.log(me.fly());
