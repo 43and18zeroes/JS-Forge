@@ -17,14 +17,3 @@
 // console.log(me.talk());
 // console.log(you.talk());
 
-function Person() {
-  this.age = 12;
-}
-
-const me = new Person();
-
-console.log(me.age);
-
-Person.age = 40;
-
-console.log(me.age);
