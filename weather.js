@@ -1,8 +1,11 @@
-const me = {
+class Person {
   talk() {
-    return 'Talking';
-  },
-};
+    return 'Talking'
+  }
+}
 
-console.log(me);
+const me = new Person();
+const you = new Person();
+
 console.log(me.talk());
+console.log(you.talk());
