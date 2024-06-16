@@ -26,3 +26,10 @@ console.log(dude.name);
 console.log(dude.age);
 console.log(dude.anything);
 console.log(dude.toString());
+
+
+
+
+setTimeout(() => {
+    console.log("Diese Nachricht wird nach 2 Sekunden angezeigt.");
+}, 2000);
