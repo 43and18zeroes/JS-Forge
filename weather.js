@@ -83,3 +83,14 @@ Promise.all([promise1, promise2, promise3]).then(values => {
 });
 
 
+console.log('Start');
+
+setTimeout(() => {
+    console.log('Timeout');
+}, 0);
+
+Promise.resolve().then(() => {
+    console.log('Promise');
+});
+
+console.log('End');
