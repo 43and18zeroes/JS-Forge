@@ -33,3 +33,14 @@ console.log(dude.toString());
 setTimeout(() => {
     console.log("Diese Nachricht wird nach 2 Sekunden angezeigt.");
 }, 2000);
+
+
+const intervalId = setInterval(() => {
+    console.log("Diese Nachricht wird alle 3 Sekunden angezeigt.");
+}, 3000);
+
+// Um das Intervall zu stoppen
+setTimeout(() => {
+    clearInterval(intervalId);
+    console.log("Intervall gestoppt.");
+}, 10000);
