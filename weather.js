@@ -27,25 +27,35 @@ console.log(dude.age);
 console.log(dude.anything);
 console.log(dude.toString());
 
-
-
-
 setTimeout(() => {
-    console.log("Diese Nachricht wird nach 2 Sekunden angezeigt.");
+  console.log('Diese Nachricht wird nach 2 Sekunden angezeigt.');
 }, 2000);
 
-
 const intervalId = setInterval(() => {
-    console.log("Diese Nachricht wird alle 3 Sekunden angezeigt.");
+  console.log('Diese Nachricht wird alle 3 Sekunden angezeigt.');
 }, 3000);
 
 // Um das Intervall zu stoppen
 setTimeout(() => {
-    clearInterval(intervalId);
-    console.log("Intervall gestoppt.");
+  clearInterval(intervalId);
+  console.log('Intervall gestoppt.');
 }, 10000);
 
 fetch('https://api.example.com/data')
-    .then(response => response.json())
-    .then(data => console.log(data))
-    .catch(error => console.error('Fehler:', error));
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(error => console.error('Fehler:', error));
+
+const promise = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve('Erfolg!');
+  }, 1000);
+});
+
+promise
+  .then(value => {
+    console.log(value); // "Erfolg!"
+  })
+  .catch(error => {
+    console.error('Fehler:', error);
+  });
