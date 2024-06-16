@@ -44,3 +44,8 @@ setTimeout(() => {
     clearInterval(intervalId);
     console.log("Intervall gestoppt.");
 }, 10000);
+
+fetch('https://api.example.com/data')
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => console.error('Fehler:', error));
