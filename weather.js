@@ -33,14 +33,15 @@
 // const myName = 'Chris';
 // console.log(myName.__proto__);
 
-const human = {
-  kind: 'Human',
-};
+// const human = {
+//   kind: 'Human',
+// };
 
-const sina = Object.create(human);
-sina.age = 34;
-console.log(sina);
+// const sina = Object.create(human);
+// sina.age = 34;
+// console.log(sina);
 
-const ben = Object.create(sina)
-ben.age = 27;
-console.log(ben); 
+// const ben = Object.create(sina)
+// ben.age = 27;
+// console.log(ben); 
+
