@@ -27,4 +27,8 @@
 // console.log(dude.anything);
 // console.log(dude.toString());
 
-const myBrothers = ['Ben', 'Sam']
+// const myBrothers = ['Ben', 'Sam']
+// console.log(myBrothers);
+
+const myName = 'Chris';
+console.log(myName.__proto__);
