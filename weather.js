@@ -18,11 +18,11 @@
 // console.log(you.talk());
 // console.log(me.fly());
 
-const dude = {};
-dude.name = 'Chris';
-dude.age = '38';
+// const dude = {};
+// dude.name = 'Chris';
+// dude.age = '38';
 
-console.log(dude.name);
-console.log(dude.age);
-console.log(dude.anything);
-console.log(dude.toString());
+// console.log(dude.name);
+// console.log(dude.age);
+// console.log(dude.anything);
+// console.log(dude.toString());
