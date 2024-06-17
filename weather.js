@@ -38,4 +38,5 @@ const human = {
 };
 
 const sina = Object.create(human);
+sina.age = 34;
 console.log(sina);
