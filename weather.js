@@ -40,3 +40,7 @@ const human = {
 const sina = Object.create(human);
 sina.age = 34;
 console.log(sina);
+
+const ben = Object.create(sina)
+ben.age = 27;
+console.log(ben); 
