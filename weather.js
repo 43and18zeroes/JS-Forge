@@ -26,3 +26,5 @@
 // console.log(dude.age);
 // console.log(dude.anything);
 // console.log(dude.toString());
+
+const myBrothers = ['Ben', 'Sam']
