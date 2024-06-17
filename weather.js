@@ -30,5 +30,12 @@
 // const myBrothers = ['Ben', 'Sam']
 // console.log(myBrothers);
 
-const myName = 'Chris';
-console.log(myName.__proto__);
+// const myName = 'Chris';
+// console.log(myName.__proto__);
+
+const human = {
+  kind: 'Human',
+};
+
+const sina = Object.create(human);
+console.log(sina);
