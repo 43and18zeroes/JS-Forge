@@ -1,0 +1,3 @@
+function SuperElement(type, content) {
+  
+}
