@@ -14,5 +14,8 @@ function createElement(type, text, color) {
   };
 }
 
-const h1 = createElement('h1', 'Hey guys', 'red');
-console.log(h1);
+// const h1 = createElement('h1', 'Hey guys', 'red');
+// console.log(h1);
+
+const myBrothers = ['Ben', 'Sam']
+console.log(myBrothers);
