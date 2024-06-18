@@ -4,8 +4,10 @@ function SuperElement(type, content) {
   document.body.append(this.el);
   this.el.addEventListener('click', () => {
     console.log(this.el);
-  })
+  });
 }
 
-const h1 = new SuperElement('h1', 'Hello');
-console.log(h1);
+const array = ['a', 'b', 'c'];
+const myElements = array.map(item => {
+  return new SuperElement('p', item);
+});
