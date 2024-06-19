@@ -1,21 +1,13 @@
-function createElement(type, text, color) {
-  const el = document.createElement(type);
-  el.innerText = text;
-  el.style.color = color;
-  document.body.append(el);
+function createPerson(name, age) {
   return {
-    el,
-    setText(text) {
-      el.innerText = text;
-    },
-    setColor(color) {
-      el.style.color = color;
-    },
+      name: name,
+      age: age,
+      greet() {
+          console.log(`Hello, my name is ${name} and I am ${age} years old.`);
+      }
   };
 }
 
-
-const h1 = createElement('h1', 'Hey guys', 'red');
-console.log(h1);
-h1.setText('New Text');
-console.log(h1);
+const person = createPerson('Alice', 30);
+console.log(person);
+console.log(person.greet());
