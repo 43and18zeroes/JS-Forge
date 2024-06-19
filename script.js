@@ -1,14 +1,26 @@
-function talk(lang) {
+function talk(lang, isPolite) {
+  if (isPolite) {
     if (lang === 'en') {
-        return `I am ${this.name}`;
+      return `Hello, I am ${this.name}`;
     } else if (lang === 'it') {
-        return `Io sono ${this.name}`;
+      return `Ciao bella, sono ${this.name}`;
     }
+  }
+
+  if (!isPolite) {
+    if (lang === 'en') {
+      return `I am ${this.name}, what you want?`;
+    } else if (lang === 'it') {
+      return `Sono ${this.name}, 'angry gesture'`;
+    }
+  }
 }
 
 const me = {
-    name: 'Sina',
-}
+  name: 'Sina',
+};
 
-console.log(talk.call(me, 'en')); // I am Sina
-console.log(talk.call(me, 'it')); // Io sono Sina
+console.log(talk.call(me, 'en', true));
+console.log(talk.call(me, 'it', true));
+console.log(talk.call(me, 'en', false));
+console.log(talk.call(me, 'it', false));
