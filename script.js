@@ -4,13 +4,7 @@ function talk() {
 
 const me = {
     name: 'Sina',
-    talk
 }
 
-const you = {
-    name: 'Qoli',
-    talk
-}
-
-console.log(me.talk()); // I am Sina
-console.log(you.talk()); // I am Quoli
+const meTalk = talk.bind(me)
+console.log(meTalk()); // I am Sina
