@@ -20,7 +20,7 @@ const me = {
   name: 'Sina',
 };
 
-console.log(talk.call(me, 'en', true));
-console.log(talk.call(me, 'it', true));
-console.log(talk.call(me, 'en', false));
-console.log(talk.call(me, 'it', false));
+console.log(talk.call(me, 'en', true)); // Hello, I am Sina
+console.log(talk.call(me, 'it', true)); // Ciao bella, sono Sina
+console.log(talk.call(me, 'en', false)); // I am Sina, what you want?
+console.log(talk.call(me, 'it', false)); // Sono Sina, 'angry gesture'
