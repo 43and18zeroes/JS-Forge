@@ -6,5 +6,4 @@ const me = {
     name: 'Sina',
 }
 
-const meTalk = talk.bind(me)
-console.log(meTalk()); // I am Sina
+console.log(talk.call(me)); // I am Sina
