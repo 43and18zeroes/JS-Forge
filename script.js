@@ -24,3 +24,9 @@ console.log(talk.call(me, 'en', true)); // Hello, I am Sina
 console.log(talk.call(me, 'it', true)); // Ciao bella, sono Sina
 console.log(talk.call(me, 'en', false)); // I am Sina, what you want?
 console.log(talk.call(me, 'it', false)); // Sono Sina, 'angry gesture'
+
+function Person(name) {
+  this.name = name;
+}
+const person = new Person('Bob');
+console.log(person.name); // Ausgabe: 'Bob'
