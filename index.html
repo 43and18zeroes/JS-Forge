@@ -34,7 +34,10 @@
       }
 
       async function createChart() {
-        const bitcoinData = await fetchBitcoinData('2020-01-01', '2020-07-31');
+        const startDate = '2010-07-17';
+        const endDate = new Date().toISOString().split('T')[0];
+        console.log(endDate);
+        const bitcoinData = await fetchBitcoinData(startDate, endDate);
         const ctx = document.getElementById('bitcoinChart').getContext('2d');
 
         const labels = Object.keys(bitcoinData);
