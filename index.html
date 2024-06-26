@@ -30,6 +30,7 @@
           'https://api.coindesk.com/v1/bpi/historical/close.json'
         );
         const data = await response.json();
+        console.log(data);
         return data.bpi;
       }
 
