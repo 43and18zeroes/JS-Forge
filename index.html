@@ -36,18 +36,15 @@
       async function createChart() {
         // const startDate = '2010-07-17';
         // const startDate = '2024-06-01';
-        const endDate = new Date().toISOString().split('T')[0];
 
+        const endDate = new Date().toISOString().split('T')[0];
         const endDateObj = new Date(endDate);
         endDateObj.setDate(endDateObj.getDate() - 30);
-
-        // startDate als ISO-String formatieren
         const startDate = endDateObj.toISOString().split('T')[0];
 
         console.log('endDate:', endDate);
         console.log('startDate:', startDate);
 
-        console.log(endDate);
         const bitcoinData = await fetchBitcoinData(startDate, endDate);
         const ctx = document.getElementById('bitcoinChart').getContext('2d');
 
