@@ -1,17 +1,70 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Async Code</title>
-  <script src="script.js" defer></script>
-  <!-- <script src="app.js" defer></script>
-  <script src="weather.js" defer></script> -->
-  
-</head>
-<body>
-  <button>Track Me!</button>
-  <p></p>
-</body>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bitcoin Preis Chart</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        font-family: Arial, sans-serif;
+      }
+      #chart-container {
+        width: 80%;
+        max-width: 800px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="chart-container">
+      <canvas id="bitcoinChart"></canvas>
+    </div>
+    <script>
+      async function fetchBitcoinData() {
+        const response = await fetch(
+          'https://api.coindesk.com/v1/bpi/historical/close.json'
+        );
+        const data = await response.json();
+        return data.bpi;
+      }
+
+      async function createChart() {
+        const bitcoinData = await fetchBitcoinData();
+        const ctx = document.getElementById('bitcoinChart').getContext('2d');
+
+        const labels = Object.keys(bitcoinData);
+        const data = Object.values(bitcoinData);
+
+        new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: labels,
+            datasets: [
+              {
+                label: 'Bitcoin Preis in Euro',
+                data: data,
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1,
+              },
+            ],
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: false,
+              },
+            },
+          },
+        });
+      }
+
+      createChart();
+    </script>
+  </body>
 </html>
