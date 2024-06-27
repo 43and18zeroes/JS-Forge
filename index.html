@@ -37,7 +37,9 @@
         // const startDate = '2010-07-17';
         // const startDate = '2024-06-01';
 
-        const endDate = new Date().toISOString().split('T')[0];
+        const today = new Date();
+        today.setDate(today.getDate() - 1);
+        const endDate = today.toISOString().split('T')[0];
         const endDateObj = new Date(endDate);
         endDateObj.setDate(endDateObj.getDate() - 30);
         const startDate = endDateObj.toISOString().split('T')[0];
