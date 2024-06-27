@@ -23,6 +23,7 @@
   <body>
     <button id="thirtyDaysBtn">1 M.</button>
     <button id="sixMonthBtn">6 M.</button>
+    <button id="maxBtn">Max.</button>
     <div id="chart-container">
       <canvas id="bitcoinChart"></canvas>
     </div>
@@ -92,16 +93,24 @@
       }
 
       function drawChartThirtyDays() {
-        const labels = Object.keys(bitcoinData).slice(-31);;
-        const data = Object.values(bitcoinData).slice(-31);;
+        const labels = Object.keys(bitcoinData).slice(-31);
+        const data = Object.values(bitcoinData).slice(-31);
         console.log('labels', labels);
         console.log('data', data);
         drawChart(labels, data);
       }
 
       function drawChartSixMonth() {
-        const labels = Object.keys(bitcoinData).slice(-183);;
-        const data = Object.values(bitcoinData).slice(-183);;
+        const labels = Object.keys(bitcoinData).slice(-183);
+        const data = Object.values(bitcoinData).slice(-183);
+        console.log('labels', labels);
+        console.log('data', data);
+        drawChart(labels, data);
+      }
+
+      function drawChartMax() {
+        const labels = Object.keys(bitcoinData);
+        const data = Object.values(bitcoinData);
         console.log('labels', labels);
         console.log('data', data);
         drawChart(labels, data);
@@ -112,6 +121,9 @@
 
       const sixMonthBtn = document.getElementById('sixMonthBtn');
       sixMonthBtn.addEventListener('click', drawChartSixMonth);
+
+      const maxBtn = document.getElementById('maxBtn');
+      maxBtn.addEventListener('click', drawChartMax);
 
       createChart();
     </script>
