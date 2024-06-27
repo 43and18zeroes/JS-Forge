@@ -32,9 +32,13 @@
       const initialEndDate = today.toISOString().split('T')[0];
       const ctx = document.getElementById('bitcoinChart').getContext('2d');
       let bitcoinData;
+      let chartInstance = null;
 
       function drawChart(labels, data) {
-        new Chart(ctx, {
+        if (chartInstance) {
+          chartInstance.destroy(); // Destroy the existing chart instance
+        }
+        chartInstance = new Chart(ctx, {
           type: 'line',
           data: {
             labels: labels,
@@ -89,8 +93,8 @@
       function drawChartThirtyDays() {
         const labels = Object.keys(bitcoinData);
         const data = Object.values(bitcoinData);
-        console.log("labels", labels);
-        console.log("data", data);
+        console.log('labels', labels);
+        console.log('data', data);
         drawChart(labels, data);
       }
 
