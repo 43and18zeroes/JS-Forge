@@ -21,7 +21,8 @@
     </style>
   </head>
   <body>
-    <button id="thirtyDaysBtn">30 days</button>
+    <button id="thirtyDaysBtn">1 M.</button>
+    <button id="sixMonthBtn">6 M.</button>
     <div id="chart-container">
       <canvas id="bitcoinChart"></canvas>
     </div>
@@ -98,8 +99,19 @@
         drawChart(labels, data);
       }
 
+      function drawChartSixMonth() {
+        const labels = Object.keys(bitcoinData).slice(-183);;
+        const data = Object.values(bitcoinData).slice(-183);;
+        console.log('labels', labels);
+        console.log('data', data);
+        drawChart(labels, data);
+      }
+
       const thirtyDaysBtn = document.getElementById('thirtyDaysBtn');
       thirtyDaysBtn.addEventListener('click', drawChartThirtyDays);
+
+      const sixMonthBtn = document.getElementById('sixMonthBtn');
+      sixMonthBtn.addEventListener('click', drawChartSixMonth);
 
       createChart();
     </script>
