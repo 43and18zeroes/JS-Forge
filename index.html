@@ -25,36 +25,14 @@
       <canvas id="bitcoinChart"></canvas>
     </div>
     <script>
-      async function fetchBitcoinData(startDate, endDate, currency = 'EUR') {
-        const url = `https://api.coindesk.com/v1/bpi/historical/close.json?start=${startDate}&end=${endDate}&currency=${currency}`;
-        const response = await fetch(url);
-        const data = await response.json();
-        console.log(data);
-        return data.bpi;
-      }
+      const initialStartDate = '2013-10-01';
+      const today = new Date();
+      today.setDate(today.getDate() - 1);
+      const initialEndDate = today.toISOString().split('T')[0];
+      const ctx = document.getElementById('bitcoinChart').getContext('2d');
+      let bitcoinData;
 
-      async function createChart() {
-        const initialStartDate = '2013-10-01';
-        // const startDate = '2024-06-01';
-
-        const today = new Date();
-        today.setDate(today.getDate() - 1);
-        const initialEndDate = today.toISOString().split('T')[0];
-        // const endDateObj = new Date(endDate);
-        // endDateObj.setDate(endDateObj.getDate() - 30);
-        // const startDate = endDateObj.toISOString().split('T')[0];
-
-        console.log('initialEndDate:', initialEndDate);
-        console.log('initialStartDate:', initialStartDate);
-
-        const bitcoinData = await fetchBitcoinData(initialStartDate, initialEndDate);
-        const ctx = document.getElementById('bitcoinChart').getContext('2d');
-
-        const labels = Object.keys(bitcoinData);
-        const data = Object.values(bitcoinData);
-
-        // console.log(labels);
-
+      function drawChart(labels, data) {
         new Chart(ctx, {
           type: 'line',
           data: {
@@ -77,6 +55,37 @@
             },
           },
         });
+      }
+
+      function getLast30Days() {
+        // const endDateObj = new Date(endDate);
+        // endDateObj.setDate(endDateObj.getDate() - 30);
+        // const startDate = endDateObj.toISOString().split('T')[0];
+      }
+
+      async function fetchBitcoinData(startDate, endDate, currency = 'EUR') {
+        const url = `https://api.coindesk.com/v1/bpi/historical/close.json?start=${startDate}&end=${endDate}&currency=${currency}`;
+        const response = await fetch(url);
+        const data = await response.json();
+        console.log(data);
+        return data.bpi;
+      }
+
+      async function createChart() {
+        // console.log('initialEndDate:', initialEndDate);
+        // console.log('initialStartDate:', initialStartDate);
+
+        bitcoinData = await fetchBitcoinData(
+          initialStartDate,
+          initialEndDate
+        );
+        console.log(bitcoinData);
+        const labels = Object.keys(bitcoinData);
+        const data = Object.values(bitcoinData);
+
+        // console.log(labels);
+
+        drawChart(labels, data);
       }
 
       createChart();
