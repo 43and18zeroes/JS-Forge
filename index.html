@@ -104,13 +104,19 @@
       }
 
       const oneMonthBtn = document.getElementById('one-month-btn');
-      oneMonthBtn.addEventListener('click', drawChartOneMonth);
+      oneMonthBtn.addEventListener('click', () => {
+        drawChart(labelsOneMonth, dataOneMonth);
+      });
 
       const sixMonthBtn = document.getElementById('six-month-btn');
-      sixMonthBtn.addEventListener('click', drawChartSixMonth);
+      sixMonthBtn.addEventListener('click', () => {
+        drawChart(labelsSixMonths, dataSixMonths);
+      });
 
       const maxBtn = document.getElementById('max-btn');
-      maxBtn.addEventListener('click', drawChartMax);
+      maxBtn.addEventListener('click', () => {
+        drawChart(labelsMax, dataMax);
+      });
 
       initChart();
     </script>
