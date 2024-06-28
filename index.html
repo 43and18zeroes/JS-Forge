@@ -25,14 +25,14 @@
     <button id="six-month-btn">6 M.</button>
     <button id="max-btn">Max.</button>
     <div id="chart-container">
-      <canvas id="bitcoinChart"></canvas>
+      <canvas id="btc-chart"></canvas>
     </div>
     <script>
       const initialStartDate = '2013-10-01';
       const today = new Date();
       today.setDate(today.getDate() - 1);
       const initialEndDate = today.toISOString().split('T')[0];
-      const ctx = document.getElementById('bitcoinChart').getContext('2d');
+      const ctx = document.getElementById('btc-chart').getContext('2d');
       let bitcoinData;
       let chartInstance = null;
 
