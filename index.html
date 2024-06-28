@@ -84,18 +84,6 @@
         initChartParams();
       }
 
-      function drawChartOneMonth() {
-        drawChart(labelsOneMonth, dataOneMonth);
-      }
-
-      function drawChartSixMonth() {
-        drawChart(labelsSixMonths, dataSixMonths);
-      }
-
-      function drawChartMax() {
-        drawChart(labelsMax, dataMax);
-      }
-
       async function fetchBitcoinData(startDate, endDate, currency = 'EUR') {
         const url = `https://api.coindesk.com/v1/bpi/historical/close.json?start=${startDate}&end=${endDate}&currency=${currency}`;
         const response = await fetch(url);
