@@ -62,18 +62,9 @@
         });
       }
 
-      async function fetchBitcoinData(startDate, endDate, currency = 'EUR') {
-        const url = `https://api.coindesk.com/v1/bpi/historical/close.json?start=${startDate}&end=${endDate}&currency=${currency}`;
-        const response = await fetch(url);
-        const data = await response.json();
-        return data.bpi;
-      }
-
       async function createChart() {
         bitcoinData = await fetchBitcoinData(initialStartDate, initialEndDate);
-        const labels = Object.keys(bitcoinData);
-        const data = Object.values(bitcoinData);
-        drawChart(labels, data);
+        drawChartOneMonth();
       }
 
       function drawChartOneMonth() {
@@ -92,6 +83,13 @@
         const labels = Object.keys(bitcoinData);
         const data = Object.values(bitcoinData);
         drawChart(labels, data);
+      }
+
+      async function fetchBitcoinData(startDate, endDate, currency = 'EUR') {
+        const url = `https://api.coindesk.com/v1/bpi/historical/close.json?start=${startDate}&end=${endDate}&currency=${currency}`;
+        const response = await fetch(url);
+        const data = await response.json();
+        return data.bpi;
       }
 
       const oneMonthBtn = document.getElementById('one-month-btn');
