@@ -35,6 +35,8 @@
       const ctx = document.getElementById('btc-chart').getContext('2d');
       let bitcoinData;
       let chartInstance = null;
+      let labelsThirtyDays;
+      let dataThirtyDays;
 
       function drawChart(labels, data) {
         if (chartInstance) chartInstance.destroy();
@@ -62,9 +64,11 @@
         });
       }
 
-      async function createChart() {
+      async function initChart() {
         bitcoinData = await fetchBitcoinData(initialStartDate, initialEndDate);
-        drawChartOneMonth();
+        labelsThirtyDays = Object.keys(bitcoinData).slice(-31);
+        dataThirtyDays = Object.values(bitcoinData).slice(-31);
+        drawChart(labelsThirtyDays, dataThirtyDays);
       }
 
       function drawChartOneMonth() {
@@ -101,7 +105,7 @@
       const maxBtn = document.getElementById('max-btn');
       maxBtn.addEventListener('click', drawChartMax);
 
-      createChart();
+      initChart();
     </script>
   </body>
 </html>
