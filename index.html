@@ -35,8 +35,13 @@
       const ctx = document.getElementById('btc-chart').getContext('2d');
       let bitcoinData;
       let chartInstance = null;
-      let labelsThirtyDays;
-      let dataThirtyDays;
+
+      let labelsOneMonth;
+      let dataOneMonth;
+      let labelsSixMonths;
+      let dataSixMonths;
+      let labelsMax;
+      let dataMax;
 
       function drawChart(labels, data) {
         if (chartInstance) chartInstance.destroy();
@@ -64,11 +69,19 @@
         });
       }
 
+      function initChartParams() {
+        labelsSixMonths = Object.keys(bitcoinData).slice(-183);
+        dataSixMonths = Object.values(bitcoinData).slice(-183);
+        labelsMax = Object.keys(bitcoinData);
+        dataMax = Object.values(bitcoinData);
+      }
+
       async function initChart() {
         bitcoinData = await fetchBitcoinData(initialStartDate, initialEndDate);
-        labelsThirtyDays = Object.keys(bitcoinData).slice(-31);
-        dataThirtyDays = Object.values(bitcoinData).slice(-31);
-        drawChart(labelsThirtyDays, dataThirtyDays);
+        labelsOneMonth = Object.keys(bitcoinData).slice(-31);
+        dataOneMonth = Object.values(bitcoinData).slice(-31);
+        drawChart(labelsOneMonth, dataOneMonth);
+        initChartParams();
       }
 
       function drawChartOneMonth() {
@@ -78,15 +91,15 @@
       }
 
       function drawChartSixMonth() {
-        const labels = Object.keys(bitcoinData).slice(-183);
-        const data = Object.values(bitcoinData).slice(-183);
-        drawChart(labels, data);
+        // const labels = Object.keys(bitcoinData).slice(-183);
+        // const data = Object.values(bitcoinData).slice(-183);
+        drawChart(labelsSixMonths, dataSixMonths);
       }
 
       function drawChartMax() {
-        const labels = Object.keys(bitcoinData);
-        const data = Object.values(bitcoinData);
-        drawChart(labels, data);
+        // const labels = Object.keys(bitcoinData);
+        // const data = Object.values(bitcoinData);
+        drawChart(labelsMax, dataMax);
       }
 
       async function fetchBitcoinData(startDate, endDate, currency = 'EUR') {
