@@ -37,16 +37,14 @@
       let chartInstance = null;
 
       function drawChart(labels, data) {
-        if (chartInstance) {
-          chartInstance.destroy(); // Destroy the existing chart instance
-        }
+        if (chartInstance) chartInstance.destroy();
         chartInstance = new Chart(ctx, {
           type: 'line',
           data: {
             labels: labels,
             datasets: [
               {
-                label: 'Bitcoin Preis in Euro',
+                label: 'BITCOIN - EURO (BTC - EUR)',
                 data: data,
                 backgroundColor: 'rgba(247, 147, 26, 1)',
                 borderColor: 'rgba(247, 147, 26, 1)',
