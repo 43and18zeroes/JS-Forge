@@ -23,7 +23,7 @@
   <body>
     <button id="one-month-btn">1 M.</button>
     <button id="six-month-btn">6 M.</button>
-    <button id="maxBtn">Max.</button>
+    <button id="max-btn">Max.</button>
     <div id="chart-container">
       <canvas id="bitcoinChart"></canvas>
     </div>
@@ -64,31 +64,17 @@
         });
       }
 
-      function getLast30Days() {
-        // const endDateObj = new Date(endDate);
-        // endDateObj.setDate(endDateObj.getDate() - 30);
-        // const startDate = endDateObj.toISOString().split('T')[0];
-      }
-
       async function fetchBitcoinData(startDate, endDate, currency = 'EUR') {
         const url = `https://api.coindesk.com/v1/bpi/historical/close.json?start=${startDate}&end=${endDate}&currency=${currency}`;
         const response = await fetch(url);
         const data = await response.json();
-        console.log(data);
         return data.bpi;
       }
 
       async function createChart() {
-        // console.log('initialEndDate:', initialEndDate);
-        // console.log('initialStartDate:', initialStartDate);
-
         bitcoinData = await fetchBitcoinData(initialStartDate, initialEndDate);
-        console.log(bitcoinData);
         const labels = Object.keys(bitcoinData);
         const data = Object.values(bitcoinData);
-
-        // console.log(labels);
-
         drawChart(labels, data);
       }
 
@@ -116,7 +102,7 @@
       const sixMonthBtn = document.getElementById('six-month-btn');
       sixMonthBtn.addEventListener('click', drawChartSixMonth);
 
-      const maxBtn = document.getElementById('maxBtn');
+      const maxBtn = document.getElementById('max-btn');
       maxBtn.addEventListener('click', drawChartMax);
 
       createChart();
