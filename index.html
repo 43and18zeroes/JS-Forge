@@ -85,14 +85,10 @@
       }
 
       function drawChartOneMonth() {
-        const labels = Object.keys(bitcoinData).slice(-31);
-        const data = Object.values(bitcoinData).slice(-31);
-        drawChart(labels, data);
+        drawChart(labelsOneMonth, dataOneMonth);
       }
 
       function drawChartSixMonth() {
-        // const labels = Object.keys(bitcoinData).slice(-183);
-        // const data = Object.values(bitcoinData).slice(-183);
         drawChart(labelsSixMonths, dataSixMonths);
       }
 
