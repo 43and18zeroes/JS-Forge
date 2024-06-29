@@ -36,12 +36,11 @@
       let bitcoinData;
       let chartInstance = null;
 
-      let labelsOneMonth;
-      let dataOneMonth;
-      let labelsSixMonths;
-      let dataSixMonths;
-      let labelsMax;
-      let dataMax;
+      const chartParams = {
+        oneMonth: { labels: [], data: [] },
+        sixMonths: { labels: [], data: [] },
+        max: { labels: [], data: [] },
+      };
 
       function drawChart(labels, data) {
         if (chartInstance) chartInstance.destroy();
@@ -70,10 +69,10 @@
       }
 
       function initChartParams() {
-        labelsSixMonths = Object.keys(bitcoinData).slice(-183);
-        dataSixMonths = Object.values(bitcoinData).slice(-183);
-        labelsMax = Object.keys(bitcoinData);
-        dataMax = Object.values(bitcoinData);
+        chartParams.sixMonths.labels = Object.keys(bitcoinData).slice(-183);
+        chartParams.sixMonths.data = Object.values(bitcoinData).slice(-183);
+        chartParams.max.labels = Object.keys(bitcoinData);
+        chartParams.max.data = Object.values(bitcoinData);
       }
 
       async function initChart() {
@@ -82,9 +81,9 @@
             initialStartDate,
             initialEndDate
           );
-          labelsOneMonth = Object.keys(bitcoinData).slice(-31);
-          dataOneMonth = Object.values(bitcoinData).slice(-31);
-          drawChart(labelsOneMonth, dataOneMonth);
+          chartParams.oneMonth.labels = Object.keys(bitcoinData).slice(-31);
+          chartParams.oneMonth.data = Object.values(bitcoinData).slice(-31);
+          drawChart(chartParams.oneMonth.labels, chartParams.oneMonth.data);
           initChartParams();
         } catch (error) {
           console.error('Error fetching Bitcoin data:', error);
@@ -103,17 +102,17 @@
 
       const oneMonthBtn = document.getElementById('one-month-btn');
       oneMonthBtn.addEventListener('click', () => {
-        drawChart(labelsOneMonth, dataOneMonth);
+        drawChart(chartParams.oneMonth.labels, chartParams.oneMonth.data);
       });
 
       const sixMonthBtn = document.getElementById('six-month-btn');
       sixMonthBtn.addEventListener('click', () => {
-        drawChart(labelsSixMonths, dataSixMonths);
+        drawChart(chartParams.sixMonths.labels, chartParams.sixMonths.data);
       });
 
       const maxBtn = document.getElementById('max-btn');
       maxBtn.addEventListener('click', () => {
-        drawChart(labelsMax, dataMax);
+        drawChart(chartParams.max.labels, chartParams.max.data);
       });
 
       initChart();
