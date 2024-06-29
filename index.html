@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Bitcoin Preis Chart</title>
-    <script src="chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
       body {
         display: flex;
@@ -21,9 +21,9 @@
     </style>
   </head>
   <body>
-    <button id="one-month-btn">1 M.</button>
-    <button id="six-month-btn">6 M.</button>
-    <button id="max-btn">Max.</button>
+    <button id="one-month-btn" tabindex="0" aria-label="1 Monat">1 M.</button>
+    <button id="six-month-btn" tabindex="0" aria-label="6 Monate">6 M.</button>
+    <button id="max-btn" tabindex="0" aria-label="Maximal">Max.</button>
     <div id="chart-container">
       <canvas id="btc-chart"></canvas>
     </div>
@@ -39,33 +39,38 @@
       const chartParams = {
         oneMonth: { labels: [], data: [] },
         sixMonths: { labels: [], data: [] },
-        max: { labels: [], data: [] },
+        max: { labels: [], data: [] }
       };
 
       function drawChart(labels, data) {
-        if (chartInstance) chartInstance.destroy();
-        chartInstance = new Chart(ctx, {
-          type: 'line',
-          data: {
-            labels: labels,
-            datasets: [
-              {
-                label: 'BITCOIN - EURO (BTC - EUR)',
-                data: data,
-                backgroundColor: 'rgba(247, 147, 26, 1)',
-                borderColor: 'rgba(247, 147, 26, 1)',
-                borderWidth: 1,
-              },
-            ],
-          },
-          options: {
-            scales: {
-              y: {
-                beginAtZero: false,
+        if (!chartInstance) {
+          chartInstance = new Chart(ctx, {
+            type: 'line',
+            data: {
+              labels: labels,
+              datasets: [
+                {
+                  label: 'BITCOIN - EURO (BTC - EUR)',
+                  data: data,
+                  backgroundColor: 'rgba(247, 147, 26, 1)',
+                  borderColor: 'rgba(247, 147, 26, 1)',
+                  borderWidth: 1,
+                },
+              ],
+            },
+            options: {
+              scales: {
+                y: {
+                  beginAtZero: false,
+                },
               },
             },
-          },
-        });
+          });
+        } else {
+          chartInstance.data.labels = labels;
+          chartInstance.data.datasets[0].data = data;
+          chartInstance.update();
+        }
       }
 
       function initChartParams() {
@@ -77,16 +82,14 @@
 
       async function initChart() {
         try {
-          bitcoinData = await fetchBitcoinData(
-            initialStartDate,
-            initialEndDate
-          );
+          bitcoinData = await fetchBitcoinData(initialStartDate, initialEndDate);
           chartParams.oneMonth.labels = Object.keys(bitcoinData).slice(-31);
           chartParams.oneMonth.data = Object.values(bitcoinData).slice(-31);
           drawChart(chartParams.oneMonth.labels, chartParams.oneMonth.data);
           initChartParams();
         } catch (error) {
           console.error('Error fetching Bitcoin data:', error);
+          alert('Fehler beim Laden der Bitcoin-Daten. Bitte versuchen Sie es später erneut.');
         }
       }
 
