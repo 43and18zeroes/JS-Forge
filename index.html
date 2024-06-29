@@ -39,7 +39,7 @@
       const chartParams = {
         oneMonth: { labels: [], data: [] },
         sixMonths: { labels: [], data: [] },
-        max: { labels: [], data: [] }
+        max: { labels: [], data: [] },
       };
 
       function drawChart(labels, data) {
@@ -80,16 +80,47 @@
         chartParams.max.data = Object.values(bitcoinData);
       }
 
+      function addButtonEventListener(buttonId, labels, data) {
+        const button = document.getElementById(buttonId);
+        button.addEventListener('click', () => {
+          drawChart(labels, data);
+        });
+      }
+
+      function initBtnEventlisteners() {
+        addButtonEventListener(
+          'one-month-btn',
+          chartParams.oneMonth.labels,
+          chartParams.oneMonth.data
+        );
+        addButtonEventListener(
+          'six-month-btn',
+          chartParams.sixMonths.labels,
+          chartParams.sixMonths.data
+        );
+        addButtonEventListener(
+          'max-btn',
+          chartParams.max.labels,
+          chartParams.max.data
+        );
+      }
+
       async function initChart() {
         try {
-          bitcoinData = await fetchBitcoinData(initialStartDate, initialEndDate);
+          bitcoinData = await fetchBitcoinData(
+            initialStartDate,
+            initialEndDate
+          );
           chartParams.oneMonth.labels = Object.keys(bitcoinData).slice(-31);
           chartParams.oneMonth.data = Object.values(bitcoinData).slice(-31);
           drawChart(chartParams.oneMonth.labels, chartParams.oneMonth.data);
           initChartParams();
+          initBtnEventlisteners();
         } catch (error) {
           console.error('Error fetching Bitcoin data:', error);
-          alert('Fehler beim Laden der Bitcoin-Daten. Bitte versuchen Sie es später erneut.');
+          alert(
+            'Fehler beim Laden der Bitcoin-Daten. Bitte versuchen Sie es später erneut.'
+          );
         }
       }
 
@@ -102,32 +133,6 @@
         const data = await response.json();
         return data.bpi;
       }
-
-      const oneMonthBtn = document.getElementById('one-month-btn');
-      oneMonthBtn.addEventListener('click', () => {
-        drawChart(chartParams.oneMonth.labels, chartParams.oneMonth.data);
-      });
-
-      const sixMonthBtn = document.getElementById('six-month-btn');
-      sixMonthBtn.addEventListener('click', () => {
-        drawChart(chartParams.sixMonths.labels, chartParams.sixMonths.data);
-      });
-
-      const maxBtn = document.getElementById('max-btn');
-      maxBtn.addEventListener('click', () => {
-        drawChart(chartParams.max.labels, chartParams.max.data);
-      });
-
-      // function addButtonEventListener(buttonId, labels, data) {
-      //   const button = document.getElementById(buttonId);
-      //   button.addEventListener('click', () => {
-      //     drawChart(labels, data);
-      //   });
-      // }
-
-      // addButtonEventListener('one-month-btn', chartParams.oneMonth.labels, chartParams.oneMonth.data);
-      // addButtonEventListener('six-month-btn', chartParams.sixMonths.labels, chartParams.sixMonths.data);
-      // addButtonEventListener('max-btn', chartParams.max.labels, chartParams.max.data);
 
       initChart();
     </script>
