@@ -77,16 +77,26 @@
       }
 
       async function initChart() {
-        bitcoinData = await fetchBitcoinData(initialStartDate, initialEndDate);
-        labelsOneMonth = Object.keys(bitcoinData).slice(-31);
-        dataOneMonth = Object.values(bitcoinData).slice(-31);
-        drawChart(labelsOneMonth, dataOneMonth);
-        initChartParams();
+        try {
+          bitcoinData = await fetchBitcoinData(
+            initialStartDate,
+            initialEndDate
+          );
+          labelsOneMonth = Object.keys(bitcoinData).slice(-31);
+          dataOneMonth = Object.values(bitcoinData).slice(-31);
+          drawChart(labelsOneMonth, dataOneMonth);
+          initChartParams();
+        } catch (error) {
+          console.error('Error fetching Bitcoin data:', error);
+        }
       }
 
       async function fetchBitcoinData(startDate, endDate, currency = 'EUR') {
         const url = `https://api.coindesk.com/v1/bpi/historical/close.json?start=${startDate}&end=${endDate}&currency=${currency}`;
         const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error('Network response was not ok ' + response.statusText);
+        }
         const data = await response.json();
         return data.bpi;
       }
