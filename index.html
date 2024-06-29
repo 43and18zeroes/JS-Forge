@@ -17,6 +17,12 @@
       #chart-container {
         width: 80%;
         max-width: 800px;
+        background-color: #808080; /* Hintergrund grau */
+        padding: 20px; /* Optional: Abstand zwischen dem Chart und dem Container */
+        box-sizing: border-box; /* Optional: Damit das padding nicht die Breite erhöht */
+      }
+      #btc-chart {
+        background-color: #808080; /* Hintergrund grau */
       }
     </style>
   </head>
@@ -63,6 +69,27 @@
               scales: {
                 y: {
                   beginAtZero: false,
+                  grid: {
+                    color: '#ffffff', // Gitter weiß
+                  },
+                  ticks: {
+                    color: '#ffffff', // Zahlen weiß
+                  },
+                },
+                x: {
+                  grid: {
+                    color: '#ffffff', // Gitter weiß
+                  },
+                  ticks: {
+                    color: '#ffffff', // Zahlen weiß
+                  },
+                },
+              },
+              plugins: {
+                legend: {
+                  labels: {
+                    color: '#ffffff', // Legende weiß
+                  },
                 },
               },
             },
