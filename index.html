@@ -36,16 +36,15 @@
         height: 100vh;
         background-color: #181a20;
         display: flex;
-        flex-direction: column;
         justify-content: center;
         align-items: center;
        }
+       #btn-container {
+        display: flex;
+       }
        #chart-container {
         width: 80%;
-        max-width: 800px;
-       }
-       #btc-chart {
-        
+        max-width: 1200px;
        }
     </style>
   </head>
@@ -58,12 +57,12 @@
     <div id="chart-container">
       <canvas id="btc-chart"></canvas>
     </div> -->
-    <div id="btn-container">
-      <div id="one-month-btn" tabindex="0" aria-label="1 Monat">1 M.</div>
-      <div id="six-month-btn" tabindex="0" aria-label="6 Monate">6 M.</div>
-      <div id="max-btn" tabindex="0" aria-label="Maximal">Max.</div>
-    </div>
     <div id="chart-container">
+      <div id="btn-container">
+        <div id="one-month-btn" tabindex="0" aria-label="1 Monat">1 M.</div>
+        <div id="six-month-btn" tabindex="0" aria-label="6 Monate">6 M.</div>
+        <div id="max-btn" tabindex="0" aria-label="Maximal">Max.</div>
+      </div>
       <canvas id="btc-chart"></canvas>
     </div>
     <script>
