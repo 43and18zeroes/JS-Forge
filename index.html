@@ -30,7 +30,14 @@
       #btc-chart {
         background-color: #181a20;
       } */
-       body {
+      @font-face {
+        font-family: 'IBMPlexSans';
+        src: url('fonts/ibm_plex_sans/IBMPlexSans-Regular.ttf') format('woff2');
+        font-weight: normal;
+        font-style: normal;
+      }
+      body {
+        font-family: IBMPlexSans;
         margin: 0;
         width: 100vw;
         height: 100vh;
@@ -38,17 +45,17 @@
         display: flex;
         justify-content: center;
         align-items: center;
-       }
-       #btn-container {
+      }
+      #btn-container {
         display: flex;
-       }
-       #btn-container div {
+      }
+      #btn-container div {
         color: #979da8;
-       }
-       #chart-container {
+      }
+      #chart-container {
         width: 80%;
         max-width: 1200px;
-       }
+      }
     </style>
   </head>
   <body>
