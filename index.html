@@ -70,8 +70,16 @@
         max: { labels: [], data: [] },
       };
 
+      function createGradient(ctx) {
+        const gradient = ctx.createLinearGradient(0, 0, 0, 400);
+        gradient.addColorStop(0, 'rgba(247, 147, 26, 0.5)');
+        gradient.addColorStop(1, 'rgba(247, 147, 26, 0)');
+        return gradient;
+      }
+
       function drawChart(labels, data) {
         if (!chartInstance) {
+          const gradient = createGradient(ctx);
           chartInstance = new Chart(ctx, {
             type: 'line',
             data: {
@@ -80,10 +88,12 @@
                 {
                   label: 'BITCOIN - EURO (BTC - EUR)',
                   data: data,
-                  backgroundColor: 'rgba(247, 147, 26, 1)',
+                  // backgroundColor: 'rgba(247, 147, 26, 1)',
+                  backgroundColor: gradient,
                   borderColor: 'rgba(247, 147, 26, 1)',
                   borderWidth: 2,
                   pointRadius: 0, // Keine Kreise anzeigen
+                  fill: true,
                 },
               ],
             },
