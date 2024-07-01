@@ -136,9 +136,15 @@
       function initChartParams() {
         chartParams.sixMonths.labels = Object.keys(bitcoinData).slice(-183);
         chartParams.sixMonths.data = Object.values(bitcoinData).slice(-183);
-        chartParams.max.labels = Object.keys(bitcoinData);
-        chartParams.max.data = Object.values(bitcoinData);
+        // chartParams.max.labels = Object.keys(bitcoinData);
+        // chartParams.max.data = Object.values(bitcoinData);
         // before max data change
+        for (let i = 0; i < Object.keys(bitcoinData).length; i += 90) {
+          chartParams.max.labels.push(Object.keys(bitcoinData)[i]);
+        }
+        for (let i = 0; i < Object.keys(bitcoinData).length; i += 90) {
+          chartParams.max.data.push(Object.values(bitcoinData)[i]);
+        }
       }
 
       function addButtonEventListener(buttonId, labels, data) {
@@ -189,9 +195,7 @@
           initBtnEventlisteners();
         } catch (error) {
           console.error('Error fetching Bitcoin data:', error);
-          alert(
-            'Error loading the Bitcoin data. Please try again later.'
-          );
+          alert('Error loading the Bitcoin data. Please try again later.');
         }
       }
 
