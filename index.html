@@ -71,9 +71,9 @@
       };
 
       function createGradient(ctx) {
-        const gradient = ctx.createLinearGradient(0, 0, 0, 400);
-        gradient.addColorStop(0, 'rgba(247, 147, 26, 0.5)');
-        gradient.addColorStop(1, 'rgba(247, 147, 26, 0)');
+        const gradient = ctx.createLinearGradient(0, 0, 0, 200);
+        gradient.addColorStop(0, 'rgba(247, 147, 26, 0.7)'); // Dunklere orange Farbe am Start
+        gradient.addColorStop(1, 'rgba(247, 147, 26, 0.1)'); // Hellere orange Farbe am Ende
         return gradient;
       }
 
