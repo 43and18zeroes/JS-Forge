@@ -24,11 +24,3 @@ console.log(talk.call(me, 'en', true)); // Hello, I am Sina
 console.log(talk.call(me, 'it', true)); // Ciao bella, sono Sina
 console.log(talk.call(me, 'en', false)); // I am Sina, what you want?
 console.log(talk.call(me, 'it', false)); // Sono Sina, 'angry gesture'
-
-const observer = new MutationObserver((mutationsList) => {
-  for (let mutation of mutationsList) {
-    if (mutation.type === 'childList') {
-      console.log('Kindknoten wurden hinzugefügt oder entfernt');
-    }
-  }
-});
