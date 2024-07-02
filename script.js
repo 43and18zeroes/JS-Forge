@@ -37,3 +37,13 @@ const intervalId = setInterval(() => {
     clearInterval(intervalId);
   }
 }, 1000);
+
+const myPromise = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve('Erfolg!');
+  }, 1000);
+});
+
+myPromise.then((value) => {
+  console.log(value);
+});
