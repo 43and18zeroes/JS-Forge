@@ -25,6 +25,8 @@ console.log(talk.call(me, 'it', true)); // Ciao bella, sono Sina
 console.log(talk.call(me, 'en', false)); // I am Sina, what you want?
 console.log(talk.call(me, 'it', false)); // Sono Sina, 'angry gesture'
 
-document.getElementById('myButton').addEventListener('click', () => {
-  console.log('Button wurde geklickt');
-});
+const worker = new Worker('worker.js');
+worker.onmessage = function(event) {
+  console.log('Nachricht vom Worker:', event.data);
+};
+worker.postMessage('Start');
