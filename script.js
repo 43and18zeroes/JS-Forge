@@ -25,10 +25,7 @@ console.log(talk.call(me, 'it', true)); // Ciao bella, sono Sina
 console.log(talk.call(me, 'en', false)); // I am Sina, what you want?
 console.log(talk.call(me, 'it', false)); // Sono Sina, 'angry gesture'
 
-async function fetchData() {
-  const response = await fetch('https://api.example.com/data');
-  const data = await response.json();
-  console.log(data);
-}
-
-fetchData();
+fetch('https://api.example.com/data')
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(error => console.error('Fehler:', error));
