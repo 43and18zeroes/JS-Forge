@@ -28,3 +28,12 @@ console.log(talk.call(me, 'it', false)); // Sono Sina, 'angry gesture'
 setTimeout(() => {
   console.log('Dies wird nach 2 Sekunden ausgeführt');
 }, 2000);
+
+let counter = 0;
+const intervalId = setInterval(() => {
+  console.log('Dies wird alle 1 Sekunde ausgeführt');
+  counter++;
+  if (counter === 3) {
+    clearInterval(intervalId);
+  }
+}, 1000);
