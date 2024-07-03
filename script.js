@@ -25,10 +25,12 @@ console.log(talk.call(me, 'it', true)); // Ciao bella, sono Sina
 console.log(talk.call(me, 'en', false)); // I am Sina, what you want?
 console.log(talk.call(me, 'it', false)); // Sono Sina, 'angry gesture'
 
-async function promiseExample() {
-  const promise = new Promise((resolve, reject) => {
-    setTimeout(() => resolve("Done!"), 1000);
-  });
-  const result = await promise;
-  console.log(result);
+async function errorHandlingExample() {
+  try {
+    const response = await fetch('https://api.example.com/data');
+    const data = await response.json();
+    console.log(data);
+  } catch (error) {
+    console.error("Error:", error);
+  }
 }
