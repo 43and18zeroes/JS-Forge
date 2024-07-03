@@ -25,12 +25,10 @@ console.log(talk.call(me, 'it', true)); // Ciao bella, sono Sina
 console.log(talk.call(me, 'en', false)); // I am Sina, what you want?
 console.log(talk.call(me, 'it', false)); // Sono Sina, 'angry gesture'
 
-async function errorHandlingExample() {
-  try {
-    const response = await fetch('https://api.example.com/data');
-    const data = await response.json();
-    console.log(data);
-  } catch (error) {
-    console.error("Error:", error);
-  }
+async function multipleAwaitExample() {
+  const response1 = await fetch('https://api.example.com/data1');
+  const data1 = await response1.json();
+  const response2 = await fetch('https://api.example.com/data2');
+  const data2 = await response2.json();
+  console.log(data1, data2);
 }
