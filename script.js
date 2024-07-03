@@ -25,11 +25,12 @@ console.log(talk.call(me, 'it', true)); // Ciao bella, sono Sina
 console.log(talk.call(me, 'en', false)); // I am Sina, what you want?
 console.log(talk.call(me, 'it', false)); // Sono Sina, 'angry gesture'
 
-async function loopExample() {
+async function mapExample() {
   const urls = ['https://api.example.com/data1', 'https://api.example.com/data2'];
-  for (const url of urls) {
+  const promises = urls.map(async url => {
     const response = await fetch(url);
-    const data = await response.json();
-    console.log(data);
-  }
+    return response.json();
+  });
+  const data = await Promise.all(promises);
+  console.log(data);
 }
