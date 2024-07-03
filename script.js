@@ -25,13 +25,11 @@ console.log(talk.call(me, 'it', true)); // Ciao bella, sono Sina
 console.log(talk.call(me, 'en', false)); // I am Sina, what you want?
 console.log(talk.call(me, 'it', false)); // Sono Sina, 'angry gesture'
 
-async function promiseAllExample() {
-  const promises = [
-    fetch('https://api.example.com/data1'),
-    fetch('https://api.example.com/data2')
-  ];
-  const [response1, response2] = await Promise.all(promises);
-  const data1 = await response1.json();
-  const data2 = await response2.json();
-  console.log(data1, data2);
+async function loopExample() {
+  const urls = ['https://api.example.com/data1', 'https://api.example.com/data2'];
+  for (const url of urls) {
+    const response = await fetch(url);
+    const data = await response.json();
+    console.log(data);
+  }
 }
