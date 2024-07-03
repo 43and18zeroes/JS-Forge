@@ -24,3 +24,9 @@ console.log(talk.call(me, 'en', true)); // Hello, I am Sina
 console.log(talk.call(me, 'it', true)); // Ciao bella, sono Sina
 console.log(talk.call(me, 'en', false)); // I am Sina, what you want?
 console.log(talk.call(me, 'it', false)); // Sono Sina, 'angry gesture'
+
+async function delayExample() {
+  console.log("Start");
+  await new Promise(resolve => setTimeout(resolve, 1000));
+  console.log("End");
+}
