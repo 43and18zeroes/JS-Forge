@@ -25,28 +25,19 @@ console.log(talk.call(me, 'it', true)); // Ciao bella, sono Sina
 console.log(talk.call(me, 'en', false)); // I am Sina, what you want?
 console.log(talk.call(me, 'it', false)); // Sono Sina, 'angry gesture'
 
-const promise6 = new Promise((resolve, reject) => {
-  setTimeout(resolve, 500, 'eins');
-});
-
-const promise7 = new Promise((resolve, reject) => {
-  setTimeout(resolve, 100, 'zwei');
-});
-
-Promise.race([promise6, promise7]).then((value) => {
-  console.log(value); // "zwei"
-});
-
-const promise8 = new Promise((resolve, reject) => {
+const promise9 = new Promise((resolve, reject) => {
   setTimeout(() => {
-    resolve("Erfolg!");
+    resolve("Fertig!");
   }, 1000);
 });
 
-promise8
+promise9
   .then((value) => {
-    console.log(value); // "Erfolg!"
+    console.log(value); // "Fertig!"
   })
   .catch((error) => {
     console.log(error);
+  })
+  .finally(() => {
+    console.log("Endlich!"); // "Endlich!"
   });
