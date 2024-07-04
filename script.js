@@ -25,15 +25,8 @@ console.log(talk.call(me, 'it', true)); // Ciao bella, sono Sina
 console.log(talk.call(me, 'en', false)); // I am Sina, what you want?
 console.log(talk.call(me, 'it', false)); // Sono Sina, 'angry gesture'
 
-const promise10 = new Promise((resolve, reject) => {
-  resolve("Start");
-});
+const promise12 = Promise.reject("Sofortiger Fehler");
 
-promise10
-  .then((value) => {
-    console.log(value); // "Start"
-    throw new Error("Fehler im then");
-  })
-  .catch((error) => {
-    console.log(error.message); // "Fehler im then"
-  });
+promise12.catch((error) => {
+  console.log(error); // "Sofortiger Fehler"
+});
