@@ -25,12 +25,8 @@ console.log(talk.call(me, 'it', true)); // Ciao bella, sono Sina
 console.log(talk.call(me, 'en', false)); // I am Sina, what you want?
 console.log(talk.call(me, 'it', false)); // Sono Sina, 'angry gesture'
 
-const promise1 = new Promise((resolve, reject) => {
+const promise2 = new Promise((resolve, reject) => {
   setTimeout(() => {
-    resolve("Erledigt!");
+    reject("Fehler!");
   }, 1000);
-});
-
-promise1.then((value) => {
-  console.log(value); // "Erledigt!"
 });
