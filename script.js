@@ -36,3 +36,17 @@ const promise7 = new Promise((resolve, reject) => {
 Promise.race([promise6, promise7]).then((value) => {
   console.log(value); // "zwei"
 });
+
+const promise8 = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve("Erfolg!");
+  }, 1000);
+});
+
+promise8
+  .then((value) => {
+    console.log(value); // "Erfolg!"
+  })
+  .catch((error) => {
+    console.log(error);
+  });
