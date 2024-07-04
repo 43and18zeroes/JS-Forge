@@ -25,19 +25,15 @@ console.log(talk.call(me, 'it', true)); // Ciao bella, sono Sina
 console.log(talk.call(me, 'en', false)); // I am Sina, what you want?
 console.log(talk.call(me, 'it', false)); // Sono Sina, 'angry gesture'
 
-const promise9 = new Promise((resolve, reject) => {
-  setTimeout(() => {
-    resolve("Fertig!");
-  }, 1000);
+const promise10 = new Promise((resolve, reject) => {
+  resolve("Start");
 });
 
-promise9
+promise10
   .then((value) => {
-    console.log(value); // "Fertig!"
+    console.log(value); // "Start"
+    throw new Error("Fehler im then");
   })
   .catch((error) => {
-    console.log(error);
-  })
-  .finally(() => {
-    console.log("Endlich!"); // "Endlich!"
+    console.log(error.message); // "Fehler im then"
   });
