@@ -1,19 +1,12 @@
-const handler = {
-  get: function(target, prop, receiver) {
-      if (prop in target) {
-          return target[prop];
-      } else {
-          throw new Error(`Property ${prop} does not exist.`);
-      }
-  }
-};
+const map = new Map();
+map.set("key1", "value1");
+map.set("key2", "value2");
 
-const person = {
-  name: "John",
-  age: 30
-};
+console.log(map.get("key1")); // value1
 
-const proxyPerson = new Proxy(person, handler);
-console.log(proxyPerson.name); // John
-console.log(proxyPerson.age); // 30
-// console.log(proxyPerson.address); // Error: Property address does not exist.
+const set = new Set();
+set.add(1);
+set.add(2);
+set.add(2); // Ignored, as it's a duplicate
+
+console.log(set.size); // 2
