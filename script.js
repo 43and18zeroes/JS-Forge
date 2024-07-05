@@ -1,18 +1,13 @@
-function curry(fn) {
-  return function curried(...args) {
-      if (args.length >= fn.length) {
-          return fn.apply(this, args);
-      } else {
-          return function(...args2) {
-              return curried.apply(this, args.concat(args2));
-          };
-      }
-  };
+function* fibonacci() {
+  let a = 0, b = 1;
+  while (true) {
+      yield a;
+      [a, b] = [b, a + b];
+  }
 }
 
-function sum(a, b, c) {
-  return a + b + c;
-}
-
-const curriedSum = curry(sum);
-console.log(curriedSum(1)(2)(3)); // 6
+const gen = fibonacci();
+console.log(gen.next().value); // 0
+console.log(gen.next().value); // 1
+console.log(gen.next().value); // 1
+console.log(gen.next().value); // 2
