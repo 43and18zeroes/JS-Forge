@@ -1,12 +1,13 @@
-const map = new Map();
-map.set("key1", "value1");
-map.set("key2", "value2");
+const person = {
+  name: "John",
+  age: 30,
+  address: {
+      city: "New York",
+      zip: "10001"
+  }
+};
 
-console.log(map.get("key1")); // value1
-
-const set = new Set();
-set.add(1);
-set.add(2);
-set.add(2); // Ignored, as it's a duplicate
-
-console.log(set.size); // 2
+const { name, age, address: { city } } = person;
+console.log(name); // John
+console.log(age); // 30
+console.log(city); // New York
