@@ -1,18 +1,10 @@
-function fetchData() {
-  return new Promise((resolve, reject) => {
-      setTimeout(() => {
-          resolve("Data fetched");
-      }, 1000);
-  });
+function createCounter() {
+  let count = 0;
+  return function() {
+      return ++count;
+  };
 }
 
-async function getData() {
-  try {
-      const data = await fetchData();
-      console.log(data);
-  } catch (error) {
-      console.error(error);
-  }
-}
-
-getData();
+const counter = createCounter();
+console.log(counter()); // 1
+console.log(counter()); // 2
