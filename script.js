@@ -1,10 +1,14 @@
-function sum(...numbers) {
-  return numbers.reduce((acc, num) => acc + num, 0);
+// math.js
+export function add(a, b) {
+  return a + b;
 }
 
-console.log(sum(1, 2, 3, 4)); // 10
+export function subtract(a, b) {
+  return a - b;
+}
 
-const arr1 = [1, 2, 3];
-const arr2 = [4, 5, 6];
-const combined = [...arr1, ...arr2];
-console.log(combined); // [1, 2, 3, 4, 5, 6]
+// main.js
+import { add, subtract } from './math.js';
+
+console.log(add(5, 3)); // 8
+console.log(subtract(5, 3)); // 2
