@@ -1,10 +1,8 @@
-function createCounter() {
-  let count = 0;
-  return function() {
-      return ++count;
+function multiplyBy(factor) {
+  return function(number) {
+      return number * factor;
   };
 }
 
-const counter = createCounter();
-console.log(counter()); // 1
-console.log(counter()); // 2
+const multiplyByTwo = multiplyBy(2);
+console.log(multiplyByTwo(5)); // 10
