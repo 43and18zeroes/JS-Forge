@@ -1,14 +1,27 @@
-// math.js
-export function add(a, b) {
-  return a + b;
+function talk(lang, isPolite) {
+  if (isPolite) {
+    if (lang === 'en') {
+      return `Hello, I am ${this.name}`;
+    } else if (lang === 'it') {
+      return `Ciao bella, sono ${this.name}`;
+    }
+  }
+
+  if (!isPolite) {
+    if (lang === 'en') {
+      return `I am ${this.name}, what you want?`;
+    } else if (lang === 'it') {
+      return `Sono ${this.name}, 'angry gesture'`;
+    }
+  }
 }
 
-export function subtract(a, b) {
-  return a - b;
-}
+const me = {
+  name: 'Sina',
+};
 
-// main.js
-import { add, subtract } from './math.js';
+console.log(talk.call(me, 'en', true)); // Hello, I am Sina
+console.log(talk.call(me, 'it', true)); // Ciao bella, sono Sina
+console.log(talk.call(me, 'en', false)); // I am Sina, what you want?
+console.log(talk.call(me, 'it', false)); // Sono Sina, 'angry gesture'
 
-console.log(add(5, 3)); // 8
-console.log(subtract(5, 3)); // 2
