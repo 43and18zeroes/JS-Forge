@@ -1,27 +1,18 @@
-function talk(lang, isPolite) {
-  if (isPolite) {
-    if (lang === 'en') {
-      return `Hello, I am ${this.name}`;
-    } else if (lang === 'it') {
-      return `Ciao bella, sono ${this.name}`;
-    }
-  }
+function fetchData() {
+  return new Promise((resolve, reject) => {
+      setTimeout(() => {
+          resolve("Data fetched");
+      }, 1000);
+  });
+}
 
-  if (!isPolite) {
-    if (lang === 'en') {
-      return `I am ${this.name}, what you want?`;
-    } else if (lang === 'it') {
-      return `Sono ${this.name}, 'angry gesture'`;
-    }
+async function getData() {
+  try {
+      const data = await fetchData();
+      console.log(data);
+  } catch (error) {
+      console.error(error);
   }
 }
 
-const me = {
-  name: 'Sina',
-};
-
-console.log(talk.call(me, 'en', true)); // Hello, I am Sina
-console.log(talk.call(me, 'it', true)); // Ciao bella, sono Sina
-console.log(talk.call(me, 'en', false)); // I am Sina, what you want?
-console.log(talk.call(me, 'it', false)); // Sono Sina, 'angry gesture'
-
+getData();
