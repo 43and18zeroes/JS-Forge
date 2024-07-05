@@ -1,8 +1,18 @@
-function multiplyBy(factor) {
-  return function(number) {
-      return number * factor;
+function curry(fn) {
+  return function curried(...args) {
+      if (args.length >= fn.length) {
+          return fn.apply(this, args);
+      } else {
+          return function(...args2) {
+              return curried.apply(this, args.concat(args2));
+          };
+      }
   };
 }
 
-const multiplyByTwo = multiplyBy(2);
-console.log(multiplyByTwo(5)); // 10
+function sum(a, b, c) {
+  return a + b + c;
+}
+
+const curriedSum = curry(sum);
+console.log(curriedSum(1)(2)(3)); // 6
