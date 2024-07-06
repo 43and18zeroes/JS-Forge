@@ -1,5 +1,5 @@
-const compose = (f, g) => x => f(g(x));
-const add1 = x => x + 1;
-const double = x => x * 2;
-const add1ThenDouble = compose(double, add1);
-console.log(add1ThenDouble(2)); // 6
+function factorial(n) {
+  if (n === 0) return 1;
+  return n * factorial(n - 1);
+}
+console.log(factorial(5)); // 120
