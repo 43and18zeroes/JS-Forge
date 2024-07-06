@@ -1,14 +1,8 @@
-function memoize(func) {
-  const cache = new Map();
-  return function(...args) {
-      const key = JSON.stringify(args);
-      if (cache.has(key)) {
-          return cache.get(key);
-      }
-      const result = func(...args);
-      cache.set(key, result);
-      return result;
+function partial(func, ...fixedArgs) {
+  return function(...remainingArgs) {
+      return func(...fixedArgs, ...remainingArgs);
   };
 }
-const fib = memoize(n => n <= 1 ? n : fib(n - 1) + fib(n - 2));
-console.log(fib(10)); // 55
+const multiply = (a, b) => a * b;
+const double = partial(multiply, 2);
+console.log(double(5)); // 10
