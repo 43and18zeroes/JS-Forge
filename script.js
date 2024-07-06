@@ -1,12 +1,9 @@
-const fs = require('fs').promises;
+const socket = new WebSocket('ws://example.com/socket');
 
-async function readFile() {
-  try {
-    const data = await fs.readFile('example.txt', 'utf8');
-    console.log(data);
-  } catch (err) {
-    console.error(err);
-  }
-}
+socket.onmessage = function(event) {
+  console.log('Nachricht empfangen:', event.data);
+};
 
-readFile();
+socket.onopen = function(event) {
+  socket.send('Hallo Server!');
+};
