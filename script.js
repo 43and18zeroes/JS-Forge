@@ -1,3 +1,3 @@
-setTimeout(() => {
-  console.log('Diese Nachricht wird nach 2 Sekunden angezeigt');
-}, 2000);
+setInterval(() => {
+  console.log('Diese Nachricht wird alle 3 Sekunden angezeigt');
+}, 3000);
