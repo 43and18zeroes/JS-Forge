@@ -1,9 +1,9 @@
-const socket = new WebSocket('ws://example.com/socket');
-
-socket.onmessage = function(event) {
-  console.log('Nachricht empfangen:', event.data);
-};
-
-socket.onopen = function(event) {
-  socket.send('Hallo Server!');
-};
+function* generatorFunction() {
+  let i = 0;
+  while (true) {
+      yield i++;
+  }
+}
+const gen = generatorFunction();
+console.log(gen.next().value); // 0
+console.log(gen.next().value); // 1
