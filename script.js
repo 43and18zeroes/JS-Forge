@@ -1,10 +1,12 @@
-const EventEmitter = require('events');
-const myEmitter = new EventEmitter();
+const fs = require('fs').promises;
 
-myEmitter.on('event', () => {
-  console.log('Ein Event wurde ausgelöst!');
-});
+async function readFile() {
+  try {
+    const data = await fs.readFile('example.txt', 'utf8');
+    console.log(data);
+  } catch (err) {
+    console.error(err);
+  }
+}
 
-setTimeout(() => {
-  myEmitter.emit('event');
-}, 1000);
+readFile();
