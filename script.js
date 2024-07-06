@@ -25,3 +25,6 @@ console.log(talk.call(me, 'it', true)); // Ciao bella, sono Sina
 console.log(talk.call(me, 'en', false)); // I am Sina, what you want?
 console.log(talk.call(me, 'it', false)); // Sono Sina, 'angry gesture'
 
+function higherOrderFunction(func) {
+  return func();
+}
