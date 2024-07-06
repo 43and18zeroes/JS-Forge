@@ -1,36 +1,10 @@
-function talk(lang, isPolite) {
-  if (isPolite) {
-    if (lang === 'en') {
-      return `Hello, I am ${this.name}`;
-    } else if (lang === 'it') {
-      return `Ciao bella, sono ${this.name}`;
-    }
-  }
-
-  if (!isPolite) {
-    if (lang === 'en') {
-      return `I am ${this.name}, what you want?`;
-    } else if (lang === 'it') {
-      return `Sono ${this.name}, 'angry gesture'`;
-    }
-  }
-}
-
-const me = {
-  name: 'Sina',
-};
-
-console.log(talk.call(me, 'en', true)); // Hello, I am Sina
-console.log(talk.call(me, 'it', true)); // Ciao bella, sono Sina
-console.log(talk.call(me, 'en', false)); // I am Sina, what you want?
-console.log(talk.call(me, 'it', false)); // Sono Sina, 'angry gesture'
-
-function createCounter() {
-  let count = 0;
-  return function() {
-      return ++count;
+function curry(f) {
+  return function(a) {
+      return function(b) {
+          return f(a, b);
+      };
   };
 }
-const counter = createCounter();
-console.log(counter()); // 1
-console.log(counter()); // 2
+const sum = (a, b) => a + b;
+const curriedSum = curry(sum);
+console.log(curriedSum(1)(2)); // 3
