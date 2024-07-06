@@ -1,5 +1,9 @@
-function factorial(n) {
-  if (n === 0) return 1;
-  return n * factorial(n - 1);
+function* generatorFunction() {
+  let i = 0;
+  while (true) {
+      yield i++;
+  }
 }
-console.log(factorial(5)); // 120
+const gen = generatorFunction();
+console.log(gen.next().value); // 0
+console.log(gen.next().value); // 1
