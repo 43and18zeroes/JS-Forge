@@ -1,8 +1,10 @@
-const xhr = new XMLHttpRequest();
-xhr.open('GET', 'https://api.example.com/data', true);
-xhr.onload = function() {
-  if (xhr.status === 200) {
-    console.log(JSON.parse(xhr.responseText));
-  }
-};
-xhr.send();
+const EventEmitter = require('events');
+const myEmitter = new EventEmitter();
+
+myEmitter.on('event', () => {
+  console.log('Ein Event wurde ausgelöst!');
+});
+
+setTimeout(() => {
+  myEmitter.emit('event');
+}, 1000);
