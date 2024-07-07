@@ -1,9 +1,15 @@
-function* generatorFunction() {
-  let i = 0;
-  while (true) {
-      yield i++;
-  }
+function curry(fn) {
+  return function curried(...args) {
+    if (args.length >= fn.length) {
+      return fn.apply(this, args);
+    } else {
+      return function(...args2) {
+        return curried.apply(this, args.concat(args2));
+      };
+    }
+  };
 }
-const gen = generatorFunction();
-console.log(gen.next().value); // 0
-console.log(gen.next().value); // 1
+
+const add = (a, b) => a + b;
+const curriedAdd = curry(add);
+console.log(curriedAdd(1)(2)); // 3
