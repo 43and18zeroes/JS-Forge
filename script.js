@@ -222,3 +222,16 @@ try {
   console.error(e.message); // This is a custom error
 }
 
+class CustomError extends Error {
+  constructor(message) {
+    super(message);
+    this.name = 'CustomError';
+  }
+}
+
+try {
+  throw new CustomError('This is a custom error');
+} catch (e) {
+  console.error(e.name); // CustomError
+  console.error(e.message); // This is a custom error
+}
