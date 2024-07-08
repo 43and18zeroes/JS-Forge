@@ -235,3 +235,23 @@ try {
   console.error(e.name); // CustomError
   console.error(e.message); // This is a custom error
 }
+
+const handler = {
+  get: function(target, prop, receiver) {
+    if (prop in target) {
+      return target[prop];
+    } else {
+      throw new Error(`Property ${prop} does not exist`);
+    }
+  }
+};
+
+const target2 = { a: 1, b: 2 };
+const proxy = new Proxy(target2, handler);
+
+console.log(proxy.a); // 1
+try {
+  console.log(proxy.c); // Error: Property c does not exist
+} catch (e) {
+  console.error(e.message);
+}
