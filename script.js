@@ -208,3 +208,17 @@ const targetNode = document.querySelector('#targetNode');
 const config = { attributes: true, childList: true, subtree: true };
 observer2.observe(targetNode, config);
 
+class CustomError extends Error {
+  constructor(message) {
+    super(message);
+    this.name = 'CustomError';
+  }
+}
+
+try {
+  throw new CustomError('This is a custom error');
+} catch (e) {
+  console.error(e.name); // CustomError
+  console.error(e.message); // This is a custom error
+}
+
