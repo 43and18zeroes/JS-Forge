@@ -267,6 +267,5 @@ try {
 
 // Advanced functions
 
-const name = 'Alice';
-const greeting = `Hello, ${name}!`;
-console.log(greeting); // Hello, Alice!
+const add = (a, b) => a + b;
+console.log(add(2, 3)); // 5
