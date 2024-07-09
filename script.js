@@ -267,6 +267,10 @@ try {
 
 // Advanced functions
 
-const person = { name: 'Alice', age: 25 };
-const { name, age } = person;
-console.log(name, age); // Alice 25
+const numbers = [1, 2, 3];
+const newNumbers = [...numbers, 4, 5];
+
+function sum(...args) {
+  return args.reduce((acc, num) => acc + num, 0);
+}
+console.log(sum(1, 2, 3, 4)); // 10
