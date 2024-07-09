@@ -267,10 +267,7 @@ try {
 
 // Advanced functions
 
-function multiplyBy(factor) {
-  return function (number) {
-    return number * factor;
-  };
-}
-const double2 = multiplyBy(2);
-console.log(double(5)); // 10
+const numbers = [1, 2, 3, 4, 5];
+const doubled = numbers.map(num => num * 2);
+const evens = numbers.filter(num => num % 2 === 0);
+const sum = numbers.reduce((acc, num) => acc + num, 0);
