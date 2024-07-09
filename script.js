@@ -267,9 +267,12 @@ try {
 
 // Advanced functions
 
-// math.js
-export const add = (a, b) => a + b;
-
-// main.js
-import { add } from './math.js';
-console.log(add(2, 3)); // 5
+const handler2 = {
+  get: function(target, prop, receiver) {
+    return prop in target ? target[prop] : 'Not Found';
+  }
+};
+const person = { name: 'Alice', age: 25 };
+const proxyPerson = new Proxy(person, handler);
+console.log(proxyPerson.name); // Alice
+console.log(proxyPerson.gender); // Not Found
