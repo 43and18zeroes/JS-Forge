@@ -256,12 +256,14 @@ try {
   console.error(e.message);
 }
 
-async function fetchData() {
-  try {
-    const response = await fetch('https://api.example.com/data');
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error('Error fetching data:', error);
-  }
+// Advanced functions
+
+function createCounter() {
+  let count = 0;
+  return function() {
+    return ++count;
+  };
 }
+const counter = createCounter();
+console.log(counter()); // 1
+console.log(counter()); // 2
