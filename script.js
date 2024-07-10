@@ -268,16 +268,17 @@ async function fetchData() {
 
 // Advanced functions
 
-// example4.js
-const fs = require('fs').promises;
-
-async function writeFile() {
+// example5.js
+async function fetchMultipleData() {
   try {
-    await fs.writeFile('example.txt', 'Hello, world!');
-    console.log('File written successfully');
+    const [data1, data2] = await Promise.all([
+      fetch('https://jsonplaceholder.typicode.com/posts/1').then(response => response.json()),
+      fetch('https://jsonplaceholder.typicode.com/posts/2').then(response => response.json())
+    ]);
+    console.log(data1, data2);
   } catch (error) {
-    console.error('Error writing file:', error);
+    console.error('Error fetching data:', error);
   }
 }
 
-writeFile();
+fetchMultipleData();
