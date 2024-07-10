@@ -268,17 +268,18 @@ async function fetchData() {
 
 // Advanced functions
 
-// example9.js
-async function chainPromises() {
+// example10.js
+async function fetchPostsByIds(ids) {
   try {
-    const response1 = await fetch('https://jsonplaceholder.typicode.com/posts/1');
-    const data1 = await response1.json();
-    const response2 = await fetch(`https://jsonplaceholder.typicode.com/posts/${data1.userId}`);
-    const data2 = await response2.json();
-    console.log(data2);
+    const promises = ids.map(async id => {
+      const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`);
+      return response.json();
+    });
+    const posts = await Promise.all(promises);
+    console.log(posts);
   } catch (error) {
-    console.error('Error:', error);
+    console.error('Error fetching posts:', error);
   }
 }
 
-chainPromises();
+fetchPostsByIds([1, 2, 3]);
