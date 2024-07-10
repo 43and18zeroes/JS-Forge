@@ -268,18 +268,18 @@ async function fetchData() {
 
 // Advanced functions
 
-// example6.js
-async function fetchMultiplePosts() {
-  const postIds = [1, 2, 3];
-  for (const id of postIds) {
-    try {
-      const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`);
-      const data = await response.json();
-      console.log(data);
-    } catch (error) {
-      console.error(`Error fetching post ${id}:`, error);
+// example7.js
+async function fetchWithErrorHandling() {
+  try {
+    const response = await fetch('https://jsonplaceholder.typicode.com/nonexistent');
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
     }
+    const data = await response.json();
+    console.log(data);
+  } catch (error) {
+    console.error('Error fetching data:', error);
   }
 }
 
-fetchMultiplePosts();
+fetchWithErrorHandling();
