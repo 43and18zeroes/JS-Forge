@@ -268,17 +268,18 @@ async function fetchData() {
 
 // Advanced functions
 
-// example5.js
-async function fetchMultipleData() {
-  try {
-    const [data1, data2] = await Promise.all([
-      fetch('https://jsonplaceholder.typicode.com/posts/1').then(response => response.json()),
-      fetch('https://jsonplaceholder.typicode.com/posts/2').then(response => response.json())
-    ]);
-    console.log(data1, data2);
-  } catch (error) {
-    console.error('Error fetching data:', error);
+// example6.js
+async function fetchMultiplePosts() {
+  const postIds = [1, 2, 3];
+  for (const id of postIds) {
+    try {
+      const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`);
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.error(`Error fetching post ${id}:`, error);
+    }
   }
 }
 
-fetchMultipleData();
+fetchMultiplePosts();
