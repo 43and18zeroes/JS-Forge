@@ -268,22 +268,17 @@ async function fetchData() {
 
 // Advanced functions
 
-// example8.js
-async function fetchWithTimeout() {
-  const timeout = new Promise((resolve, reject) => {
-    setTimeout(() => reject(new Error('Request timed out')), 500);
-  });
-
+// example9.js
+async function chainPromises() {
   try {
-    const response = await Promise.race([
-      fetch('https://jsonplaceholder.typicode.com/posts/1'),
-      timeout
-    ]);
-    const data = await response.json();
-    console.log(data);
+    const response1 = await fetch('https://jsonplaceholder.typicode.com/posts/1');
+    const data1 = await response1.json();
+    const response2 = await fetch(`https://jsonplaceholder.typicode.com/posts/${data1.userId}`);
+    const data2 = await response2.json();
+    console.log(data2);
   } catch (error) {
     console.error('Error:', error);
   }
 }
 
-fetchWithTimeout();
+chainPromises();
