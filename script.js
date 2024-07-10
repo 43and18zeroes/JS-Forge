@@ -268,14 +268,16 @@ async function fetchData() {
 
 // Advanced functions
 
-function delay(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
+// example3.js
+const fs = require('fs').promises;
+
+async function readFile() {
+  try {
+    const data = await fs.readFile('example.txt', 'utf8');
+    console.log(data);
+  } catch (error) {
+    console.error('Error reading file:', error);
+  }
 }
 
-async function delayedGreeting() {
-  console.log('Hello');
-  await delay(2000);
-  console.log('World');
-}
-
-delayedGreeting();
+readFile();
