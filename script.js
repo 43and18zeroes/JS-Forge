@@ -268,12 +268,12 @@ async function fetchData() {
 
 // Advanced functions
 
-async function fetchData(url) {
+async function readFile(filePath) {
+  const fs = require('fs').promises;
   try {
-    const response = await fetch(url);
-    const data = await response.json();
+    const data = await fs.readFile(filePath, 'utf8');
     return data;
   } catch (error) {
-    console.error('Error fetching data:', error);
+    console.error('Error reading file:', error);
   }
 }
