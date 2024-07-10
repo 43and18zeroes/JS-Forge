@@ -268,16 +268,16 @@ async function fetchData() {
 
 // Advanced functions
 
-// example3.js
+// example4.js
 const fs = require('fs').promises;
 
-async function readFile() {
+async function writeFile() {
   try {
-    const data = await fs.readFile('example.txt', 'utf8');
-    console.log(data);
+    await fs.writeFile('example.txt', 'Hello, world!');
+    console.log('File written successfully');
   } catch (error) {
-    console.error('Error reading file:', error);
+    console.error('Error writing file:', error);
   }
 }
 
-readFile();
+writeFile();
