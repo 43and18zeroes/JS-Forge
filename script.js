@@ -268,18 +268,22 @@ async function fetchData() {
 
 // Advanced functions
 
-// example7.js
-async function fetchWithErrorHandling() {
+// example8.js
+async function fetchWithTimeout() {
+  const timeout = new Promise((resolve, reject) => {
+    setTimeout(() => reject(new Error('Request timed out')), 500);
+  });
+
   try {
-    const response = await fetch('https://jsonplaceholder.typicode.com/nonexistent');
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
+    const response = await Promise.race([
+      fetch('https://jsonplaceholder.typicode.com/posts/1'),
+      timeout
+    ]);
     const data = await response.json();
     console.log(data);
   } catch (error) {
-    console.error('Error fetching data:', error);
+    console.error('Error:', error);
   }
 }
 
-fetchWithErrorHandling();
+fetchWithTimeout();
