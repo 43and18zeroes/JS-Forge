@@ -268,14 +268,14 @@ async function fetchData() {
 
 // Advanced functions
 
-async function fetchData() {
-  try {
-    const response = await fetch('https://jsonplaceholder.typicode.com/posts/1');
-    const data = await response.json();
-    console.log(data);
-  } catch (error) {
-    console.error('Error fetching data:', error);
-  }
+function delay(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-fetchData();
+async function delayedGreeting() {
+  console.log('Hello');
+  await delay(2000);
+  console.log('World');
+}
+
+delayedGreeting();
