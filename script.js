@@ -256,30 +256,5 @@ try {
   console.error(e.message);
 }
 
-async function fetchData() {
-  try {
-    const response = await fetch('https://api.example.com/data');
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error('Error fetching data:', error);
-  }
-}
+// Advanced Functions:
 
-// Advanced functions
-
-// example10.js
-async function fetchPostsByIds(ids) {
-  try {
-    const promises = ids.map(async id => {
-      const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`);
-      return response.json();
-    });
-    const posts = await Promise.all(promises);
-    console.log(posts);
-  } catch (error) {
-    console.error('Error fetching posts:', error);
-  }
-}
-
-fetchPostsByIds([1, 2, 3]);
