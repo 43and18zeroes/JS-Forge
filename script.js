@@ -258,6 +258,6 @@ try {
 
 // Advanced Functions:
 
-function compose(...funcs) {
-  return funcs.reduce((a, b) => (...args) => a(b(...args)));
+function pipe(...funcs) {
+  return funcs.reduce((a, b) => (...args) => b(a(...args)));
 }
