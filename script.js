@@ -258,13 +258,13 @@ try {
 
 // Advanced Functions:
 
-function promisify(func) {
-  return function(...args) {
-      return new Promise((resolve, reject) => {
-          func(...args, (err, result) => {
-              if (err) return reject(err);
-              resolve(result);
-          });
-      });
-  };
+function deepClone(obj) {
+  if (obj === null || typeof obj !== 'object') return obj;
+  const clone = Array.isArray(obj) ? [] : {};
+  for (let key in obj) {
+      if (obj.hasOwnProperty(key)) {
+          clone[key] = deepClone(obj[key]);
+      }
+  }
+  return clone;
 }
