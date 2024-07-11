@@ -258,6 +258,11 @@ try {
 
 // Advanced Functions:
 
-function pipe(...funcs) {
-  return funcs.reduce((a, b) => (...args) => b(a(...args)));
+function isPlainObject(obj) {
+  if (typeof obj !== 'object' || obj === null) return false;
+  let proto = obj;
+  while (Object.getPrototypeOf(proto) !== null) {
+      proto = Object.getPrototypeOf(proto);
+  }
+  return Object.getPrototypeOf(obj) === proto;
 }
