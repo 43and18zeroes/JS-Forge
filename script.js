@@ -258,21 +258,8 @@ try {
 
 // Advanced Functions:
 
-function throttle(func, limit) {
-  let lastFunc;
-  let lastRan;
-  return function(...args) {
-      if (!lastRan) {
-          func.apply(this, args);
-          lastRan = Date.now();
-      } else {
-          clearTimeout(lastFunc);
-          lastFunc = setTimeout(() => {
-              if ((Date.now() - lastRan) >= limit) {
-                  func.apply(this, args);
-                  lastRan = Date.now();
-              }
-          }, limit - (Date.now() - lastRan));
-      }
-  };
+function flattenArray(arr) {
+  return arr.reduce((flat, toFlatten) => {
+      return flat.concat(Array.isArray(toFlatten) ? flattenArray(toFlatten) : toFlatten);
+  }, []);
 }
