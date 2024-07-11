@@ -258,14 +258,13 @@ try {
 
 // Advanced Functions:
 
-function curry(func) {
-  return function curried(...args) {
-      if (args.length >= func.length) {
-          return func.apply(this, args);
-      } else {
-          return function(...args2) {
-              return curried.apply(this, args.concat(args2));
-          };
-      }
+function promisify(func) {
+  return function(...args) {
+      return new Promise((resolve, reject) => {
+          func(...args, (err, result) => {
+              if (err) return reject(err);
+              resolve(result);
+          });
+      });
   };
 }
