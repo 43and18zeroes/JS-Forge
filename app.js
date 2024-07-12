@@ -42,3 +42,15 @@ function trackUserHandler() {
 button.addEventListener('click', trackUserHandler);
 
 // Advanced functions
+
+if (!Promise.allSettled) {
+  Promise.allSettled = function(promises) {
+    return Promise.all(promises.map(p => Promise.resolve(p).then(
+      value => ({ status: 'fulfilled', value }),
+      reason => ({ status: 'rejected', reason })
+    )));
+  };
+}
+
+const promises = [Promise.resolve(1), Promise.reject(2), Promise.resolve(3)];
+Promise.allSettled(promises).then(results => console.log(results));
