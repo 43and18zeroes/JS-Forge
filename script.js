@@ -258,15 +258,18 @@ try {
 
 // Advanced Functions:
 
-function debounce(fn, delay) {
-  let timeoutId;
+function throttle(fn, limit) {
+  let inThrottle;
   return function(...args) {
-    clearTimeout(timeoutId);
-    timeoutId = setTimeout(() => fn.apply(this, args), delay);
+    if (!inThrottle) {
+      fn.apply(this, args);
+      inThrottle = true;
+      setTimeout(() => inThrottle = false, limit);
+    }
   };
 }
 
-const handleResize2 = debounce(() => {
-  console.log('Resized');
-}, 300);
-window.addEventListener('resize', handleResize2);
+const handleScroll2 = throttle(() => {
+  console.log('Scrolled');
+}, 100);
+window.addEventListener('scroll', handleScroll2);
