@@ -43,16 +43,22 @@ button.addEventListener('click', trackUserHandler);
 
 // Advanced functions
 
-function* fibonacci() {
-  let a = 0, b = 1;
-  while (true) {
-    yield a;
-    [a, b] = [b, a + b];
+const handler = {
+  get: function(target, prop) {
+    return prop in target ? target[prop] : 'Not Found';
+  },
+  set: function(target, prop, value) {
+    if (prop === 'age' && typeof value !== 'number') {
+      throw new TypeError('Age must be a number');
+    }
+    target[prop] = value;
+    return true;
   }
-}
+};
 
-const gen = fibonacci();
-console.log(gen.next().value); // 0
-console.log(gen.next().value); // 1
-console.log(gen.next().value); // 1
-console.log(gen.next().value); // 2
+const person = { name: 'John', age: 30 };
+const proxyPerson = new Proxy(person, handler);
+console.log(proxyPerson.name); // John
+console.log(proxyPerson.age); // 30
+proxyPerson.age = 31;
+console.log(proxyPerson.age); // 31
