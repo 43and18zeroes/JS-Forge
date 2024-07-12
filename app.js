@@ -43,14 +43,14 @@ button.addEventListener('click', trackUserHandler);
 
 // Advanced functions
 
-if (!Promise.allSettled) {
-  Promise.allSettled = function(promises) {
-    return Promise.all(promises.map(p => Promise.resolve(p).then(
-      value => ({ status: 'fulfilled', value }),
-      reason => ({ status: 'rejected', reason })
-    )));
-  };
+async function fetchData() {
+  try {
+    const response = await fetch('https://api.example.com/data');
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching data:', error);
+  }
 }
 
-const promises = [Promise.resolve(1), Promise.reject(2), Promise.resolve(3)];
-Promise.allSettled(promises).then(results => console.log(results));
+fetchData();
