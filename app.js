@@ -43,14 +43,16 @@ button.addEventListener('click', trackUserHandler);
 
 // Advanced functions
 
-async function fetchData() {
-  try {
-    const response = await fetch('https://api.example.com/data');
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error('Error fetching data:', error);
+function* fibonacci() {
+  let a = 0, b = 1;
+  while (true) {
+    yield a;
+    [a, b] = [b, a + b];
   }
 }
 
-fetchData();
+const gen = fibonacci();
+console.log(gen.next().value); // 0
+console.log(gen.next().value); // 1
+console.log(gen.next().value); // 1
+console.log(gen.next().value); // 2
