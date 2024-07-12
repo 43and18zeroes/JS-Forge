@@ -43,22 +43,36 @@ button.addEventListener('click', trackUserHandler);
 
 // Advanced functions
 
-const handler = {
-  get: function(target, prop) {
-    return prop in target ? target[prop] : 'Not Found';
-  },
-  set: function(target, prop, value) {
-    if (prop === 'age' && typeof value !== 'number') {
-      throw new TypeError('Age must be a number');
-    }
-    target[prop] = value;
-    return true;
+class EventEmitter {
+  constructor() {
+    this.events = {};
   }
-};
 
-const person = { name: 'John', age: 30 };
-const proxyPerson = new Proxy(person, handler);
-console.log(proxyPerson.name); // John
-console.log(proxyPerson.age); // 30
-proxyPerson.age = 31;
-console.log(proxyPerson.age); // 31
+  on(eventName, listener) {
+    if (!this.events[eventName]) {
+      this.events[eventName] = [];
+    }
+    this.events[eventName].push(listener);
+  }
+
+  emit(eventName, ...args) {
+    const listeners = this.events[eventName];
+    if (listeners) {
+      listeners.forEach(listener => listener(...args));
+    }
+  }
+
+  off(eventName, listener) {
+    const listeners = this.events[eventName];
+    if (listeners) {
+      this.events[eventName] = listeners.filter(l => l !== listener);
+    }
+  }
+}
+
+const emitter = new EventEmitter();
+const logData = data => console.log('Data:', data);
+emitter.on('data', logData);
+emitter.emit('data', 'Hello, World!'); // Data: Hello, World!
+emitter.off('data', logData);
+emitter.emit('data', 'Hello, World!'); // (No output)
