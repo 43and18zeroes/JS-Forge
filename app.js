@@ -40,3 +40,5 @@ function trackUserHandler() {
 }
 
 button.addEventListener('click', trackUserHandler);
+
+// Advanced functions

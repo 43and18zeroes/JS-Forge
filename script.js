@@ -255,21 +255,3 @@ try {
 } catch (e) {
   console.error(e.message);
 }
-
-// Advanced Functions:
-
-function throttle(fn, limit) {
-  let inThrottle;
-  return function(...args) {
-    if (!inThrottle) {
-      fn.apply(this, args);
-      inThrottle = true;
-      setTimeout(() => inThrottle = false, limit);
-    }
-  };
-}
-
-const handleScroll2 = throttle(() => {
-  console.log('Scrolled');
-}, 100);
-window.addEventListener('scroll', handleScroll2);
