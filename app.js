@@ -43,36 +43,3 @@ button.addEventListener('click', trackUserHandler);
 
 // Advanced functions
 
-class EventEmitter {
-  constructor() {
-    this.events = {};
-  }
-
-  on(eventName, listener) {
-    if (!this.events[eventName]) {
-      this.events[eventName] = [];
-    }
-    this.events[eventName].push(listener);
-  }
-
-  emit(eventName, ...args) {
-    const listeners = this.events[eventName];
-    if (listeners) {
-      listeners.forEach(listener => listener(...args));
-    }
-  }
-
-  off(eventName, listener) {
-    const listeners = this.events[eventName];
-    if (listeners) {
-      this.events[eventName] = listeners.filter(l => l !== listener);
-    }
-  }
-}
-
-const emitter = new EventEmitter();
-const logData = data => console.log('Data:', data);
-emitter.on('data', logData);
-emitter.emit('data', 'Hello, World!'); // Data: Hello, World!
-emitter.off('data', logData);
-emitter.emit('data', 'Hello, World!'); // (No output)
