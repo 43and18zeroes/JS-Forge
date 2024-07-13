@@ -43,29 +43,25 @@ button.addEventListener('click', trackUserHandler);
 
 // Advanced functions
 
-// throttle.js
-function throttle(func, limit) {
-  let lastFunc;
-  let lastRan;
-  return function(...args) {
-    if (!lastRan) {
-      func.apply(this, args);
-      lastRan = Date.now();
+// curry.js
+function curry(fn) {
+  return function curried(...args) {
+    if (args.length >= fn.length) {
+      return fn.apply(this, args);
     } else {
-      clearTimeout(lastFunc);
-      lastFunc = setTimeout(() => {
-        if ((Date.now() - lastRan) >= limit) {
-          func.apply(this, args);
-          lastRan = Date.now();
-        }
-      }, limit - (Date.now() - lastRan));
+      return function(...args2) {
+        return curried.apply(this, args.concat(args2));
+      };
     }
   };
 }
 
 // Example usage:
-const handleScroll = throttle(() => {
-  console.log('Scroll event handler called');
-}, 1000);
+function sum(a, b, c) {
+  return a + b + c;
+}
 
-window.addEventListener('scroll', handleScroll);
+const curriedSum = curry(sum);
+console.log(curriedSum(1)(2)(3)); // 6
+console.log(curriedSum(1, 2)(3)); // 6
+console.log(curriedSum(1)(2, 3)); // 6
