@@ -43,22 +43,35 @@ button.addEventListener('click', trackUserHandler);
 
 // Advanced functions
 
-// deepClone.js
-function deepClone(obj) {
-  if (obj === null || typeof obj !== 'object') {
-    return obj;
+// eventEmitter.js
+class EventEmitter {
+  constructor() {
+    this.events = {};
   }
-  const clone = Array.isArray(obj) ? [] : {};
-  for (let key in obj) {
-    if (obj.hasOwnProperty(key)) {
-      clone[key] = deepClone(obj[key]);
+
+  on(eventName, listener) {
+    if (!this.events[eventName]) {
+      this.events[eventName] = [];
+    }
+    this.events[eventName].push(listener);
+  }
+
+  emit(eventName, ...args) {
+    const listeners = this.events[eventName];
+    if (listeners) {
+      listeners.forEach(listener => listener(...args));
     }
   }
-  return clone;
+
+  off(eventName, listener) {
+    const listeners = this.events[eventName];
+    if (listeners) {
+      this.events[eventName] = listeners.filter(l => l !== listener);
+    }
+  }
 }
 
 // Example usage:
-const original = { a: 1, b: { c: 2 } };
-const cloned = deepClone(original);
-console.log(cloned); // { a: 1, b: { c: 2 } }
-console.log(original === cloned); // false
+const emitter = new EventEmitter();
+emitter.on('greet', name => console.log(`Hello, ${name}!`));
+emitter.emit('greet', 'World'); // Hello, World!
