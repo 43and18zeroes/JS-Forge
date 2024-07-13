@@ -43,35 +43,15 @@ button.addEventListener('click', trackUserHandler);
 
 // Advanced functions
 
-// eventEmitter.js
-class EventEmitter {
-  constructor() {
-    this.events = {};
-  }
-
-  on(eventName, listener) {
-    if (!this.events[eventName]) {
-      this.events[eventName] = [];
-    }
-    this.events[eventName].push(listener);
-  }
-
-  emit(eventName, ...args) {
-    const listeners = this.events[eventName];
-    if (listeners) {
-      listeners.forEach(listener => listener(...args));
-    }
-  }
-
-  off(eventName, listener) {
-    const listeners = this.events[eventName];
-    if (listeners) {
-      this.events[eventName] = listeners.filter(l => l !== listener);
-    }
+// fibonacciGenerator.js
+function* fibonacciGenerator() {
+  let a = 0, b = 1;
+  while (true) {
+    yield a;
+    [a, b] = [b, a + b];
   }
 }
 
 // Example usage:
-const emitter = new EventEmitter();
-emitter.on('greet', name => console.log(`Hello, ${name}!`));
-emitter.emit('greet', 'World'); // Hello, World!
+const gen = fibonacciGenerator();
+console.log([...Array(10)].map(() => gen.next().value)); // [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
