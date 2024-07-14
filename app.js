@@ -43,6 +43,9 @@ button.addEventListener('click', trackUserHandler);
 
 // Advanced functions
 
-function unique(arr) {
-  return [...new Set(arr)];
+function groupBy(arr, key) {
+  return arr.reduce((acc, item) => {
+    (acc[item[key]] = acc[item[key]] || []).push(item);
+    return acc;
+  }, {});
 }
