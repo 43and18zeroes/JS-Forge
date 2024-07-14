@@ -43,13 +43,10 @@ button.addEventListener('click', trackUserHandler);
 
 // Advanced functions
 
-function throttle(func, limit) {
-  let inThrottle;
+function debounce(func, wait) {
+  let timeout;
   return function(...args) {
-    if (!inThrottle) {
-      func.apply(this, args);
-      inThrottle = true;
-      setTimeout(() => inThrottle = false, limit);
-    }
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func.apply(this, args), wait);
   };
 }
