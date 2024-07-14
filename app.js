@@ -43,13 +43,8 @@ button.addEventListener('click', trackUserHandler);
 
 // Advanced functions
 
-function promisify(fn) {
-  return function(...args) {
-    return new Promise((resolve, reject) => {
-      fn.apply(this, [...args, (err, result) => {
-        if (err) return reject(err);
-        resolve(result);
-      }]);
-    });
-  };
+function flatten(arr) {
+  return arr.reduce((flat, toFlatten) => {
+    return flat.concat(Array.isArray(toFlatten) ? flatten(toFlatten) : toFlatten);
+  }, []);
 }
