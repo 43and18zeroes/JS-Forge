@@ -43,15 +43,13 @@ button.addEventListener('click', trackUserHandler);
 
 // Advanced functions
 
-function memoize(fn) {
-  const cache = new Map();
+function promisify(fn) {
   return function(...args) {
-    const key = JSON.stringify(args);
-    if (cache.has(key)) {
-      return cache.get(key);
-    }
-    const result = fn.apply(this, args);
-    cache.set(key, result);
-    return result;
+    return new Promise((resolve, reject) => {
+      fn.apply(this, [...args, (err, result) => {
+        if (err) return reject(err);
+        resolve(result);
+      }]);
+    });
   };
 }
