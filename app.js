@@ -43,9 +43,14 @@ button.addEventListener('click', trackUserHandler);
 
 // Advanced functions
 
-function* infiniteSequence() {
-  let i = 0;
-  while (true) {
-      yield i++;
-  }
+function createProxy(target) {
+  return new Proxy(target, {
+      get: (target, prop) => {
+          if (prop in target) {
+              return target[prop];
+          } else {
+              throw new Error(`Property ${prop} does not exist.`);
+          }
+      }
+  });
 }
