@@ -43,16 +43,9 @@ button.addEventListener('click', trackUserHandler);
 
 // Advanced functions
 
-function memoize(func) {
-  const cache = new Map();
-  return function(...args) {
-      const key = JSON.stringify(args);
-      if (cache.has(key)) {
-          return cache.get(key);
-      } else {
-          const result = func(...args);
-          cache.set(key, result);
-          return result;
-      }
-  };
+function* infiniteSequence() {
+  let i = 0;
+  while (true) {
+      yield i++;
+  }
 }
