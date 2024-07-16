@@ -43,8 +43,10 @@ button.addEventListener('click', trackUserHandler);
 
 // Advanced functions
 
-function flattenArray(arr) {
-  return arr.reduce((flat, toFlatten) => {
-      return flat.concat(Array.isArray(toFlatten) ? flattenArray(toFlatten) : toFlatten);
-  }, []);
+function debounce(func, wait) {
+  let timeout;
+  return function(...args) {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => func.apply(this, args), wait);
+  };
 }
