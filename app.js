@@ -43,10 +43,16 @@ button.addEventListener('click', trackUserHandler);
 
 // Advanced functions
 
-function curry(f) {
-  return function(a) {
-      return function(b) {
-          return f(a, b);
-      };
+function memoize(func) {
+  const cache = new Map();
+  return function(...args) {
+      const key = JSON.stringify(args);
+      if (cache.has(key)) {
+          return cache.get(key);
+      } else {
+          const result = func(...args);
+          cache.set(key, result);
+          return result;
+      }
   };
 }
