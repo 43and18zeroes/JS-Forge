@@ -43,21 +43,21 @@ button.addEventListener('click', trackUserHandler);
 
 // Advanced functions
 
-function throttle(func, limit) {
-  let lastFunc;
-  let lastRan;
-  return function(...args) {
-      if (!lastRan) {
-          func.apply(this, args);
-          lastRan = Date.now();
-      } else {
-          clearTimeout(lastFunc);
-          lastFunc = setTimeout(() => {
-              if ((Date.now() - lastRan) >= limit) {
-                  func.apply(this, args);
-                  lastRan = Date.now();
-              }
-          }, limit - (Date.now() - lastRan));
-      }
-  };
-}
+console.log(advancedFilter([1, 2, 6, 7, 8, 10])); // [6, 8, 10]
+asyncFunction().then(console.log); // After 2 seconds, "Data fetched successfully!"
+const curriedSum = curry((a, b) => a + b);
+console.log(curriedSum(1)(2)); // 3
+const memoizedFactorial = memoize(n => n <= 1 ? 1 : n * memoizedFactorial(n - 1));
+console.log(memoizedFactorial(5)); // 120
+const gen = infiniteSequence();
+console.log(gen.next().value); // 0
+console.log(gen.next().value); // 1
+const proxyObj = createProxy({ a: 1, b: 2 });
+console.log(proxyObj.a); // 1
+// console.log(proxyObj.c); // Error: Property c does not exist.
+console.log(flattenArray([1, [2, [3, 4], 5], 6])); // [1, 2, 3, 4, 5, 6]
+const debouncedLog = debounce(() => console.log("Debounced!"), 1000);
+debouncedLog();
+const throttledLog = throttle(() => console.log("Throttled!"), 1000);
+throttledLog();
+console.log(deepClone({ a: 1, b: { c: 2 } })); // { a: 1, b: { c: 2 } }
