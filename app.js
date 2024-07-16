@@ -43,10 +43,10 @@ button.addEventListener('click', trackUserHandler);
 
 // Advanced functions
 
-function asyncFunction() {
-  return new Promise((resolve, reject) => {
-      setTimeout(() => {
-          resolve("Data fetched successfully!");
-      }, 2000);
-  });
+function curry(f) {
+  return function(a) {
+      return function(b) {
+          return f(a, b);
+      };
+  };
 }
