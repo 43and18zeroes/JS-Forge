@@ -43,6 +43,10 @@ button.addEventListener('click', trackUserHandler);
 
 // Advanced functions
 
-function advancedFilter(arr) {
-  return arr.filter(item => item > 5 && item % 2 === 0);
+function asyncFunction() {
+  return new Promise((resolve, reject) => {
+      setTimeout(() => {
+          resolve("Data fetched successfully!");
+      }, 2000);
+  });
 }
