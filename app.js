@@ -43,15 +43,10 @@ button.addEventListener('click', trackUserHandler);
 
 // Advanced functions
 
-function memoize(fn) {
-  const cache = new Map();
+function debounce(func, wait) {
+  let timeout;
   return function(...args) {
-      const key = JSON.stringify(args);
-      if (cache.has(key)) {
-          return cache.get(key);
-      }
-      const result = fn(...args);
-      cache.set(key, result);
-      return result;
+      clearTimeout(timeout);
+      timeout = setTimeout(() => func.apply(this, args), wait);
   };
 }
