@@ -43,15 +43,12 @@ button.addEventListener('click', trackUserHandler);
 
 // Advanced functions
 
-function deepClone(obj) {
-  if (obj === null || typeof obj !== 'object') {
-      return obj;
+async function fetchData(url) {
+  try {
+      const response = await fetch(url);
+      const data = await response.json();
+      return data;
+  } catch (error) {
+      console.error('Error fetching data:', error);
   }
-  const clone = Array.isArray(obj) ? [] : {};
-  for (let key in obj) {
-      if (obj.hasOwnProperty(key)) {
-          clone[key] = deepClone(obj[key]);
-      }
-  }
-  return clone;
 }
