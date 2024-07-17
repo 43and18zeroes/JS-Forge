@@ -43,14 +43,15 @@ button.addEventListener('click', trackUserHandler);
 
 // Advanced functions
 
-function curry(fn) {
-  return function curried(...args) {
-      if (args.length >= fn.length) {
-          return fn.apply(this, args);
-      } else {
-          return function(...args2) {
-              return curried.apply(this, args.concat(args2));
-          };
+function deepClone(obj) {
+  if (obj === null || typeof obj !== 'object') {
+      return obj;
+  }
+  const clone = Array.isArray(obj) ? [] : {};
+  for (let key in obj) {
+      if (obj.hasOwnProperty(key)) {
+          clone[key] = deepClone(obj[key]);
       }
-  };
+  }
+  return clone;
 }
