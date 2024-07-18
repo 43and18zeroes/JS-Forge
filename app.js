@@ -43,15 +43,21 @@ button.addEventListener('click', trackUserHandler);
 
 // Advanced functions
 
-function memoize(fn) {
-  const cache = new Map();
+function throttle(func, limit) {
+  let lastFunc;
+  let lastRan;
   return function(...args) {
-      const key = JSON.stringify(args);
-      if (cache.has(key)) {
-          return cache.get(key);
+      if (!lastRan) {
+          func.apply(this, args);
+          lastRan = Date.now();
+      } else {
+          clearTimeout(lastFunc);
+          lastFunc = setTimeout(() => {
+              if ((Date.now() - lastRan) >= limit) {
+                  func.apply(this, args);
+                  lastRan = Date.now();
+              }
+          }, limit - (Date.now() - lastRan));
       }
-      const result = fn(...args);
-      cache.set(key, result);
-      return result;
   };
 }
