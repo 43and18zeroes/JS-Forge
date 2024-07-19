@@ -43,11 +43,10 @@ button.addEventListener('click', trackUserHandler);
 
 // Advanced functions
 
-function generateRandomString(length) {
-  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-  let result = '';
-  for (let i = 0; i < length; i++) {
-      result += characters.charAt(Math.floor(Math.random() * characters.length));
-  }
-  return result;
+function sortByProperty(array, property) {
+  return array.sort((a, b) => {
+      if (a[property] < b[property]) return -1;
+      if (a[property] > b[property]) return 1;
+      return 0;
+  });
 }
