@@ -43,10 +43,9 @@ button.addEventListener('click', trackUserHandler);
 
 // Advanced functions
 
-function sortByProperty(array, property) {
-  return array.sort((a, b) => {
-      if (a[property] < b[property]) return -1;
-      if (a[property] > b[property]) return 1;
-      return 0;
-  });
+function groupBy(array, key) {
+  return array.reduce((acc, item) => {
+      (acc[item[key]] = acc[item[key]] || []).push(item);
+      return acc;
+  }, {});
 }
