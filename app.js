@@ -43,3 +43,26 @@ button.addEventListener('click', trackUserHandler);
 
 // Advanced functions
 
+document.addEventListener('DOMContentLoaded', function () {
+  var ctx = document.getElementById('myChart').getContext('2d');
+  var myChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+          labels: ['Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag'],
+          datasets: [{
+              label: 'Aktienkurs',
+              data: [100, 120, 110, 130, 140],
+              backgroundColor: 'rgba(255, 99, 132, 0.2)',
+              borderColor: 'rgba(255, 99, 132, 1)',
+              borderWidth: 1
+          }]
+      },
+      options: {
+          scales: {
+              y: {
+                  beginAtZero: true
+              }
+          }
+      }
+  });
+});
