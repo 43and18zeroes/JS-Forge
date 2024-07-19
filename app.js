@@ -43,12 +43,11 @@ button.addEventListener('click', trackUserHandler);
 
 // Advanced functions
 
-async function fetchData(url) {
-  try {
-      const response = await fetch(url);
-      const data = await response.json();
-      return data;
-  } catch (error) {
-      console.error('Error fetching data:', error);
+function generateRandomString(length) {
+  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  let result = '';
+  for (let i = 0; i < length; i++) {
+      result += characters.charAt(Math.floor(Math.random() * characters.length));
   }
+  return result;
 }
