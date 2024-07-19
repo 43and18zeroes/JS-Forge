@@ -43,21 +43,15 @@ button.addEventListener('click', trackUserHandler);
 
 // Advanced functions
 
-function throttle(func, limit) {
-  let lastFunc;
-  let lastRan;
-  return function(...args) {
-      if (!lastRan) {
-          func.apply(this, args);
-          lastRan = Date.now();
-      } else {
-          clearTimeout(lastFunc);
-          lastFunc = setTimeout(() => {
-              if ((Date.now() - lastRan) >= limit) {
-                  func.apply(this, args);
-                  lastRan = Date.now();
-              }
-          }, limit - (Date.now() - lastRan));
+function deepClone(obj) {
+  if (obj === null || typeof obj !== 'object') {
+      return obj;
+  }
+  const clone = Array.isArray(obj) ? [] : {};
+  for (let key in obj) {
+      if (obj.hasOwnProperty(key)) {
+          clone[key] = deepClone(obj[key]);
       }
-  };
+  }
+  return clone;
 }
