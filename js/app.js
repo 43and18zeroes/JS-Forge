@@ -145,14 +145,22 @@ initChart();
 
 // clone
 
-async function fetchData() {
-  try {
-    const response = await fetch('https://api.example.com/data');
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error('Error fetching data:', error);
+const handler = {
+  get: function(target, prop, receiver) {
+    if (prop in target) {
+      return target[prop];
+    } else {
+      throw new Error(`Property ${prop} does not exist.`);
+    }
   }
-}
+};
 
-fetchData().then(data => console.log(data));
+const person = {
+  name: 'John',
+  age: 30
+};
+
+const proxyPerson = new Proxy(person, handler);
+console.log(proxyPerson.name); // John
+console.log(proxyPerson.age); // 30
+// console.log(proxyPerson.address); // Error: Property address does not exist.
