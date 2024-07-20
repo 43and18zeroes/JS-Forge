@@ -145,18 +145,19 @@ initChart();
 
 // clone
 
-function throttle(fn, limit) {
-  let inThrottle;
+function promisify(fn) {
   return function(...args) {
-    if (!inThrottle) {
-      fn.apply(this, args);
-      inThrottle = true;
-      setTimeout(() => (inThrottle = false), limit);
-    }
+    return new Promise((resolve, reject) => {
+      fn.apply(this, [...args, (err, result) => {
+        if (err) return reject(err);
+        resolve(result);
+      }]);
+    });
   };
 }
 
-const handleScroll = throttle(() => {
-  console.log('Scrolled');
-}, 100);
-window.addEventListener('scroll', handleScroll);
+const fs = require('fs');
+const readFileAsync = promisify(fs.readFile);
+readFileAsync('file.txt', 'utf8')
+  .then(data => console.log(data))
+  .catch(err => console.error(err));
