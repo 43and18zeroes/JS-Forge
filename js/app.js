@@ -144,37 +144,3 @@ async function initChart() {
 initChart();
 
 // clone
-
-class EventEmitter {
-  constructor() {
-    this.events = {};
-  }
-
-  on(eventName, listener) {
-    if (!this.events[eventName]) {
-      this.events[eventName] = [];
-    }
-    this.events[eventName].push(listener);
-  }
-
-  emit(eventName, ...args) {
-    const listeners = this.events[eventName];
-    if (listeners) {
-      listeners.forEach(listener => listener.apply(this, args));
-    }
-  }
-
-  off(eventName, listener) {
-    const listeners = this.events[eventName];
-    if (listeners) {
-      this.events[eventName] = listeners.filter(l => l !== listener);
-    }
-  }
-}
-
-const emitter = new EventEmitter();
-const logEvent = (data) => console.log(`Event data: ${data}`);
-emitter.on('event', logEvent);
-emitter.emit('event', 'Hello, world!'); // Event data: Hello, world!
-emitter.off('event', logEvent);
-emitter.emit('event', 'Hello again!'); // No output
