@@ -145,22 +145,30 @@ initChart();
 
 // clone
 
-const handler = {
-  get: function(target, prop, receiver) {
-    if (prop in target) {
-      return target[prop];
-    } else {
-      throw new Error(`Property ${prop} does not exist.`);
-    }
+function log(target, name, descriptor) {
+  const original = descriptor.value;
+  if (typeof original === 'function') {
+    descriptor.value = function(...args) {
+      console.log(`Arguments: ${args}`);
+      try {
+        const result = original.apply(this, args);
+        console.log(`Result: ${result}`);
+        return result;
+      } catch (e) {
+        console.log(`Error: ${e}`);
+        throw e;
+      }
+    };
   }
-};
+  return descriptor;
+}
 
-const person = {
-  name: 'John',
-  age: 30
-};
+class Calculator {
+  @log
+  add(a, b) {
+    return a + b;
+  }
+}
 
-const proxyPerson = new Proxy(person, handler);
-console.log(proxyPerson.name); // John
-console.log(proxyPerson.age); // 30
-// console.log(proxyPerson.address); // Error: Property address does not exist.
+const calc = new Calculator();
+calc.add(1, 2); // Arguments: 1,2 Result: 3
