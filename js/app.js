@@ -145,19 +145,16 @@ initChart();
 
 // clone
 
-function promisify(fn) {
-  return function(...args) {
-    return new Promise((resolve, reject) => {
-      fn.apply(this, [...args, (err, result) => {
-        if (err) return reject(err);
-        resolve(result);
-      }]);
-    });
-  };
+function* fibonacci() {
+  let a = 0, b = 1;
+  while (true) {
+    yield a;
+    [a, b] = [b, a + b];
+  }
 }
 
-const fs = require('fs');
-const readFileAsync = promisify(fs.readFile);
-readFileAsync('file.txt', 'utf8')
-  .then(data => console.log(data))
-  .catch(err => console.error(err));
+const gen = fibonacci();
+console.log(gen.next().value); // 0
+console.log(gen.next().value); // 1
+console.log(gen.next().value); // 1
+console.log(gen.next().value); // 2
