@@ -145,30 +145,36 @@ initChart();
 
 // clone
 
-function log(target, name, descriptor) {
-  const original = descriptor.value;
-  if (typeof original === 'function') {
-    descriptor.value = function(...args) {
-      console.log(`Arguments: ${args}`);
-      try {
-        const result = original.apply(this, args);
-        console.log(`Result: ${result}`);
-        return result;
-      } catch (e) {
-        console.log(`Error: ${e}`);
-        throw e;
-      }
-    };
+class EventEmitter {
+  constructor() {
+    this.events = {};
   }
-  return descriptor;
+
+  on(eventName, listener) {
+    if (!this.events[eventName]) {
+      this.events[eventName] = [];
+    }
+    this.events[eventName].push(listener);
+  }
+
+  emit(eventName, ...args) {
+    const listeners = this.events[eventName];
+    if (listeners) {
+      listeners.forEach(listener => listener.apply(this, args));
+    }
+  }
+
+  off(eventName, listener) {
+    const listeners = this.events[eventName];
+    if (listeners) {
+      this.events[eventName] = listeners.filter(l => l !== listener);
+    }
+  }
 }
 
-class Calculator {
-  @log
-  add(a, b) {
-    return a + b;
-  }
-}
-
-const calc = new Calculator();
-calc.add(1, 2); // Arguments: 1,2 Result: 3
+const emitter = new EventEmitter();
+const logEvent = (data) => console.log(`Event data: ${data}`);
+emitter.on('event', logEvent);
+emitter.emit('event', 'Hello, world!'); // Event data: Hello, world!
+emitter.off('event', logEvent);
+emitter.emit('event', 'Hello again!'); // No output
