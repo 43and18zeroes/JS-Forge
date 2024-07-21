@@ -145,21 +145,40 @@ initChart();
 
 // clone
 
-// asyncAwait.js
-async function fetchData(url) {
-  try {
-    const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
+// eventEmitter.js
+class EventEmitter {
+  constructor() {
+    this.events = {};
+  }
+
+  on(eventName, listener) {
+    if (!this.events[eventName]) {
+      this.events[eventName] = [];
     }
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error('Fetch error:', error);
+    this.events[eventName].push(listener);
+  }
+
+  emit(eventName, ...args) {
+    const listeners = this.events[eventName];
+    if (listeners) {
+      listeners.forEach(listener => listener(...args));
+    }
+  }
+
+  off(eventName, listener) {
+    const listeners = this.events[eventName];
+    if (listeners) {
+      this.events[eventName] = listeners.filter(l => l !== listener);
+    }
   }
 }
 
 // Example usage:
-fetchData('https://api.example.com/data')
-  .then(data => console.log(data))
-  .catch(error => console.error(error));
+const emitter = new EventEmitter();
+function handleEvent(data) {
+  console.log('Event received:', data);
+}
+emitter.on('testEvent', handleEvent);
+emitter.emit('testEvent', { msg: 'Hello World' }); // Event received: { msg: 'Hello World' }
+emitter.off('testEvent', handleEvent);
+emitter.emit('testEvent', { msg: 'Hello Again' }); // No output
