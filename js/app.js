@@ -145,30 +145,22 @@ initChart();
 
 // clone
 
-// throttle.js
-function throttle(func, limit) {
-  let lastFunc;
-  let lastRan;
-  return function(...args) {
-    const context = this;
-    if (!lastRan) {
-      func.apply(context, args);
-      lastRan = Date.now();
-    } else {
-      clearTimeout(lastFunc);
-      lastFunc = setTimeout(() => {
-        if ((Date.now() - lastRan) >= limit) {
-          func.apply(context, args);
-          lastRan = Date.now();
-        }
-      }, limit - (Date.now() - lastRan));
+// deepClone.js
+function deepClone(obj) {
+  if (obj === null || typeof obj !== 'object') {
+    return obj;
+  }
+  const clone = Array.isArray(obj) ? [] : {};
+  for (let key in obj) {
+    if (obj.hasOwnProperty(key)) {
+      clone[key] = deepClone(obj[key]);
     }
-  };
+  }
+  return clone;
 }
 
 // Example usage:
-const handleScroll = throttle(() => {
-  console.log('Scroll event handler called');
-}, 1000);
-
-window.addEventListener('scroll', handleScroll);
+const original = { a: 1, b: { c: 2 } };
+const cloned = deepClone(original);
+console.log(cloned); // { a: 1, b: { c: 2 } }
+console.log(cloned === original); // false
