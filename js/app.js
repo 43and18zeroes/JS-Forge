@@ -144,3 +144,27 @@ async function initChart() {
 initChart();
 
 // clone
+
+// memoize.js
+function memoize(fn) {
+  const cache = new Map();
+  return function(...args) {
+    const key = JSON.stringify(args);
+    if (cache.has(key)) {
+      return cache.get(key);
+    }
+    const result = fn(...args);
+    cache.set(key, result);
+    return result;
+  };
+}
+
+// Example usage:
+function fibonacci(n) {
+  if (n <= 1) return n;
+  return fibonacci(n - 1) + fibonacci(n - 2);
+}
+
+const memoizedFib = memoize(fibonacci);
+console.log(memoizedFib(10)); // 55
+console.log(memoizedFib(10)); // 55 (fetched from cache)
