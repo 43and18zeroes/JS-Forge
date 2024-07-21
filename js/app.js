@@ -145,26 +145,25 @@ initChart();
 
 // clone
 
-// promisify.js
-function promisify(func) {
-  return function(...args) {
-    return new Promise((resolve, reject) => {
-      func(...args, (err, result) => {
-        if (err) return reject(err);
-        resolve(result);
-      });
-    });
+// curry.js
+function curry(fn) {
+  return function curried(...args) {
+    if (args.length >= fn.length) {
+      return fn.apply(this, args);
+    } else {
+      return function(...args2) {
+        return curried.apply(this, args.concat(args2));
+      };
+    }
   };
 }
 
 // Example usage:
-function asyncFunction(value, callback) {
-  setTimeout(() => {
-    callback(null, `Processed: ${value}`);
-  }, 1000);
+function sum(a, b, c) {
+  return a + b + c;
 }
 
-const promisedFunction = promisify(asyncFunction);
-promisedFunction('test')
-  .then(result => console.log(result)) // Processed: test
-  .catch(err => console.error(err));
+const curriedSum = curry(sum);
+console.log(curriedSum(1)(2)(3)); // 6
+console.log(curriedSum(1, 2)(3)); // 6
+console.log(curriedSum(1)(2, 3)); // 6
