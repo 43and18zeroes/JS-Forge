@@ -145,14 +145,26 @@ initChart();
 
 // clone
 
-// flattenArray.js
-function flattenArray(arr) {
-  return arr.reduce((flat, toFlatten) => {
-    return flat.concat(Array.isArray(toFlatten) ? flattenArray(toFlatten) : toFlatten);
-  }, []);
+// promisify.js
+function promisify(func) {
+  return function(...args) {
+    return new Promise((resolve, reject) => {
+      func(...args, (err, result) => {
+        if (err) return reject(err);
+        resolve(result);
+      });
+    });
+  };
 }
 
 // Example usage:
-const nestedArray = [1, [2, [3, 4], 5], 6];
-const flatArray = flattenArray(nestedArray);
-console.log(flatArray); // [1, 2, 3, 4, 5, 6]
+function asyncFunction(value, callback) {
+  setTimeout(() => {
+    callback(null, `Processed: ${value}`);
+  }, 1000);
+}
+
+const promisedFunction = promisify(asyncFunction);
+promisedFunction('test')
+  .then(result => console.log(result)) // Processed: test
+  .catch(err => console.error(err));
