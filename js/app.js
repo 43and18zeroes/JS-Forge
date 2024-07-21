@@ -145,26 +145,19 @@ initChart();
 
 // clone
 
-// memoize.js
-function memoize(fn) {
-  const cache = new Map();
+// debounce.js
+function debounce(func, wait) {
+  let timeout;
   return function(...args) {
-    const key = JSON.stringify(args);
-    if (cache.has(key)) {
-      return cache.get(key);
-    }
-    const result = fn(...args);
-    cache.set(key, result);
-    return result;
+    const context = this;
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func.apply(context, args), wait);
   };
 }
 
 // Example usage:
-function fibonacci(n) {
-  if (n <= 1) return n;
-  return fibonacci(n - 1) + fibonacci(n - 2);
-}
+const handleResize = debounce(() => {
+  console.log('Window resized');
+}, 300);
 
-const memoizedFib = memoize(fibonacci);
-console.log(memoizedFib(10)); // 55
-console.log(memoizedFib(10)); // 55 (fetched from cache)
+window.addEventListener('resize', handleResize);
