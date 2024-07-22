@@ -145,16 +145,19 @@ initChart();
 
 // clone
 
-// infiniteSequence.js
-function* infiniteSequence() {
-  let i = 0;
-  while (true) {
-    yield i++;
+// asyncAwait.js
+async function fetchData(url) {
+  try {
+    const response = await fetch(url);
+    if (!response.ok) throw new Error('Network response was not ok');
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Fetch error:', error);
   }
 }
 
 // Example usage:
-const gen = infiniteSequence();
-console.log(gen.next().value); // 0
-console.log(gen.next().value); // 1
-console.log(gen.next().value); // 2
+fetchData('https://api.example.com/data')
+  .then(data => console.log(data))
+  .catch(error => console.error(error));
