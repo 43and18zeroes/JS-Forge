@@ -145,40 +145,26 @@ initChart();
 
 // clone
 
-// eventEmitter.js
-class EventEmitter {
-  constructor() {
-    this.events = {};
-  }
-
-  on(eventName, listener) {
-    if (!this.events[eventName]) {
-      this.events[eventName] = [];
+// memoize.js
+function memoize(fn) {
+  const cache = new Map();
+  return function(...args) {
+    const key = JSON.stringify(args);
+    if (cache.has(key)) {
+      return cache.get(key);
     }
-    this.events[eventName].push(listener);
-  }
-
-  emit(eventName, ...args) {
-    const listeners = this.events[eventName];
-    if (listeners) {
-      listeners.forEach(listener => listener(...args));
-    }
-  }
-
-  off(eventName, listener) {
-    const listeners = this.events[eventName];
-    if (listeners) {
-      this.events[eventName] = listeners.filter(l => l !== listener);
-    }
-  }
+    const result = fn(...args);
+    cache.set(key, result);
+    return result;
+  };
 }
 
 // Example usage:
-const emitter = new EventEmitter();
-function handleEvent(data) {
-  console.log('Event received:', data);
+function fibonacci(n) {
+  if (n <= 1) return n;
+  return fibonacci(n - 1) + fibonacci(n - 2);
 }
-emitter.on('testEvent', handleEvent);
-emitter.emit('testEvent', { msg: 'Hello World' }); // Event received: { msg: 'Hello World' }
-emitter.off('testEvent', handleEvent);
-emitter.emit('testEvent', { msg: 'Hello Again' }); // No output
+
+const memoizedFib = memoize(fibonacci);
+console.log(memoizedFib(10)); // 55
+console.log(memoizedFib(10)); // 55 (retrieved from cache)
