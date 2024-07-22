@@ -145,33 +145,30 @@ initChart();
 
 // clone
 
-// memoize.js
-function memoize(fn) {
-  const cache = new Map();
-  return function(...args) {
-    const key = JSON.stringify(args);
-    if (cache.has(key)) {
-      return cache.get(key);
-    }
-    const result = fn(...args);
-    cache.set(key, result);
-    return result;
-  };
-}
-
-// debounce.js
-function debounce(func, wait) {
-  let timeout;
+// throttle.js
+function throttle(func, limit) {
+  let lastFunc;
+  let lastRan;
   return function(...args) {
     const context = this;
-    clearTimeout(timeout);
-    timeout = setTimeout(() => func.apply(context, args), wait);
+    if (!lastRan) {
+      func.apply(context, args);
+      lastRan = Date.now();
+    } else {
+      clearTimeout(lastFunc);
+      lastFunc = setTimeout(() => {
+        if ((Date.now() - lastRan) >= limit) {
+          func.apply(context, args);
+          lastRan = Date.now();
+        }
+      }, limit - (Date.now() - lastRan));
+    }
   };
 }
 
 // Example usage:
-const handleResize = debounce(() => {
-  console.log('Window resized');
-}, 300);
+const handleScroll = throttle(() => {
+  console.log('Scroll event handler called');
+}, 1000);
 
-window.addEventListener('resize', handleResize);
+window.addEventListener('scroll', handleScroll);
