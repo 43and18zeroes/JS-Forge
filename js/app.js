@@ -145,26 +145,13 @@ initChart();
 
 // clone
 
-// promisify.js
-function promisify(fn) {
-  return function(...args) {
-    return new Promise((resolve, reject) => {
-      fn(...args, (err, result) => {
-        if (err) return reject(err);
-        resolve(result);
-      });
-    });
-  };
+// flatten.js
+function flatten(arr) {
+  return arr.reduce((flat, toFlatten) => {
+    return flat.concat(Array.isArray(toFlatten) ? flatten(toFlatten) : toFlatten);
+  }, []);
 }
 
 // Example usage:
-function asyncFunction(value, callback) {
-  setTimeout(() => {
-    callback(null, `Result: ${value}`);
-  }, 1000);
-}
-
-const promisedFunction = promisify(asyncFunction);
-promisedFunction('test')
-  .then(result => console.log(result)) // Result: test
-  .catch(err => console.error(err));
+const nestedArray = [1, [2, [3, 4], 5], 6];
+console.log(flatten(nestedArray)); // [1, 2, 3, 4, 5, 6]
