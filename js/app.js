@@ -145,20 +145,16 @@ initChart();
 
 // clone
 
-// deepClone.js
-function deepClone(obj) {
-  if (obj === null || typeof obj !== 'object') return obj;
-  const clone = Array.isArray(obj) ? [] : {};
-  for (let key in obj) {
-    if (obj.hasOwnProperty(key)) {
-      clone[key] = deepClone(obj[key]);
-    }
+// infiniteSequence.js
+function* infiniteSequence() {
+  let i = 0;
+  while (true) {
+    yield i++;
   }
-  return clone;
 }
 
 // Example usage:
-const original = { a: 1, b: { c: 2 } };
-const cloned = deepClone(original);
-console.log(cloned); // { a: 1, b: { c: 2 } }
-console.log(cloned === original); // false
+const gen = infiniteSequence();
+console.log(gen.next().value); // 0
+console.log(gen.next().value); // 1
+console.log(gen.next().value); // 2
