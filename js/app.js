@@ -145,19 +145,33 @@ initChart();
 
 // clone
 
-// asyncAwait.js
-async function fetchData(url) {
-  try {
-    const response = await fetch(url);
-    if (!response.ok) throw new Error('Network response was not ok');
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error('Fetch error:', error);
+// eventEmitter.js
+class EventEmitter {
+  constructor() {
+    this.events = {};
+  }
+
+  on(event, listener) {
+    if (!this.events[event]) {
+      this.events[event] = [];
+    }
+    this.events[event].push(listener);
+  }
+
+  emit(event, ...args) {
+    if (this.events[event]) {
+      this.events[event].forEach(listener => listener(...args));
+    }
+  }
+
+  removeListener(event, listener) {
+    if (this.events[event]) {
+      this.events[event] = this.events[event].filter(l => l !== listener);
+    }
   }
 }
 
 // Example usage:
-fetchData('https://api.example.com/data')
-  .then(data => console.log(data))
-  .catch(error => console.error(error));
+const emitter = new EventEmitter();
+emitter.on('greet', name => console.log(`Hello, ${name}!`));
+emitter.emit('greet', 'World'); // Hello, World!
