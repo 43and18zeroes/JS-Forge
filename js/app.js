@@ -159,12 +159,19 @@ function memoize(fn) {
   };
 }
 
-// Example usage:
-function fibonacci(n) {
-  if (n <= 1) return n;
-  return fibonacci(n - 1) + fibonacci(n - 2);
+// debounce.js
+function debounce(func, wait) {
+  let timeout;
+  return function(...args) {
+    const context = this;
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func.apply(context, args), wait);
+  };
 }
 
-const memoizedFib = memoize(fibonacci);
-console.log(memoizedFib(10)); // 55
-console.log(memoizedFib(10)); // 55 (retrieved from cache)
+// Example usage:
+const handleResize = debounce(() => {
+  console.log('Window resized');
+}, 300);
+
+window.addEventListener('resize', handleResize);
