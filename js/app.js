@@ -145,17 +145,15 @@ initChart();
 
 // clone
 
-if (!Promise.allSettled) {
-  Promise.allSettled = function(promises) {
-      return Promise.all(promises.map(p => Promise.resolve(p).then(value => ({
-          status: 'fulfilled',
-          value
-      }), reason => ({
-          status: 'rejected',
-          reason
-      }))));
-  };
+function* fibonacci(n) {
+  let a = 0, b = 1;
+  for (let i = 0; i < n; i++) {
+      yield a;
+      [a, b] = [b, a + b];
+  }
 }
 
-const promises = [Promise.resolve(1), Promise.reject(2), Promise.resolve(3)];
-Promise.allSettled(promises).then(results => console.log(results));
+const gen = fibonacci(5);
+for (const num of gen) {
+  console.log(num); // 0, 1, 1, 2, 3
+}
