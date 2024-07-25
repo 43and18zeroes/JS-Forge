@@ -145,13 +145,24 @@ initChart();
 
 // clone
 
-function debounce(fn, delay) {
-  let timeoutId;
+function throttle(fn, limit) {
+  let lastFunc;
+  let lastRan;
   return function(...args) {
-      clearTimeout(timeoutId);
-      timeoutId = setTimeout(() => fn.apply(this, args), delay);
+      if (!lastRan) {
+          fn.apply(this, args);
+          lastRan = Date.now();
+      } else {
+          clearTimeout(lastFunc);
+          lastFunc = setTimeout(() => {
+              if ((Date.now() - lastRan) >= limit) {
+                  fn.apply(this, args);
+                  lastRan = Date.now();
+              }
+          }, limit - (Date.now() - lastRan));
+      }
   };
 }
 
-const onResize = debounce(() => console.log('Resized'), 200);
-window.addEventListener('resize', onResize);
+const onScroll = throttle(() => console.log('Scrolled'), 200);
+window.addEventListener('scroll', onScroll);
