@@ -145,14 +145,31 @@ initChart();
 
 // clone
 
-async function fetchData(url) {
-  try {
-      const response = await fetch(url);
-      const data = await response.json();
-      return data;
-  } catch (error) {
-      console.error('Error fetching data:', error);
+class EventEmitter {
+  constructor() {
+      this.events = {};
+  }
+
+  on(eventName, listener) {
+      if (!this.events[eventName]) {
+          this.events[eventName] = [];
+      }
+      this.events[eventName].push(listener);
+  }
+
+  emit(eventName, ...args) {
+      if (this.events[eventName]) {
+          this.events[eventName].forEach(listener => listener(...args));
+      }
+  }
+
+  off(eventName, listener) {
+      if (this.events[eventName]) {
+          this.events[eventName] = this.events[eventName].filter(l => l !== listener);
+      }
   }
 }
 
-fetchData('https://api.example.com/data').then(data => console.log(data));
+const emitter = new EventEmitter();
+emitter.on('greet', name => console.log(`Hello, ${name}!`));
+emitter.emit('greet', 'World'); // Hello, World!
