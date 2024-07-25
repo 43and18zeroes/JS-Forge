@@ -145,15 +145,14 @@ initChart();
 
 // clone
 
-function* fibonacci(n) {
-  let a = 0, b = 1;
-  for (let i = 0; i < n; i++) {
-      yield a;
-      [a, b] = [b, a + b];
+async function fetchData(url) {
+  try {
+      const response = await fetch(url);
+      const data = await response.json();
+      return data;
+  } catch (error) {
+      console.error('Error fetching data:', error);
   }
 }
 
-const gen = fibonacci(5);
-for (const num of gen) {
-  console.log(num); // 0, 1, 1, 2, 3
-}
+fetchData('https://api.example.com/data').then(data => console.log(data));
