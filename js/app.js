@@ -145,31 +145,11 @@ initChart();
 
 // clone
 
-class EventEmitter {
-  constructor() {
-      this.events = {};
-  }
-
-  on(eventName, listener) {
-      if (!this.events[eventName]) {
-          this.events[eventName] = [];
-      }
-      this.events[eventName].push(listener);
-  }
-
-  emit(eventName, ...args) {
-      if (this.events[eventName]) {
-          this.events[eventName].forEach(listener => listener(...args));
-      }
-  }
-
-  off(eventName, listener) {
-      if (this.events[eventName]) {
-          this.events[eventName] = this.events[eventName].filter(l => l !== listener);
-      }
-  }
+function pipe(...fns) {
+  return (x) => fns.reduce((v, f) => f(v), x);
 }
 
-const emitter = new EventEmitter();
-emitter.on('greet', name => console.log(`Hello, ${name}!`));
-emitter.emit('greet', 'World'); // Hello, World!
+const add1 = x => x + 1;
+const mul2 = x => x * 2;
+const add1ThenMul2 = pipe(add1, mul2);
+console.log(add1ThenMul2(5)); // 12
