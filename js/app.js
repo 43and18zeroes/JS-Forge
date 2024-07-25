@@ -145,24 +145,19 @@ initChart();
 
 // clone
 
-function throttle(fn, limit) {
-  let lastFunc;
-  let lastRan;
-  return function(...args) {
-      if (!lastRan) {
-          fn.apply(this, args);
-          lastRan = Date.now();
-      } else {
-          clearTimeout(lastFunc);
-          lastFunc = setTimeout(() => {
-              if ((Date.now() - lastRan) >= limit) {
-                  fn.apply(this, args);
-                  lastRan = Date.now();
-              }
-          }, limit - (Date.now() - lastRan));
+function deepClone(obj) {
+  if (obj === null || typeof obj !== 'object') {
+      return obj;
+  }
+  const clone = Array.isArray(obj) ? [] : {};
+  for (let key in obj) {
+      if (obj.hasOwnProperty(key)) {
+          clone[key] = deepClone(obj[key]);
       }
-  };
+  }
+  return clone;
 }
 
-const onScroll = throttle(() => console.log('Scrolled'), 200);
-window.addEventListener('scroll', onScroll);
+const original = { a: 1, b: { c: 2 } };
+const cloned = deepClone(original);
+console.log(cloned); // { a: 1, b: { c: 2 } }
