@@ -144,12 +144,3 @@ async function initChart() {
 initChart();
 
 // clone
-
-function pipe(...fns) {
-  return (x) => fns.reduce((v, f) => f(v), x);
-}
-
-const add1 = x => x + 1;
-const mul2 = x => x * 2;
-const add1ThenMul2 = pipe(add1, mul2);
-console.log(add1ThenMul2(5)); // 12
