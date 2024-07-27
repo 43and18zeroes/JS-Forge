@@ -145,11 +145,25 @@ initChart();
 
 // clone
 
-const pipe = (...fns) => x => fns.reduce((v, f) => f(v), x);
+class EventEmitter {
+  constructor() {
+    this.events = {};
+  }
 
-const add1 = x => x + 1;
-const double = x => x * 2;
-const square = x => x * x;
+  on(event, listener) {
+    if (!this.events[event]) {
+      this.events[event] = [];
+    }
+    this.events[event].push(listener);
+  }
 
-const pipeline = pipe(add1, double, square);
-console.log(pipeline(2)); // 36
+  emit(event, ...args) {
+    if (this.events[event]) {
+      this.events[event].forEach(listener => listener(...args));
+    }
+  }
+}
+
+const emitter = new EventEmitter();
+emitter.on('greet', name => console.log(`Hello, ${name}!`));
+emitter.emit('greet', 'John'); // Hello, John!
