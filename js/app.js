@@ -145,15 +145,17 @@ initChart();
 
 // clone
 
-function* fibonacci() {
-  let [prev, curr] = [0, 1];
-  while (true) {
-    yield curr;
-    [prev, curr] = [curr, prev + curr];
+const handler = {
+  get: function(target, prop) {
+    return prop in target ? target[prop] : 'Not Found';
   }
-}
+};
 
-const gen = fibonacci();
-console.log(gen.next().value); // 1
-console.log(gen.next().value); // 1
-console.log(gen.next().value); // 2
+const person = {
+  name: 'John',
+  age: 30
+};
+
+const proxyPerson = new Proxy(person, handler);
+console.log(proxyPerson.name); // John
+console.log(proxyPerson.gender); // Not Found
