@@ -145,25 +145,21 @@ initChart();
 
 // clone
 
-class EventEmitter {
-  constructor() {
-    this.events = {};
-  }
-
-  on(event, listener) {
-    if (!this.events[event]) {
-      this.events[event] = [];
+function memoize(fn) {
+  const cache = new Map();
+  return function(...args) {
+    const key = JSON.stringify(args);
+    if (cache.has(key)) {
+      return cache.get(key);
     }
-    this.events[event].push(listener);
-  }
-
-  emit(event, ...args) {
-    if (this.events[event]) {
-      this.events[event].forEach(listener => listener(...args));
-    }
-  }
+    const result = fn.apply(this, args);
+    cache.set(key, result);
+    return result;
+  };
 }
 
-const emitter = new EventEmitter();
-emitter.on('greet', name => console.log(`Hello, ${name}!`));
-emitter.emit('greet', 'John'); // Hello, John!
+const fib = memoize(function(n) {
+  if (n <= 1) return n;
+  return fib(n - 1) + fib(n - 2);
+});
+console.log(fib(10)); // 55
