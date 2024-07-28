@@ -145,18 +145,8 @@ initChart();
 
 // clone
 
-function throttle(fn, limit) {
-  let inThrottle;
-  return function(...args) {
-    if (!inThrottle) {
-      fn.apply(this, args);
-      inThrottle = true;
-      setTimeout(() => inThrottle = false, limit);
-    }
-  };
-}
-
-const handleScroll = throttle(() => {
-  console.log('Scrolled');
-}, 100);
-window.addEventListener('scroll', handleScroll);
+Promise.allSettled([
+  Promise.resolve(1),
+  Promise.reject(new Error('Error')),
+  Promise.resolve(3)
+]).then(results => console.log(results));
