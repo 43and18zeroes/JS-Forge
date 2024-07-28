@@ -145,21 +145,18 @@ initChart();
 
 // clone
 
-function memoize(fn) {
-  const cache = new Map();
-  return function(...args) {
-    const key = JSON.stringify(args);
-    if (cache.has(key)) {
-      return cache.get(key);
+function curry(fn) {
+  return function curried(...args) {
+    if (args.length >= fn.length) {
+      return fn.apply(this, args);
+    } else {
+      return function(...args2) {
+        return curried.apply(this, args.concat(args2));
+      };
     }
-    const result = fn.apply(this, args);
-    cache.set(key, result);
-    return result;
   };
 }
 
-const fib = memoize(function(n) {
-  if (n <= 1) return n;
-  return fib(n - 1) + fib(n - 2);
-});
-console.log(fib(10)); // 55
+const add = (a, b) => a + b;
+const curriedAdd = curry(add);
+console.log(curriedAdd(1)(2)); // 3
