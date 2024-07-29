@@ -145,17 +145,25 @@ initChart();
 
 // clone
 
-const handler = {
-  get: function(target, prop) {
-    return prop in target ? target[prop] : 'Not Found';
+class EventEmitter {
+  constructor() {
+    this.events = {};
   }
-};
 
-const person = {
-  name: 'John',
-  age: 30
-};
+  on(event, listener) {
+    if (!this.events[event]) {
+      this.events[event] = [];
+    }
+    this.events[event].push(listener);
+  }
 
-const proxyPerson = new Proxy(person, handler);
-console.log(proxyPerson.name); // John
-console.log(proxyPerson.gender); // Not Found
+  emit(event, ...args) {
+    if (this.events[event]) {
+      this.events[event].forEach(listener => listener(...args));
+    }
+  }
+}
+
+const emitter = new EventEmitter();
+emitter.on('greet', name => console.log(`Hello, ${name}!`));
+emitter.emit('greet', 'John'); // Hello, John!
