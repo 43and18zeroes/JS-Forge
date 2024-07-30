@@ -145,11 +145,3 @@ initChart();
 
 // clone
 
-const pipe = (...fns) => x => fns.reduce((v, f) => f(v), x);
-
-const add1 = x => x + 1;
-const double = x => x * 2;
-const square = x => x * x;
-
-const pipeline = pipe(add1, double, square);
-console.log(pipeline(2)); // 36
