@@ -145,18 +145,17 @@ initChart();
 
 // clone
 
-function throttle(fn, limit) {
-  let inThrottle;
-  return function(...args) {
-    if (!inThrottle) {
-      fn.apply(this, args);
-      inThrottle = true;
-      setTimeout(() => inThrottle = false, limit);
-    }
-  };
-}
+const handler = {
+  get: function(target, prop) {
+    return prop in target ? target[prop] : 'Not Found';
+  }
+};
 
-const handleScroll = throttle(() => {
-  console.log('Scrolled');
-}, 100);
-window.addEventListener('scroll', handleScroll);
+const person = {
+  name: 'John',
+  age: 30
+};
+
+const proxyPerson = new Proxy(person, handler);
+console.log(proxyPerson.name); // John
+console.log(proxyPerson.gender); // Not Found
