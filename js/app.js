@@ -145,17 +145,3 @@ initChart();
 
 // clone
 
-const handler = {
-  get: function(target, prop) {
-    return prop in target ? target[prop] : 'Not Found';
-  }
-};
-
-const person = {
-  name: 'John',
-  age: 30
-};
-
-const proxyPerson = new Proxy(person, handler);
-console.log(proxyPerson.name); // John
-console.log(proxyPerson.gender); // Not Found
