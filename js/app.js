@@ -145,12 +145,14 @@ initChart();
 
 // clone
 
-class Person {
-  name = 'Max';
-  printMyName = () => {
-    console.log(this.name); // this is required to refere class!
-  }
+function funcSpread(numArr) {
+  console.log('...numArr', ...numArr); // ...numArr 1 2 3
 }
 
-const person = new Person();
-person.printMyName();
+funcSpread([1, 2, 3]);
+
+function funcRest(...numbers) {
+  console.log('numbers', numbers); // numbers [1, 2, 3]
+}
+
+funcRest(1, 2, 3);
