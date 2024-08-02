@@ -145,12 +145,8 @@ initChart();
 
 // clone
 
-const myPromise = new Promise((resolve, reject) => {
-  setTimeout(() => {
-    resolve('Erfolg!');
-  }, 1000);
-});
-
-myPromise.then(message => {
-  console.log(message); // 'Erfolg!'
-});
+fetch('https://api.example.com/data')
+  .then(response => response.json())
+  .then(data => {
+    console.log(data);
+  });
