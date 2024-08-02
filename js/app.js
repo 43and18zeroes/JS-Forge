@@ -145,12 +145,12 @@ initChart();
 
 // clone
 
-const socket = new WebSocket('ws://example.com/socket');
+const observer = new MutationObserver((mutationsList, observer) => {
+  for (let mutation of mutationsList) {
+    if (mutation.type === 'childList') {
+      console.log('Ein Kindknoten wurde hinzugefügt oder entfernt.');
+    }
+  }
+});
 
-socket.onopen = function() {
-  console.log('Verbindung hergestellt');
-};
-
-socket.onmessage = function(event) {
-  console.log('Nachricht empfangen:', event.data);
-};
+observer.observe(document.body, { childList: true, subtree: true });
