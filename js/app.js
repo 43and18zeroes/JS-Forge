@@ -145,14 +145,3 @@ initChart();
 
 // clone
 
-function funcSpread(numArr) {
-  console.log('...numArr', ...numArr); // ...numArr 1 2 3
-}
-
-funcSpread([1, 2, 3]);
-
-function funcRest(...numbers) {
-  console.log('numbers', numbers); // numbers [1, 2, 3]
-}
-
-funcRest(1, 2, 3);
