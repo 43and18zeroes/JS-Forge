@@ -145,12 +145,8 @@ initChart();
 
 // clone
 
-const observer = new MutationObserver((mutationsList, observer) => {
-  for (let mutation of mutationsList) {
-    if (mutation.type === 'childList') {
-      console.log('Ein Kindknoten wurde hinzugefügt oder entfernt.');
-    }
-  }
-});
-
-observer.observe(document.body, { childList: true, subtree: true });
+fetch('https://api.example.com/data')
+  .then(response => response.json())
+  .then(data => {
+    console.log(data);
+  });
