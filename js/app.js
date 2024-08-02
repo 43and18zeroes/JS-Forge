@@ -145,13 +145,9 @@ initChart();
 
 // clone
 
-const EventEmitter = require('events');
-const myEmitter = new EventEmitter();
+const fs = require('fs');
 
-myEmitter.on('event', () => {
-  console.log('Ein Ereignis ist aufgetreten!');
+fs.readFile('example.txt', 'utf8', (err, data) => {
+  if (err) throw err;
+  console.log(data);
 });
-
-setTimeout(() => {
-  myEmitter.emit('event');
-}, 1000);
