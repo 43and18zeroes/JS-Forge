@@ -145,3 +145,12 @@ initChart();
 
 // clone
 
+class Person {
+  name = 'Max';
+  printMyName = () => {
+    console.log(this.name); // this is required to refere class!
+  }
+}
+
+const person = new Person();
+person.printMyName();
