@@ -145,8 +145,13 @@ initChart();
 
 // clone
 
-fetch('https://api.example.com/data')
-  .then(response => response.json())
-  .then(data => {
-    console.log(data);
-  });
+const EventEmitter = require('events');
+const myEmitter = new EventEmitter();
+
+myEmitter.on('event', () => {
+  console.log('Ein Ereignis ist aufgetreten!');
+});
+
+setTimeout(() => {
+  myEmitter.emit('event');
+}, 1000);
