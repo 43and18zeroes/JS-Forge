@@ -145,9 +145,12 @@ initChart();
 
 // clone
 
-const fs = require('fs');
+const socket = new WebSocket('ws://example.com/socket');
 
-fs.readFile('example.txt', 'utf8', (err, data) => {
-  if (err) throw err;
-  console.log(data);
-});
+socket.onopen = function() {
+  console.log('Verbindung hergestellt');
+};
+
+socket.onmessage = function(event) {
+  console.log('Nachricht empfangen:', event.data);
+};
