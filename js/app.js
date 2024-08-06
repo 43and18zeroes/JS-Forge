@@ -145,6 +145,12 @@ initChart();
 
 // clone
 
-setInterval(() => {
-  console.log('Diese Nachricht wird alle 3 Sekunden angezeigt');
-}, 3000);
+const myPromise = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve('Erfolg!');
+  }, 1000);
+});
+
+myPromise.then(message => {
+  console.log(message); // 'Erfolg!'
+});
