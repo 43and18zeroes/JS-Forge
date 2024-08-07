@@ -145,17 +145,7 @@ initChart();
 
 // clone
 
-async function fetchData() {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve("Data fetched");
-    }, 1000);
-  });
-}
-
-async function getData() {
-  const data = await fetchData();
-  console.log(data);
-}
-
-getData();
+fetch('https://api.example.com/data')
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(error => console.error('Error:', error));
