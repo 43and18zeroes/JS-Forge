@@ -145,6 +145,10 @@ initChart();
 
 // clone
 
-setTimeout(() => {
-  console.log("Delayed message");
-}, 2000);
+let counter = 0;
+const intervalId = setInterval(() => {
+  console.log(`Interval message ${++counter}`);
+  if (counter === 5) {
+    clearInterval(intervalId);
+  }
+}, 1000);
