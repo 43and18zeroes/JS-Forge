@@ -145,7 +145,7 @@ initChart();
 
 // clone
 
-function fetchData() {
+async function fetchData() {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve("Data fetched");
@@ -153,6 +153,9 @@ function fetchData() {
   });
 }
 
-fetchData().then((data) => {
+async function getData() {
+  const data = await fetchData();
   console.log(data);
-});
+}
+
+getData();
