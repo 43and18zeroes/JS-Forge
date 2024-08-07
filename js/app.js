@@ -145,12 +145,14 @@ initChart();
 
 // clone
 
-function fetchData(callback) {
-  setTimeout(() => {
-    callback("Data fetched");
-  }, 1000);
+function fetchData() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve("Data fetched");
+    }, 1000);
+  });
 }
 
-fetchData((data) => {
+fetchData().then((data) => {
   console.log(data);
 });
