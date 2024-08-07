@@ -145,12 +145,3 @@ initChart();
 
 // clone
 
-const promiseResolved = Promise.resolve("Resolved promise");
-promiseResolved.then((value) => {
-  console.log(value);
-});
-
-const promiseRejected = Promise.reject("Rejected promise");
-promiseRejected.catch((reason) => {
-  console.error(reason);
-});
