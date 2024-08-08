@@ -145,26 +145,16 @@ initChart();
 
 // clone
 
-class EventEmitter {
-  constructor() {
-      this.events = {};
-  }
-
-  on(eventName, listener) {
-      if (!this.events[eventName]) {
-          this.events[eventName] = [];
-      }
-      this.events[eventName].push(listener);
-  }
-
-  emit(eventName, ...args) {
-      const listeners = this.events[eventName];
-      if (listeners) {
-          listeners.forEach(listener => listener(...args));
-      }
-  }
+function debounce(func, wait) {
+  let timeout;
+  return function(...args) {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => func.apply(this, args), wait);
+  };
 }
 
-const emitter = new EventEmitter();
-emitter.on('greet', name => console.log(`Hello, ${name}!`));
-emitter.emit('greet', 'John'); // Hello, John!
+const handleResize = debounce(() => {
+  console.log('Window resized');
+}, 300);
+
+window.addEventListener('resize', handleResize);
