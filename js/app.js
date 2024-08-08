@@ -145,16 +145,21 @@ initChart();
 
 // clone
 
-async function fetchData(url) {
-    try {
-        let response = await fetch(url);
-        let data = await response.json();
-        return data;
-    } catch (error) {
-        console.error('Error fetching data:', error);
-    }
+function curry(fn) {
+  return function curried(...args) {
+      if (args.length >= fn.length) {
+          return fn.apply(this, args);
+      } else {
+          return function(...args2) {
+              return curried.apply(this, args.concat(args2));
+          }
+      }
+  };
 }
 
-fetchData('https://api.example.com/data')
-    .then(data => console.log(data))
-    .catch(error => console.error(error));
+function sum(a, b, c) {
+  return a + b + c;
+}
+
+const curriedSum = curry(sum);
+console.log(curriedSum(1)(2)(3)); // 6
