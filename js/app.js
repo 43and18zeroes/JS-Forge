@@ -145,23 +145,22 @@ initChart();
 
 // clone
 
-function memoize(fn) {
-  const cache = new Map();
-  return function(...args) {
-      const key = JSON.stringify(args);
-      if (cache.has(key)) {
-          return cache.get(key);
+const handler = {
+  get: function(target, prop) {
+      return prop in target ? target[prop] : 'Not Found';
+  },
+  set: function(target, prop, value) {
+      if (prop === 'age' && value < 0) {
+          throw new Error('Age cannot be negative');
       }
-      const result = fn.apply(this, args);
-      cache.set(key, result);
-      return result;
-  };
-}
+      target[prop] = value;
+      return true;
+  }
+};
 
-function fibonacci(n) {
-  if (n <= 1) return n;
-  return fibonacci(n - 1) + fibonacci(n - 2);
-}
+const person = { name: 'John', age: 30 };
+const proxyPerson = new Proxy(person, handler);
 
-const memoizedFibonacci = memoize(fibonacci);
-console.log(memoizedFibonacci(10)); // 55
+console.log(proxyPerson.name); // John
+console.log(proxyPerson.gender); // Not Found
+proxyPerson.age = -5; // Error: Age cannot be negative
