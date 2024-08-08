@@ -145,16 +145,26 @@ initChart();
 
 // clone
 
-function* fibonacciGenerator() {
-  let a = 0, b = 1;
-  while (true) {
-      yield a;
-      [a, b] = [b, a + b];
+class EventEmitter {
+  constructor() {
+      this.events = {};
+  }
+
+  on(eventName, listener) {
+      if (!this.events[eventName]) {
+          this.events[eventName] = [];
+      }
+      this.events[eventName].push(listener);
+  }
+
+  emit(eventName, ...args) {
+      const listeners = this.events[eventName];
+      if (listeners) {
+          listeners.forEach(listener => listener(...args));
+      }
   }
 }
 
-const gen = fibonacciGenerator();
-console.log(gen.next().value); // 0
-console.log(gen.next().value); // 1
-console.log(gen.next().value); // 1
-console.log(gen.next().value); // 2
+const emitter = new EventEmitter();
+emitter.on('greet', name => console.log(`Hello, ${name}!`));
+emitter.emit('greet', 'John'); // Hello, John!
