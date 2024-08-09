@@ -145,16 +145,19 @@ initChart();
 
 // clone
 
-function debounce(func, wait) {
-  let timeout;
+function throttle(func, limit) {
+  let inThrottle;
   return function(...args) {
-      clearTimeout(timeout);
-      timeout = setTimeout(() => func.apply(this, args), wait);
+      if (!inThrottle) {
+          func.apply(this, args);
+          inThrottle = true;
+          setTimeout(() => inThrottle = false, limit);
+      }
   };
 }
 
-const handleResize = debounce(() => {
-  console.log('Window resized');
-}, 300);
+const handleScroll = throttle(() => {
+  console.log('Scrolled');
+}, 100);
 
-window.addEventListener('resize', handleResize);
+window.addEventListener('scroll', handleScroll);
