@@ -7,11 +7,15 @@ let stocks = {
 
 let order = (fruitName, callProduction) => {
   setTimeout(() => {
-    console.log(`${stocks.Fruits[fruitName]}`);
+    console.log(`${stocks.Fruits[fruitName]} was selected`);
   }, 2000);
   callProduction();
 };
 
-let production = () => {};
+let production = () => {
+  setTimeout(() => {
+    console.log("production has started");
+  }, 0)
+};
 
 order(0, production);
