@@ -5,6 +5,18 @@ let stocks = {
   toppings: ['chocolate', 'peanuts'],
 };
 
+let isShopOpen = true;
+
+let order = (time, work) => {
+  return new Promise((resolve, reject) => {
+    if (isShopOpen) {
+      resolve(work());
+    } else {
+      reject(console.log('Our shop is closed'));
+    }
+  });
+};
+
 // let order = (fruitName, callProduction) => {
 //   setTimeout(() => {
 //     console.log(`2s: ${stocks.Fruits[fruitName]} was selected`);
