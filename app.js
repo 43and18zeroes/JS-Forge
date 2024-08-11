@@ -1,10 +1,10 @@
-function funcOne(callTwo) {
-  console.log('step 1 complete. please call step 2');
-  callTwo();
-}
+let order = callProduction => {
+  console.log('order placed, please call production');
+  callProduction();
+};
 
-function funcTwo() {
-  console.log('step 2');
-}
+let production = () => {
+  console.log('order received, starting production');
+};
 
-funcOne(funcTwo);
+order(production);
