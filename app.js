@@ -1,25 +1,3 @@
-// synchronous
-
-// Asynchronous
-
-console.log(' 1 ');
-
-setTimeout(() => {
-  console.log(' 5 ');
-}, 1000);
-
-console.log(' 2 ');
-console.log(' 3 ');
-console.log(' 4 ');
-
-function greet(name) {
-  console.log('Hello, ' + name + '!');
+function one(call_two) {
+  console.log('step 1 complete. please call step 2');
 }
-
-function processUserInput(nameOfMyCallbackFunction) {
-  const name = 'Example Name';
-  nameOfMyCallbackFunction(name);
-}
-
-// Here we pass the greet function as a callback to processUserInput
-processUserInput(greet);
