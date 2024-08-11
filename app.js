@@ -6,3 +6,23 @@ let stocks = {
 };
 
 let isShopOpen = true;
+
+let order = () => {
+  return new Promise((resolve, reject) => {
+    if(true) {
+      resolve()
+    }
+    else {
+      reject()
+    }
+  })
+}
+
+order()
+.then() // resolved
+.then() // resolved
+.then() // resolved
+.catch() // rejected
+.finally() // resolved or rejected
+
+// async function order(){}
