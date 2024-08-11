@@ -10,12 +10,16 @@ let isShopOpen = true;
 let order = (time, work) => {
   return new Promise((resolve, reject) => {
     if (isShopOpen) {
-      resolve(work());
+      setTimeout(() => {
+        resolve(work());
+      }, time);
     } else {
       reject(console.log('Our shop is closed'));
     }
   });
 };
+
+order(2000, ()=> console.log(`${stocks.Fruits[0]} was selected`))
 
 // let order = (fruitName, callProduction) => {
 //   setTimeout(() => {
