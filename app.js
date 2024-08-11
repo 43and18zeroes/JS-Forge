@@ -5,15 +5,13 @@ let stocks = {
   toppings: ['chocolate', 'peanuts'],
 };
 
-// function order(callProduction) {
-//   console.log('order placed, please call production');
-//   callProduction();
-// }
-
 let order = (fruitName, callProduction) => {
+  setTimeout(() => {
+    console.log(`${stocks.Fruits[fruitName]}`);
+  }, 2000);
   callProduction();
 };
 
 let production = () => {};
 
-order('', production);
+order(0, production);
