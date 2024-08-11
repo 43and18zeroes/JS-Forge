@@ -19,7 +19,25 @@ let order = (time, work) => {
   });
 };
 
-order(2000, ()=> console.log(`${stocks.Fruits[0]} was selected`))
+order(2000, () => console.log(`2s. ${stocks.Fruits[0]} was selected`))
+
+.then(
+  () => {
+    return order(0, () => console.log('2s. Production has started'));
+  }
+)
+
+.then(
+  () => {
+    return order(2000, () => console.log('4s: the fruit has been chopped'));
+  }
+)
+
+.then(() => {
+  return order(1000, () => 
+    console.log(`5s: ${stocks.liquid[0]} and ${stocks.liquid[1]} was added`)
+  )
+})
 
 // let order = (fruitName, callProduction) => {
 //   setTimeout(() => {
