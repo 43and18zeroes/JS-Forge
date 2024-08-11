@@ -1,15 +1,19 @@
+let stocks = {
+  Fruits: ['strawberry', 'grapes', 'banana', 'apple'],
+  liquid: ['water', 'ice'],
+  holder: ['cone', 'cup', 'stick'],
+  toppings: ['chocolate', 'peanuts'],
+};
+
 // function order(callProduction) {
 //   console.log('order placed, please call production');
 //   callProduction();
 // }
 
-let order = callProduction => {
-  console.log('order placed, please call production');
+let order = (fruitName, callProduction) => {
   callProduction();
 };
 
-let production = () => {
-  console.log('order received, starting production');
-};
+let production = () => {};
 
-order(production);
+order('', production);
