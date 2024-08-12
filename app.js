@@ -42,20 +42,11 @@ order().then(()=>{
 
 // advanced
 
-function deepClone(obj) {
-  if (obj === null || typeof obj !== 'object') {
-      return obj;
-  }
-  const clone = Array.isArray(obj) ? [] : {};
-  for (let key in obj) {
-      if (obj.hasOwnProperty(key)) {
-          clone[key] = deepClone(obj[key]);
-      }
-  }
-  return clone;
-}
+const pipe = (...fns) => x => fns.reduce((v, f) => f(v), x);
 
-const original = { a: 1, b: { c: 2 } };
-const cloned = deepClone(original);
-console.log(cloned); // { a: 1, b: { c: 2 } }
-console.log(original === cloned); // false
+const add = x => x + 1;
+const multiply = x => x * 2;
+const subtract = x => x - 3;
+
+const result = pipe(add, multiply, subtract)(5);
+console.log(result); // 9
