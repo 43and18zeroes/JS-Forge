@@ -5,7 +5,7 @@ let stocks = {
   toppings: ['chocolate', 'peanuts'],
 };
 
-let isShopOpen = true;
+let isShopOpen = false; // FALSE
 
 function time(ms) {
   return new Promise((resolve, reject) => {
@@ -20,7 +20,7 @@ function time(ms) {
 async function kitchen() {
   try {
     await time(2000);
-    console.log(`2s ${stocks.Fruits[0]}`);
+    console.log(`2s ${stocks.Fruits[0]} was selected`);
 
     await time(0);
     console.log('2s start the production');
@@ -35,15 +35,13 @@ async function kitchen() {
     console.log(`6s start the machine`);
 
     await time(2000);
-    console.log(`8s ${stocks.holder[0]}`);
+    console.log(`8s ice cream placed on ${stocks.holder[0]}`);
 
     await time(3000);
-    console.log(`11s ${stocks.liquid[0]} and ${stocks.liquid[1]}`);
+    console.log(`11s ${stocks.toppings[0]} was selected`);
 
     await time(2000);
-    console.log(`13s ${stocks.liquid[0]} and ${stocks.liquid[1]}`);
-
-
+    console.log(`13s serve ice cream`);
   } catch (error) {
     console.log('customer left'), error;
   } finally {
