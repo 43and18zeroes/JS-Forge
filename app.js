@@ -31,9 +31,19 @@ async function kitchen() {
     await time(1000);
     console.log(`5s ${stocks.liquid[0]} and ${stocks.liquid[1]}`);
 
+    await time(1000);
+    console.log(`6s start the machine`);
+
+    await time(2000);
+    console.log(`8s ${stocks.holder[0]}`);
+
+    await time(3000);
+    console.log(`11s ${stocks.liquid[0]} and ${stocks.liquid[1]}`);
+
+    await time(2000);
+    console.log(`13s ${stocks.liquid[0]} and ${stocks.liquid[1]}`);
 
 
-    
   } catch (error) {
     console.log('customer left'), error;
   } finally {
