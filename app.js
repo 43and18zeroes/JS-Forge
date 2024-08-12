@@ -20,7 +20,20 @@ function time(ms) {
 async function kitchen() {
   try {
     await time(2000);
-    console.log(`${stocks.Fruits[0]}`);
+    console.log(`2s ${stocks.Fruits[0]}`);
+
+    await time(0);
+    console.log('2s start the production');
+
+    await time(2000);
+    console.log('4s cut the fruit');
+
+    await time(1000);
+    console.log(`5s ${stocks.liquid[0]} and ${stocks.liquid[1]}`);
+
+
+
+    
   } catch (error) {
     console.log('customer left'), error;
   } finally {
