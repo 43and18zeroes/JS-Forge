@@ -42,22 +42,16 @@ order().then(()=>{
 
 // advanced
 
-const handler = {
-  get: function(target, prop) {
-      return prop in target ? target[prop] : 'Not Found';
-  },
-  set: function(target, prop, value) {
-      if (prop === 'age' && value < 0) {
-          throw new Error('Age cannot be negative');
-      }
-      target[prop] = value;
-      return true;
+function* fibonacciGenerator() {
+  let a = 0, b = 1;
+  while (true) {
+      yield a;
+      [a, b] = [b, a + b];
   }
-};
+}
 
-const person = { name: 'John', age: 30 };
-const proxyPerson = new Proxy(person, handler);
-
-console.log(proxyPerson.name); // John
-console.log(proxyPerson.gender); // Not Found
-proxyPerson.age = -5; // Error: Age cannot be negative
+const gen = fibonacciGenerator();
+console.log(gen.next().value); // 0
+console.log(gen.next().value); // 1
+console.log(gen.next().value); // 1
+console.log(gen.next().value); // 2
