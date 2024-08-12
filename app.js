@@ -38,3 +38,20 @@ async function order() {
 order().then(()=>{
   console.log('test text');
 })
+
+
+// advanced
+
+async function fetchData(url) {
+  try {
+      let response = await fetch(url);
+      let data = await response.json();
+      return data;
+  } catch (error) {
+      console.error('Error fetching data:', error);
+  }
+}
+
+fetchData('https://api.example.com/data')
+  .then(data => console.log(data))
+  .catch(error => console.error(error));
