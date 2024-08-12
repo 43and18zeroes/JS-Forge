@@ -1,33 +1,30 @@
-// let stocks = {
-//   Fruits: ['strawberry', 'grapes', 'banana', 'apple'],
-//   liquid: ['water', 'ice'],
-//   holder: ['cone', 'cup', 'stick'],
-//   toppings: ['chocolate', 'peanuts'],
-// };
-
-// let isShopOpen = true;
-
-let toppingsChoice = () => {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve(console.log('Which topping would you love?'));
-    }, 3000);
-  });
+let stocks = {
+  Fruits: ['strawberry', 'grapes', 'banana', 'apple'],
+  liquid: ['water', 'ice'],
+  holder: ['cone', 'cup', 'stick'],
+  toppings: ['chocolate', 'peanuts'],
 };
 
+let isShopOpen = true;
+
+function time(ms) {
+  return new Promise((resolve, reject) => {
+    if (isShopOpen) {
+      setTimeout(resolve, ms);
+    } else {
+      reject(console.log('shop is closed'));
+    }
+  });
+}
+
 async function kitchen() {
-  console.log('A');
-  console.log('B');
-  console.log('C');
-
-  await toppingsChoice();
-
-  console.log('D');
-  console.log('E');
+  try {
+    console.log(`${stocks.Fruits[0]}`)
+  } catch (error) {
+    console.log('customer left'), error;
+  } finally {
+    console.log('day ended, shop is closed');
+  }
 }
 
 kitchen();
-
-console.log('doing the dishes');
-console.log('cleaning the tables');
-console.log('taking other orders');
