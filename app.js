@@ -38,15 +38,3 @@ async function order() {
 order().then(()=>{
   console.log('test text');
 })
-
-
-// advanced
-
-const pipe = (...fns) => x => fns.reduce((v, f) => f(v), x);
-
-const add = x => x + 1;
-const multiply = x => x * 2;
-const subtract = x => x - 3;
-
-const result = pipe(add, multiply, subtract)(5);
-console.log(result); // 9
