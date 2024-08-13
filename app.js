@@ -54,12 +54,16 @@ kitchen();
 // test
 
 async function asyncFunction() {
-  const promise = new Promise((resolve, reject) => {
-    setTimeout(() => resolve("Erledigt!"), 1000);
-  });
+  try {
+    const promise = new Promise((resolve, reject) => {
+      setTimeout(() => reject("Fehler!"), 1000);
+    });
 
-  const result = await promise;
-  console.log(result); // "Erledigt!"
+    const result = await promise;
+    console.log(result);
+  } catch (error) {
+    console.log(error); // "Fehler!"
+  }
 }
 
 asyncFunction();
