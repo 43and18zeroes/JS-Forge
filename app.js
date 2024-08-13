@@ -50,20 +50,3 @@ async function kitchen() {
 }
 
 kitchen();
-
-// test
-
-const promise = new Promise((resolve, reject) => {
-  setTimeout(() => resolve("Erledigt!"), 1000);
-});
-
-promise
-  .then((value) => {
-    console.log(value); // "Erledigt!"
-  })
-  .catch((error) => {
-    console.log(error);
-  })
-  .finally(() => {
-    console.log("Endgültig abgeschlossen"); // "Endgültig abgeschlossen"
-  });
