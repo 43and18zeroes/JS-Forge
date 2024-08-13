@@ -53,14 +53,12 @@ kitchen();
 
 // test
 
-const promise1 = new Promise((resolve, reject) => {
-  setTimeout(resolve, 500, 'eins');
+const resolvedPromise = Promise.resolve("Erledigt!");
+resolvedPromise.then((value) => {
+  console.log(value); // "Erledigt!"
 });
 
-const promise2 = new Promise((resolve, reject) => {
-  setTimeout(resolve, 100, 'zwei');
-});
-
-Promise.race([promise1, promise2]).then((value) => {
-  console.log(value); // "zwei"
+const rejectedPromise = Promise.reject("Abgelehnt!");
+rejectedPromise.catch((error) => {
+  console.log(error); // "Abgelehnt!"
 });
