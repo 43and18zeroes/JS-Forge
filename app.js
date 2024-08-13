@@ -53,12 +53,16 @@ kitchen();
 
 // test
 
-const resolvedPromise = Promise.resolve("Erledigt!");
-resolvedPromise.then((value) => {
-  console.log(value); // "Erledigt!"
+const promise = new Promise((resolve, reject) => {
+  resolve(1);
 });
 
-const rejectedPromise = Promise.reject("Abgelehnt!");
-rejectedPromise.catch((error) => {
-  console.log(error); // "Abgelehnt!"
+promise.then((value) => {
+  console.log(value); // 1
+  return value + 1;
+}).then((value) => {
+  console.log(value); // 2
+  return value + 1;
+}).then((value) => {
+  console.log(value); // 3
 });
