@@ -53,20 +53,17 @@ kitchen();
 
 // test
 
-const fetchData = (url) => {
-  return new Promise((resolve, reject) => {
-    if (url === "https://example.com/data") {
-      resolve("Daten erhalten");
-    } else {
-      reject("Ungültige URL");
-    }
-  });
-};
+const promise = new Promise((resolve, reject) => {
+  setTimeout(() => resolve("Erledigt!"), 1000);
+});
 
-fetchData("https://example.com/data")
-  .then((data) => {
-    console.log(data); // "Daten erhalten"
+promise
+  .then((value) => {
+    console.log(value); // "Erledigt!"
   })
   .catch((error) => {
-    console.log(error); // "Ungültige URL"
+    console.log(error);
+  })
+  .finally(() => {
+    console.log("Endgültig abgeschlossen"); // "Endgültig abgeschlossen"
   });
