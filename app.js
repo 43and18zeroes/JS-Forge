@@ -50,3 +50,15 @@ async function kitchen() {
 }
 
 kitchen();
+
+// functions
+
+const myPromise = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve("Erfolgreich!");
+  }, 1000);
+});
+
+myPromise.then((value) => {
+  console.log(value); // "Erfolgreich!"
+});
