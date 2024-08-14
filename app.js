@@ -54,11 +54,12 @@ kitchen();
 // functions
 
 const myPromise = new Promise((resolve, reject) => {
-  setTimeout(() => {
-    resolve("Erfolgreich!");
-  }, 1000);
-});
-
-myPromise.then((value) => {
-  console.log(value); // "Erfolgreich!"
-});
+  const myPromise = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      reject("Fehler!");
+    }, 1000);
+  });
+  
+  myPromise.catch((error) => {
+    console.log(error); // "Fehler!"
+  });
