@@ -53,17 +53,17 @@ kitchen();
 
 // functions
 
-async function asyncFunction() {
-  try {
-    const promise = new Promise((resolve, reject) => {
-      setTimeout(() => reject("Fehler!"), 1000);
-    });
+const promise = new Promise((resolve, reject) => {
+  setTimeout(() => resolve("Erledigt!"), 1000);
+});
 
-    const result = await promise;
-    console.log(result);
-  } catch (error) {
-    console.log(error); // "Fehler!"
-  }
-}
-
-asyncFunction();
+promise
+  .then((value) => {
+    console.log(value); // "Erledigt!"
+  })
+  .catch((error) => {
+    console.log(error);
+  })
+  .finally(() => {
+    console.log("Endgültig abgeschlossen"); // "Endgültig abgeschlossen"
+  });
