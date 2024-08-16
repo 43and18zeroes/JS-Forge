@@ -53,16 +53,13 @@ kitchen();
 
 // functions
 
-const promise = new Promise((resolve, reject) => {
-  resolve(1);
-});
+async function asyncFunction() {
+  const promise = new Promise((resolve, reject) => {
+    setTimeout(() => resolve("Erledigt!"), 1000);
+  });
 
-promise.then((value) => {
-  console.log(value); // 1
-  return value + 1;
-}).then((value) => {
-  console.log(value); // 2
-  return value + 1;
-}).then((value) => {
-  console.log(value); // 3
-});
+  const result = await promise;
+  console.log(result); // "Erledigt!"
+}
+
+asyncFunction();
