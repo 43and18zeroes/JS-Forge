@@ -50,23 +50,3 @@ async function kitchen() {
 }
 
 kitchen();
-
-// functions
-
-const fetchData = (url) => {
-  return new Promise((resolve, reject) => {
-    if (url === "https://example.com/data") {
-      resolve("Daten erhalten");
-    } else {
-      reject("Ungültige URL");
-    }
-  });
-};
-
-fetchData("https://example.com/data")
-  .then((data) => {
-    console.log(data); // "Daten erhalten"
-  })
-  .catch((error) => {
-    console.log(error); // "Ungültige URL"
-  });
