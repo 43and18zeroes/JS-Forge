@@ -50,3 +50,18 @@ async function kitchen() {
 }
 
 kitchen();
+
+// advanced promises
+
+function fetchData() {
+  return fetch('https://api.example.com/data')
+      .then(response => response.json())
+      .then(data => {
+          console.log(data);
+          return data;
+      });
+}
+
+fetchData()
+  .then(data => console.log('Fetched data:', data))
+  .catch(error => console.error('Error:', error));
