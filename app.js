@@ -53,15 +53,8 @@ kitchen();
 
 // advanced promises
 
-async function fetchData() {
-  try {
-      const response = await fetch('https://api.example.com/data');
-      const data = await response.json();
-      console.log('Fetched data:', data);
-      return data;
-  } catch (error) {
-      console.error('Error:', error);
-  }
-}
+const promiseSuccess = Promise.resolve('Success');
+const promiseFailure = Promise.reject('Failure');
 
-fetchData();
+promiseSuccess.then(value => console.log(value));
+promiseFailure.catch(error => console.error(error));
