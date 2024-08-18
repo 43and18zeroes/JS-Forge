@@ -50,36 +50,3 @@ async function kitchen() {
 }
 
 kitchen();
-
-// advanced promises
-
-class PromiseQueue {
-  constructor() {
-      this.queue = [];
-      this.running = false;
-  }
-
-  add(promise) {
-      this.queue.push(promise);
-      if (!this.running) {
-          this.run();
-      }
-  }
-
-  async run() {
-      this.running = true;
-      while (this.queue.length) {
-          const promise = this.queue.shift();
-          try {
-              await promise();
-          } catch (error) {
-              console.error('Error:', error);
-          }
-      }
-      this.running = false;
-  }
-}
-
-const queue = new PromiseQueue();
-queue.add(() => fetch('https://api.example.com/data1').then(response => response.json()));
-queue.add(() => fetch('https://api.example.com/data2').then(response => response.json()));
