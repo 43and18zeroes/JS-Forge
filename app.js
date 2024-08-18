@@ -53,8 +53,20 @@ kitchen();
 
 // advanced promises
 
-const promiseSuccess = Promise.resolve('Success');
-const promiseFailure = Promise.reject('Failure');
+function fetchUser(userId) {
+  return fetch(`https://api.example.com/users/${userId}`)
+      .then(response => response.json());
+}
 
-promiseSuccess.then(value => console.log(value));
-promiseFailure.catch(error => console.error(error));
+function fetchPosts(userId) {
+  return fetch(`https://api.example.com/posts?userId=${userId}`)
+      .then(response => response.json());
+}
+
+fetchUser('123')
+  .then(user => {
+      console.log('User:', user);
+      return fetchPosts(user.id);
+  })
+  .then(posts => console.log('Posts:', posts))
+  .catch(error => console.error('Error:', error));
