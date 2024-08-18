@@ -53,20 +53,17 @@ kitchen();
 
 // advanced promises
 
-function fetchUser(userId) {
-  return fetch(`https://api.example.com/users/${userId}`)
-      .then(response => response.json());
+function timeout(ms) {
+  return new Promise((resolve, reject) => {
+      setTimeout(() => reject(new Error('Timeout')), ms);
+  });
 }
 
-function fetchPosts(userId) {
-  return fetch(`https://api.example.com/posts?userId=${userId}`)
-      .then(response => response.json());
+function fetchData() {
+  return fetch('https://api.example.com/data');
 }
 
-fetchUser('123')
-  .then(user => {
-      console.log('User:', user);
-      return fetchPosts(user.id);
-  })
-  .then(posts => console.log('Posts:', posts))
+Promise.race([fetchData(), timeout(5000)])
+  .then(response => response.json())
+  .then(data => console.log('Fetched data:', data))
   .catch(error => console.error('Error:', error));
