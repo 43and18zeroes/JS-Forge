@@ -53,12 +53,9 @@ kitchen();
 
 // promises 2
 
-const promise1 = fetch('https://api.example.com/data1').then(response => response.json());
-const promise2 = fetch('https://api.example.com/data2').then(response => response.json());
+const promise1 = new Promise((resolve, reject) => setTimeout(resolve, 500, 'Fast'));
+const promise2 = new Promise((resolve, reject) => setTimeout(resolve, 1000, 'Slow'));
 
-Promise.all([promise1, promise2])
-    .then(results => {
-        console.log('Data1:', results[0]);
-        console.log('Data2:', results[1]);
-    })
+Promise.race([promise1, promise2])
+    .then(value => console.log(value))
     .catch(error => console.error('Error:', error));
