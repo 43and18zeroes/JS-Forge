@@ -53,9 +53,16 @@ kitchen();
 
 // promises 2
 
-const promise1 = new Promise((resolve, reject) => setTimeout(resolve, 500, 'Fast'));
-const promise2 = new Promise((resolve, reject) => setTimeout(resolve, 1000, 'Slow'));
+function fetchData() {
+  return fetch('https://api.example.com/data')
+      .then(response => {
+          if (!response.ok) {
+              throw new Error('Network response was not ok');
+          }
+          return response.json();
+      });
+}
 
-Promise.race([promise1, promise2])
-    .then(value => console.log(value))
-    .catch(error => console.error('Error:', error));
+fetchData()
+  .then(data => console.log('Fetched data:', data))
+  .catch(error => console.error('Error:', error));
