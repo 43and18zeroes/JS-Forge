@@ -53,15 +53,12 @@ kitchen();
 
 // promises 2
 
-function fetchData() {
-  return fetch('https://api.example.com/data')
-      .then(response => response.json())
-      .then(data => {
-          console.log(data);
-          return data;
-      });
-}
+const promise1 = fetch('https://api.example.com/data1').then(response => response.json());
+const promise2 = fetch('https://api.example.com/data2').then(response => response.json());
 
-fetchData()
-  .then(data => console.log('Fetched data:', data))
-  .catch(error => console.error('Error:', error));
+Promise.all([promise1, promise2])
+    .then(results => {
+        console.log('Data1:', results[0]);
+        console.log('Data2:', results[1]);
+    })
+    .catch(error => console.error('Error:', error));
