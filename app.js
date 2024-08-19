@@ -53,17 +53,12 @@ kitchen();
 
 // promises 2
 
-function timeout(ms) {
-  return new Promise((resolve, reject) => {
-      setTimeout(() => reject(new Error('Timeout')), ms);
-  });
-}
-
 function fetchData() {
-  return fetch('https://api.example.com/data');
+  return fetch('https://api.example.com/data')
+      .then(response => response.json());
 }
 
-Promise.race([fetchData(), timeout(5000)])
-  .then(response => response.json())
+fetchData()
   .then(data => console.log('Fetched data:', data))
-  .catch(error => console.error('Error:', error));
+  .catch(error => console.error('Error:', error))
+  .finally(() => console.log('Cleanup tasks'));
