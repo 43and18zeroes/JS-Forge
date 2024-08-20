@@ -53,12 +53,12 @@ kitchen();
 
 // rng
 
-function getRandomString(length) {
-  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-  let result = '';
-  for (let i = 0; i < length; i++) {
-    result += characters.charAt(Math.floor(Math.random() * characters.length));
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
   }
-  return result;
+  return array;
 }
-console.log(getRandomString(10));
+let shuffledArray = shuffleArray([1, 2, 3, 4, 5]);
+console.log(shuffledArray);
