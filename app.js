@@ -53,12 +53,18 @@ kitchen();
 
 // rng
 
-function shuffleArray(array) {
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
+function weightedRandom(items, weights) {
+  let cumulativeWeights = [];
+  for (let i = 0; i < weights.length; i++) {
+    cumulativeWeights[i] = weights[i] + (cumulativeWeights[i - 1] || 0);
   }
-  return array;
+  let random = Math.random() * cumulativeWeights[cumulativeWeights.length - 1];
+  for (let i = 0; i < items.length; i++) {
+    if (cumulativeWeights[i] > random) {
+      return items[i];
+    }
+  }
 }
-let shuffledArray = shuffleArray([1, 2, 3, 4, 5]);
-console.log(shuffledArray);
+let items = ['A', 'B', 'C'];
+let weights = [0.2, 0.3, 0.5];
+console.log(weightedRandom(items, weights));
