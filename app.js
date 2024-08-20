@@ -53,6 +53,7 @@ kitchen();
 
 // rng
 
-let items = [1, 2, 3, 4, 5];
-let randomItem = items[Math.floor(Math.random() * items.length)];
-console.log(randomItem);
+function getRandomColor() {
+  return '#' + Math.floor(Math.random() * 16777215).toString(16);
+}
+console.log(getRandomColor());
