@@ -53,8 +53,12 @@ kitchen();
 
 // rng
 
-function getRandomDate(start, end) {
-  return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
+function getRandomString(length) {
+  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  let result = '';
+  for (let i = 0; i < length; i++) {
+    result += characters.charAt(Math.floor(Math.random() * characters.length));
+  }
+  return result;
 }
-let randomDate = getRandomDate(new Date(2020, 0, 1), new Date(2023, 0, 1));
-console.log(randomDate);
+console.log(getRandomString(10));
