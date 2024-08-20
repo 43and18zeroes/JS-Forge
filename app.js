@@ -50,21 +50,3 @@ async function kitchen() {
 }
 
 kitchen();
-
-// rng
-
-function weightedRandom(items, weights) {
-  let cumulativeWeights = [];
-  for (let i = 0; i < weights.length; i++) {
-    cumulativeWeights[i] = weights[i] + (cumulativeWeights[i - 1] || 0);
-  }
-  let random = Math.random() * cumulativeWeights[cumulativeWeights.length - 1];
-  for (let i = 0; i < items.length; i++) {
-    if (cumulativeWeights[i] > random) {
-      return items[i];
-    }
-  }
-}
-let items = ['A', 'B', 'C'];
-let weights = [0.2, 0.3, 0.5];
-console.log(weightedRandom(items, weights));
