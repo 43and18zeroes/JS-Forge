@@ -50,3 +50,8 @@ async function kitchen() {
 }
 
 kitchen();
+
+// rng
+
+let randomNumber = Math.random();
+console.log(randomNumber);
