@@ -53,7 +53,11 @@ kitchen();
 
 // rng
 
-function getRandomColor() {
-  return '#' + Math.floor(Math.random() * 16777215).toString(16);
+function getRandomGaussian(mean, stdDev) {
+  let u = 0, v = 0;
+  while (u === 0) u = Math.random(); // Converting [0,1) to (0,1)
+  while (v === 0) v = Math.random();
+  let num = Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
+  return num * stdDev + mean;
 }
-console.log(getRandomColor());
+console.log(getRandomGaussian(0, 1));
