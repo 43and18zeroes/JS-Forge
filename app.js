@@ -53,12 +53,18 @@ kitchen();
 
 // rng
 
-function getRandomString(length) {
-  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-  let result = '';
-  for (let i = 0; i < length; i++) {
-    result += characters.charAt(Math.floor(Math.random() * characters.length));
+function weightedRandom(items, weights) {
+  let cumulativeWeights = [];
+  for (let i = 0; i < weights.length; i++) {
+    cumulativeWeights[i] = weights[i] + (cumulativeWeights[i - 1] || 0);
   }
-  return result;
+  let random = Math.random() * cumulativeWeights[cumulativeWeights.length - 1];
+  for (let i = 0; i < items.length; i++) {
+    if (cumulativeWeights[i] > random) {
+      return items[i];
+    }
+  }
 }
-console.log(getRandomString(10));
+let items = ['A', 'B', 'C'];
+let weights = [0.2, 0.3, 0.5];
+console.log(weightedRandom(items, weights));
