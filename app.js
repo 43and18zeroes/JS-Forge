@@ -53,5 +53,6 @@ kitchen();
 
 // rng
 
-let randomBoolean = Math.random() < 0.5;
-console.log(randomBoolean);
+let items = [1, 2, 3, 4, 5];
+let randomItem = items[Math.floor(Math.random() * items.length)];
+console.log(randomItem);
