@@ -53,7 +53,7 @@ kitchen();
 
 // math
 
-function sinus(x) {
-  return Math.sin(x);
+function cosinus(x) {
+  return Math.cos(x);
 }
-console.log(sinus(Math.PI / 2)); // Ausgabe: 1
+console.log(cosinus(Math.PI)); // Ausgabe: -1
