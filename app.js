@@ -53,8 +53,8 @@ kitchen();
 
 // math
 
-function fakultaet(n) {
-  if (n === 0) return 1;
-  return n * fakultaet(n - 1);
+function ggt(a, b) {
+  if (b === 0) return a;
+  return ggt(b, a % b);
 }
-console.log(fakultaet(5)); // Ausgabe: 120
+console.log(ggt(48, 18)); // Ausgabe: 6
