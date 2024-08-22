@@ -53,7 +53,7 @@ kitchen();
 
 // math
 
-function kgv(a, b) {
-  return (a * b) / ggt(a, b);
+function quadratwurzel(x) {
+  return Math.sqrt(x);
 }
-console.log(kgv(4, 6)); // Ausgabe: 12
+console.log(quadratwurzel(9)); // Ausgabe: 3
