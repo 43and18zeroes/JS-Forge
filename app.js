@@ -53,7 +53,7 @@ kitchen();
 
 // math
 
-function tangens(x) {
-  return Math.tan(x);
+function log10(x) {
+  return Math.log10(x);
 }
-console.log(tangens(Math.PI / 4)); // Ausgabe: 1
+console.log(log10(100)); // Ausgabe: 2
