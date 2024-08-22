@@ -53,7 +53,7 @@ kitchen();
 
 // math
 
-function log10(x) {
-  return Math.log10(x);
+function ln(x) {
+  return Math.log(x);
 }
-console.log(log10(100)); // Ausgabe: 2
+console.log(ln(Math.E)); // Ausgabe: 1
