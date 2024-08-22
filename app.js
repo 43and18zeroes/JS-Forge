@@ -53,7 +53,7 @@ kitchen();
 
 // math
 
-function cosinus(x) {
-  return Math.cos(x);
+function tangens(x) {
+  return Math.tan(x);
 }
-console.log(cosinus(Math.PI)); // Ausgabe: -1
+console.log(tangens(Math.PI / 4)); // Ausgabe: 1
