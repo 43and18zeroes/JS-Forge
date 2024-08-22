@@ -50,10 +50,3 @@ async function kitchen() {
 }
 
 kitchen();
-
-// math
-
-function ln(x) {
-  return Math.log(x);
-}
-console.log(ln(Math.E)); // Ausgabe: 1
