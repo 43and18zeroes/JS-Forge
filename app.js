@@ -53,7 +53,7 @@ kitchen();
 
 // math
 
-function quadratwurzel(x) {
-  return Math.sqrt(x);
+function sinus(x) {
+  return Math.sin(x);
 }
-console.log(quadratwurzel(9)); // Ausgabe: 3
+console.log(sinus(Math.PI / 2)); // Ausgabe: 1
