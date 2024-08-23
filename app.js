@@ -50,3 +50,11 @@ async function kitchen() {
 }
 
 kitchen();
+
+// math
+
+function fakultaet(n) {
+  if (n === 0) return 1;
+  return n * fakultaet(n - 1);
+}
+console.log(fakultaet(5)); // Ausgabe: 120
