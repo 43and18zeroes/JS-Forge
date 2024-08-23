@@ -50,10 +50,3 @@ async function kitchen() {
 }
 
 kitchen();
-
-// math
-
-function potenz(basis, exponent) {
-  return Math.pow(basis, exponent);
-}
-console.log(potenz(2, 3)); // Ausgabe: 8
