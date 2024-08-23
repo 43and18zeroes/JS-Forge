@@ -53,8 +53,7 @@ kitchen();
 
 // math
 
-function ggt(a, b) {
-  if (b === 0) return a;
-  return ggt(b, a % b);
+function kgv(a, b) {
+  return (a * b) / ggt(a, b);
 }
-console.log(ggt(48, 18)); // Ausgabe: 6
+console.log(kgv(4, 6)); // Ausgabe: 12
