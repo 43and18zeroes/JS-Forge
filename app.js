@@ -53,7 +53,7 @@ kitchen();
 
 // math
 
-function ln(x) {
-  return Math.log(x);
+function potenz(basis, exponent) {
+  return Math.pow(basis, exponent);
 }
-console.log(ln(Math.E)); // Ausgabe: 1
+console.log(potenz(2, 3)); // Ausgabe: 8
