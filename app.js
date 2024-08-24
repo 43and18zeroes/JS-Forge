@@ -53,14 +53,15 @@ kitchen();
 
 // factory functions
 
-function createProduct(name, price) {
-  const product = {
-      display() {
-          return `Product: ${this.name}, Price: $${this.price}`;
+function createTeam(name, ...members) {
+  return {
+      name,
+      members,
+      showMembers() {
+          return `Team ${this.name} members: ${this.members.join(', ')}`;
       }
   };
-  return Object.assign(product, { name, price });
 }
 
-const product1 = createProduct('Laptop', 999);
-console.log(product1.display()); // Product: Laptop, Price: $999
+const team = createTeam('Avengers', 'Iron Man', 'Captain America', 'Thor');
+console.log(team.showMembers()); // Team Avengers members: Iron Man, Captain America, Thor
