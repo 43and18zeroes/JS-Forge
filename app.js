@@ -53,22 +53,24 @@ kitchen();
 
 // factory functions
 
-function createCalculator() {
-  let value = 0;
-  return {
-      add(x) {
-          value += x;
-          return this;
-      },
-      subtract(x) {
-          value -= x;
-          return this;
-      },
-      getResult() {
-          return value;
+function createDynamicObject(methods) {
+  const obj = {};
+  for (let method in methods) {
+      if (methods.hasOwnProperty(method)) {
+          obj[method] = methods[method];
       }
-  };
+  }
+  return obj;
 }
 
-const calc = createCalculator();
-console.log(calc.add(5).subtract(2).getResult()); // 3
+const myObject = createDynamicObject({
+  greet: function() {
+      return 'Hello!';
+  },
+  farewell: function() {
+      return 'Goodbye!';
+  }
+});
+
+console.log(myObject.greet()); // Hello!
+console.log(myObject.farewell()); // Goodbye!
