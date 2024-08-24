@@ -50,18 +50,3 @@ async function kitchen() {
 }
 
 kitchen();
-
-// factory functions
-
-function createSettings({ theme = 'light', notifications = true }) {
-  return {
-      theme,
-      notifications,
-      display() {
-          return `Theme: ${this.theme}, Notifications: ${this.notifications}`;
-      }
-  };
-}
-
-const settings = createSettings({ theme: 'dark', notifications: false });
-console.log(settings.display()); // Theme: dark, Notifications: false
