@@ -53,25 +53,17 @@ kitchen();
 
 // factory functions
 
-function createVehicle(type) {
+function createUser(name = 'Guest', email = 'no-email@example.com') {
   return {
-      type,
-      drive() {
-          return `Driving a ${this.type}.`;
+      name,
+      email,
+      display() {
+          return `Name: ${this.name}, Email: ${this.email}`;
       }
   };
 }
 
-function createCar(make, model) {
-  const car = createVehicle('car');
-  car.make = make;
-  car.model = model;
-  car.info = function() {
-      return `${this.make} ${this.model}`;
-  };
-  return car;
-}
-
-const myCar = createCar('Toyota', 'Corolla');
-console.log(myCar.drive()); // Driving a car.
-console.log(myCar.info()); // Toyota Corolla
+const user1 = createUser();
+console.log(user1.display()); // Name: Guest, Email: no-email@example.com
+const user2 = createUser('John', 'john@example.com');
+console.log(user2.display()); // Name: John, Email: john@example.com
