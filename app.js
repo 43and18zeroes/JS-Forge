@@ -53,21 +53,25 @@ kitchen();
 
 // factory functions
 
-function createCounter() {
-  let count = 0;
+function createVehicle(type) {
   return {
-      increment: function() {
-          count++;
-          return count;
-      },
-      decrement: function() {
-          count--;
-          return count;
+      type,
+      drive() {
+          return `Driving a ${this.type}.`;
       }
   };
 }
 
-const counter = createCounter();
-console.log(counter.increment()); // 1
-console.log(counter.increment()); // 2
-console.log(counter.decrement()); // 1
+function createCar(make, model) {
+  const car = createVehicle('car');
+  car.make = make;
+  car.model = model;
+  car.info = function() {
+      return `${this.make} ${this.model}`;
+  };
+  return car;
+}
+
+const myCar = createCar('Toyota', 'Corolla');
+console.log(myCar.drive()); // Driving a car.
+console.log(myCar.info()); // Toyota Corolla
