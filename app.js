@@ -53,17 +53,22 @@ kitchen();
 
 // factory functions
 
-function createUser(name = 'Guest', email = 'no-email@example.com') {
+function createCalculator() {
+  let value = 0;
   return {
-      name,
-      email,
-      display() {
-          return `Name: ${this.name}, Email: ${this.email}`;
+      add(x) {
+          value += x;
+          return this;
+      },
+      subtract(x) {
+          value -= x;
+          return this;
+      },
+      getResult() {
+          return value;
       }
   };
 }
 
-const user1 = createUser();
-console.log(user1.display()); // Name: Guest, Email: no-email@example.com
-const user2 = createUser('John', 'john@example.com');
-console.log(user2.display()); // Name: John, Email: john@example.com
+const calc = createCalculator();
+console.log(calc.add(5).subtract(2).getResult()); // 3
