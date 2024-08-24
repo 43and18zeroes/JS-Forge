@@ -53,15 +53,15 @@ kitchen();
 
 // factory functions
 
-function createTeam(name, ...members) {
+function createSettings({ theme = 'light', notifications = true }) {
   return {
-      name,
-      members,
-      showMembers() {
-          return `Team ${this.name} members: ${this.members.join(', ')}`;
+      theme,
+      notifications,
+      display() {
+          return `Theme: ${this.theme}, Notifications: ${this.notifications}`;
       }
   };
 }
 
-const team = createTeam('Avengers', 'Iron Man', 'Captain America', 'Thor');
-console.log(team.showMembers()); // Team Avengers members: Iron Man, Captain America, Thor
+const settings = createSettings({ theme: 'dark', notifications: false });
+console.log(settings.display()); // Theme: dark, Notifications: false
