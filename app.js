@@ -53,13 +53,21 @@ kitchen();
 
 // factory functions
 
-const createAnimal = (name, species) => ({
-  name,
-  species,
-  info() {
-      return `${this.name} is a ${this.species}.`;
-  }
-});
+function createCounter() {
+  let count = 0;
+  return {
+      increment: function() {
+          count++;
+          return count;
+      },
+      decrement: function() {
+          count--;
+          return count;
+      }
+  };
+}
 
-const dog = createAnimal('Buddy', 'Dog');
-console.log(dog.info()); // Buddy is a Dog.
+const counter = createCounter();
+console.log(counter.increment()); // 1
+console.log(counter.increment()); // 2
+console.log(counter.decrement()); // 1
