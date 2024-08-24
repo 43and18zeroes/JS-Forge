@@ -53,24 +53,14 @@ kitchen();
 
 // factory functions
 
-function createDynamicObject(methods) {
-  const obj = {};
-  for (let method in methods) {
-      if (methods.hasOwnProperty(method)) {
-          obj[method] = methods[method];
+function createProduct(name, price) {
+  const product = {
+      display() {
+          return `Product: ${this.name}, Price: $${this.price}`;
       }
-  }
-  return obj;
+  };
+  return Object.assign(product, { name, price });
 }
 
-const myObject = createDynamicObject({
-  greet: function() {
-      return 'Hello!';
-  },
-  farewell: function() {
-      return 'Goodbye!';
-  }
-});
-
-console.log(myObject.greet()); // Hello!
-console.log(myObject.farewell()); // Goodbye!
+const product1 = createProduct('Laptop', 999);
+console.log(product1.display()); // Product: Laptop, Price: $999
