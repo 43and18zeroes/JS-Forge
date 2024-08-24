@@ -53,15 +53,13 @@ kitchen();
 
 // factory functions
 
-function createPerson(name, age) {
-  return {
-      name: name,
-      age: age,
-      greet: function() {
-          return `Hello, my name is ${this.name} and I am ${this.age} years old.`;
-      }
-  };
-}
+const createAnimal = (name, species) => ({
+  name,
+  species,
+  info() {
+      return `${this.name} is a ${this.species}.`;
+  }
+});
 
-const person1 = createPerson('Alice', 30);
-console.log(person1.greet()); // Hello, my name is Alice and I am 30 years old.
+const dog = createAnimal('Buddy', 'Dog');
+console.log(dog.info()); // Buddy is a Dog.
