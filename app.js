@@ -50,3 +50,18 @@ async function kitchen() {
 }
 
 kitchen();
+
+// fac func
+
+function createPerson(name, age) {
+  return {
+      name: name,
+      age: age,
+      greet: function() {
+          return `Hello, my name is ${this.name} and I am ${this.age} years old.`;
+      }
+  };
+}
+
+const person1 = createPerson('Alice', 30);
+console.log(person1.greet()); // Hello, my name is Alice and I am 30 years old.
