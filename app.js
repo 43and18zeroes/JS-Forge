@@ -50,26 +50,3 @@ async function kitchen() {
 }
 
 kitchen();
-
-// fac func
-
-function createEventEmitter() {
-  const events = {};
-  return {
-      on(eventName, callback) {
-          if (!events[eventName]) {
-              events[eventName] = [];
-          }
-          events[eventName].push(callback);
-      },
-      emit(eventName, data) {
-          if (events[eventName]) {
-              events[eventName].forEach(callback => callback(data));
-          }
-      }
-  };
-}
-
-const emitter = createEventEmitter();
-emitter.on('message', (data) => console.log(data));
-emitter.emit('message', 'Hello, world!'); // Hello, world!
