@@ -53,14 +53,20 @@ kitchen();
 
 // fac func
 
-function createFlyable(obj) {
+function createDynamicObject(methods) {
   return {
-      ...obj,
-      fly() {
-          return `${this.name} is flying.`;
-      }
+      ...methods
   };
 }
 
-const bird = createFlyable({ name: 'Eagle' });
-console.log(bird.fly()); // Eagle is flying.
+const dynamicObj = createDynamicObject({
+  sayHello() {
+      return 'Hello!';
+  },
+  sayGoodbye() {
+      return 'Goodbye!';
+  }
+});
+
+console.log(dynamicObj.sayHello()); // Hello!
+console.log(dynamicObj.sayGoodbye()); // Goodbye!
