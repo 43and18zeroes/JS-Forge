@@ -53,15 +53,13 @@ kitchen();
 
 // fac func
 
-function createPerson(name, age) {
-  return {
-      name: name,
-      age: age,
-      greet: function() {
-          return `Hello, my name is ${this.name} and I am ${this.age} years old.`;
-      }
-  };
-}
+const createAnimal = (species, sound) => ({
+  species,
+  sound,
+  makeSound() {
+      return `The ${this.species} says ${this.sound}.`;
+  }
+});
 
-const person1 = createPerson('Alice', 30);
-console.log(person1.greet()); // Hello, my name is Alice and I am 30 years old.
+const dog = createAnimal('Dog', 'Woof');
+console.log(dog.makeSound()); // The Dog says Woof.
