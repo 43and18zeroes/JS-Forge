@@ -53,20 +53,18 @@ kitchen();
 
 // fac func
 
-function createDynamicObject(methods) {
+function createConfigurableObject(config) {
   return {
-      ...methods
+      ...config,
+      getConfig() {
+          return this;
+      }
   };
 }
 
-const dynamicObj = createDynamicObject({
-  sayHello() {
-      return 'Hello!';
-  },
-  sayGoodbye() {
-      return 'Goodbye!';
-  }
+const configObj = createConfigurableObject({
+  mode: 'development',
+  timeout: 5000
 });
 
-console.log(dynamicObj.sayHello()); // Hello!
-console.log(dynamicObj.sayGoodbye()); // Goodbye!
+console.log(configObj.getConfig()); // { mode: 'development', timeout: 5000, getConfig: [Function: getConfig] }
