@@ -53,17 +53,22 @@ kitchen();
 
 // fac func
 
-function createUser(name = 'Guest', email = 'no-email@example.com') {
+function createCalculator() {
+  let value = 0;
   return {
-      name,
-      email,
-      login() {
-          return `${this.name} has logged in with ${this.email}.`;
+      add(x) {
+          value += x;
+          return this;
+      },
+      subtract(x) {
+          value -= x;
+          return this;
+      },
+      getValue() {
+          return value;
       }
   };
 }
 
-const user1 = createUser();
-console.log(user1.login()); // Guest has logged in with no-email@example.com
-const user2 = createUser('John', 'john@example.com');
-console.log(user2.login()); // John has logged in with john@example.com
+const calc = createCalculator();
+console.log(calc.add(5).subtract(2).getValue()); // 3
