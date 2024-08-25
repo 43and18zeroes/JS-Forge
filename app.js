@@ -53,13 +53,21 @@ kitchen();
 
 // fac func
 
-const createAnimal = (species, sound) => ({
-  species,
-  sound,
-  makeSound() {
-      return `The ${this.species} says ${this.sound}.`;
-  }
-});
+function createCounter() {
+  let count = 0;
+  return {
+      increment() {
+          count++;
+          return count;
+      },
+      decrement() {
+          count--;
+          return count;
+      }
+  };
+}
 
-const dog = createAnimal('Dog', 'Woof');
-console.log(dog.makeSound()); // The Dog says Woof.
+const counter = createCounter();
+console.log(counter.increment()); // 1
+console.log(counter.increment()); // 2
+console.log(counter.decrement()); // 1
