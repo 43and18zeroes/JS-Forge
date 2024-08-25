@@ -53,18 +53,23 @@ kitchen();
 
 // fac func
 
-function createConfigurableObject(config) {
+function createEventEmitter() {
+  const events = {};
   return {
-      ...config,
-      getConfig() {
-          return this;
+      on(eventName, callback) {
+          if (!events[eventName]) {
+              events[eventName] = [];
+          }
+          events[eventName].push(callback);
+      },
+      emit(eventName, data) {
+          if (events[eventName]) {
+              events[eventName].forEach(callback => callback(data));
+          }
       }
   };
 }
 
-const configObj = createConfigurableObject({
-  mode: 'development',
-  timeout: 5000
-});
-
-console.log(configObj.getConfig()); // { mode: 'development', timeout: 5000, getConfig: [Function: getConfig] }
+const emitter = createEventEmitter();
+emitter.on('message', (data) => console.log(data));
+emitter.emit('message', 'Hello, world!'); // Hello, world!
