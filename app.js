@@ -53,22 +53,14 @@ kitchen();
 
 // fac func
 
-function createCalculator() {
-  let value = 0;
+function createFlyable(obj) {
   return {
-      add(x) {
-          value += x;
-          return this;
-      },
-      subtract(x) {
-          value -= x;
-          return this;
-      },
-      getValue() {
-          return value;
+      ...obj,
+      fly() {
+          return `${this.name} is flying.`;
       }
   };
 }
 
-const calc = createCalculator();
-console.log(calc.add(5).subtract(2).getValue()); // 3
+const bird = createFlyable({ name: 'Eagle' });
+console.log(bird.fly()); // Eagle is flying.
