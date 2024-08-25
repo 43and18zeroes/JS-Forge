@@ -53,25 +53,17 @@ kitchen();
 
 // fac func
 
-function createVehicle(type) {
+function createUser(name = 'Guest', email = 'no-email@example.com') {
   return {
-      type,
-      drive() {
-          return `The ${this.type} is driving.`;
+      name,
+      email,
+      login() {
+          return `${this.name} has logged in with ${this.email}.`;
       }
   };
 }
 
-function createCar(make, model) {
-  const car = createVehicle('Car');
-  car.make = make;
-  car.model = model;
-  car.info = function() {
-      return `${this.make} ${this.model}`;
-  };
-  return car;
-}
-
-const myCar = createCar('Toyota', 'Corolla');
-console.log(myCar.drive()); // The Car is driving.
-console.log(myCar.info()); // Toyota Corolla
+const user1 = createUser();
+console.log(user1.login()); // Guest has logged in with no-email@example.com
+const user2 = createUser('John', 'john@example.com');
+console.log(user2.login()); // John has logged in with john@example.com
