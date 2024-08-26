@@ -53,6 +53,6 @@ kitchen();
 
 // finance
 
-function calculatePresentValue(futureValue, rate, n) {
-  return futureValue / Math.pow(1 + (rate / 100), n);
+function convertCurrency(amount, exchangeRate) {
+  return amount * exchangeRate;
 }
