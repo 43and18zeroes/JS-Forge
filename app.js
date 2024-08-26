@@ -50,3 +50,9 @@ async function kitchen() {
 }
 
 kitchen();
+
+// finance
+
+function calculateSimpleInterest(principal, rate, time) {
+  return principal * (rate / 100) * time;
+}
