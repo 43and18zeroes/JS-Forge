@@ -53,6 +53,6 @@ kitchen();
 
 // finance
 
-function calculateFutureValue(presentValue, rate, n) {
-  return presentValue * Math.pow(1 + (rate / 100), n);
+function calculatePresentValue(futureValue, rate, n) {
+  return futureValue / Math.pow(1 + (rate / 100), n);
 }
