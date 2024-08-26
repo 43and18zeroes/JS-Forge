@@ -53,17 +53,6 @@ kitchen();
 
 // finance
 
-function calculateIRR(cashFlows, guess = 0.1) {
-  const maxIterations = 1000;
-  const tolerance = 1e-6;
-  let irr = guess;
-  for (let i = 0; i < maxIterations; i++) {
-      const npv = cashFlows.reduce((acc, cashFlow, index) => acc + cashFlow / Math.pow(1 + irr, index + 1), 0);
-      if (Math.abs(npv) < tolerance) {
-          return irr * 100;
-      }
-      const npvDerivative = cashFlows.reduce((acc, cashFlow, index) => acc - (index + 1) * cashFlow / Math.pow(1 + irr, index + 2), 0);
-      irr -= npv / npvDerivative;
-  }
-  return null; // IRR not found within max iterations
+function calculatePortfolioReturn(initialValue, finalValue) {
+  return ((finalValue - initialValue) / initialValue) * 100;
 }
