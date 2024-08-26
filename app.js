@@ -53,6 +53,6 @@ kitchen();
 
 // finance
 
-function calculateSimpleInterest(principal, rate, time) {
-  return principal * (rate / 100) * time;
+function calculateCompoundInterest(principal, rate, time, n) {
+  return principal * Math.pow((1 + (rate / 100) / n), (n * time)) - principal;
 }
