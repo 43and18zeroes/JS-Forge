@@ -53,6 +53,10 @@ kitchen();
 
 // finance
 
-function convertCurrency(amount, exchangeRate) {
-  return amount * exchangeRate;
+function calculateNetPresentValue(cashFlows, rate) {
+  let npv = 0;
+  for (let i = 0; i < cashFlows.length; i++) {
+      npv += cashFlows[i] / Math.pow(1 + (rate / 100), i + 1);
+  }
+  return npv;
 }
