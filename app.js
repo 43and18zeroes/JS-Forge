@@ -53,6 +53,8 @@ kitchen();
 
 // finance
 
-function calculateCompoundInterest(principal, rate, time, n) {
-  return principal * Math.pow((1 + (rate / 100) / n), (n * time)) - principal;
+function calculateLoanPayment(principal, rate, term) {
+  const monthlyRate = rate / 100 / 12;
+  const numberOfPayments = term * 12;
+  return (principal * monthlyRate) / (1 - Math.pow(1 + monthlyRate, -numberOfPayments));
 }
