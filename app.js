@@ -53,6 +53,6 @@ kitchen();
 
 // finance
 
-function calculatePortfolioReturn(initialValue, finalValue) {
-  return ((finalValue - initialValue) / initialValue) * 100;
+function calculateAnnualizedReturn(initialValue, finalValue, years) {
+  return (Math.pow(finalValue / initialValue, 1 / years) - 1) * 100;
 }
