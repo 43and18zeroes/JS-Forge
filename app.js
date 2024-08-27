@@ -53,9 +53,9 @@ kitchen();
 
 // fin 
 
-function calculatePresentValue(futureValue, rate, time) {
-  return futureValue / Math.pow(1 + rate, time);
+function calculateFutureValue(presentValue, rate, time) {
+  return presentValue * Math.pow(1 + rate, time);
 }
 
-const presentValue = calculatePresentValue(1000, 0.05, 2);
-console.log("Present Value:", presentValue);
+const futureValue = calculateFutureValue(1000, 0.05, 2);
+console.log("Future Value:", futureValue);
