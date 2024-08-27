@@ -50,3 +50,12 @@ async function kitchen() {
 }
 
 kitchen();
+
+// fin 
+
+function calculateSimpleInterest(principal, rate, time) {
+  return principal * rate * time;
+}
+
+const interest = calculateSimpleInterest(1000, 0.05, 2);
+console.log("Simple Interest:", interest);
