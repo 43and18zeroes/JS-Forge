@@ -53,9 +53,25 @@ kitchen();
 
 // fin 
 
-function calculateLoanPayment(principal, rate, periods) {
-  return principal * rate / (1 - Math.pow(1 + rate, -periods));
+function calculateAmortizationSchedule(principal, rate, periods) {
+  const payment = calculateLoanPayment(principal, rate, periods);
+  const schedule = [];
+
+  for (let i = 0; i < periods; i++) {
+    const interest = principal * rate;
+    const principalPayment = payment - interest;
+    principal -= principalPayment;
+
+    schedule.push({
+      payment,
+      interest,
+      principalPayment,
+      principal
+    });
+  }
+
+  return schedule;
 }
 
-const loanPayment = calculateLoanPayment(10000, 0.05, 60);
-console.log("Loan Payment:", loanPayment);
+const amortizationSchedule = calculateAmortizationSchedule(10000, 0.05, 60);
+console.log("Amortization Schedule:", amortizationSchedule);
