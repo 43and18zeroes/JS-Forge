@@ -53,25 +53,17 @@ kitchen();
 
 // fin 
 
-function calculateAmortizationSchedule(principal, rate, periods) {
-  const payment = calculateLoanPayment(principal, rate, periods);
-  const schedule = [];
+function calculateNPV(cashFlows, discountRate) {
+  let npv = 0;
 
-  for (let i = 0; i < periods; i++) {
-    const interest = principal * rate;
-    const principalPayment = payment - interest;
-    principal -= principalPayment;
-
-    schedule.push({
-      payment,
-      interest,
-      principalPayment,
-      principal
-    });
+  for (let i = 0; i < cashFlows.length; i++) {
+    npv += cashFlows[i] / Math.pow(1 + discountRate, i);
   }
 
-  return schedule;
+  return npv;
 }
 
-const amortizationSchedule = calculateAmortizationSchedule(10000, 0.05, 60);
-console.log("Amortization Schedule:", amortizationSchedule);
+const cashFlows = [1000, -100, -100, -100, -100, 1500];
+const discountRate = 0.1;
+const npv = calculateNPV(cashFlows, discountRate);
+console.log("Net Present Value:", npv);
