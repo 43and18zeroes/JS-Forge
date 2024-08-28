@@ -53,9 +53,9 @@ kitchen();
 
 // fin
 
-function calculateAnnuityPayment(presentValue, rate, periods) {
-  return presentValue * rate / (1 - Math.pow(1 + rate, -periods));
+function calculateLoanPayment(principal, rate, periods) {
+  return principal * rate / (1 - Math.pow(1 + rate, -periods));
 }
 
-const annuityPayment = calculateAnnuityPayment(10000, 0.05, 12);
-console.log("Annuity Payment:", annuityPayment);
+const loanPayment = calculateLoanPayment(10000, 0.05, 60);
+console.log("Loan Payment:", loanPayment);
