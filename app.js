@@ -53,9 +53,9 @@ kitchen();
 
 // fin
 
-function calculateCompoundInterest(principal, rate, time, compoundingFrequency) {
-  return principal * Math.pow(1 + rate / compoundingFrequency, compoundingFrequency * time);
+function calculatePresentValue(futureValue, rate, time) {
+  return futureValue / Math.pow(1 + rate, time);
 }
 
-const compoundInterest = calculateCompoundInterest(1000, 0.05, 2, 12);
-console.log("Compound Interest:", compoundInterest);
+const presentValue = calculatePresentValue(1000, 0.05, 2);
+console.log("Present Value:", presentValue);
