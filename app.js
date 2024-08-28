@@ -50,12 +50,3 @@ async function kitchen() {
 }
 
 kitchen();
-
-// fin
-
-function calculateBondPrice(faceValue, couponRate, yieldToMaturity, periods) {
-  // Implementation of the bond pricing formula
-}
-
-// Example usage
-// ...
