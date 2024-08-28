@@ -53,17 +53,10 @@ kitchen();
 
 // fin
 
-function calculateNPV(cashFlows, discountRate) {
-  let npv = 0;
-
-  for (let i = 0; i < cashFlows.length; i++) {
-    npv += cashFlows[i] / Math.pow(1 + discountRate, i);
-  }
-
-  return npv;
+function calculateIRR(cashFlows, guess = 0.1) {
+  // Implementation of a numerical method like Newton-Raphson or bisection method
+  // to approximate the IRR
 }
 
-const cashFlows = [1000, -100, -100, -100, -100, 1500];
-const discountRate = 0.1;
-const npv = calculateNPV(cashFlows, discountRate);
-console.log("Net Present Value:", npv);
+// Example usage
+// ...
