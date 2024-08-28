@@ -53,9 +53,8 @@ kitchen();
 
 // fin
 
-function calculateIRR(cashFlows, guess = 0.1) {
-  // Implementation of a numerical method like Newton-Raphson or bisection method
-  // to approximate the IRR
+function calculateBondPrice(faceValue, couponRate, yieldToMaturity, periods) {
+  // Implementation of the bond pricing formula
 }
 
 // Example usage
