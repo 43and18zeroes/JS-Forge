@@ -53,9 +53,9 @@ kitchen();
 
 // fin
 
-function calculateFutureValue(presentValue, rate, time) {
-  return presentValue * Math.pow(1 + rate, time);
+function calculateAnnuityPayment(presentValue, rate, periods) {
+  return presentValue * rate / (1 - Math.pow(1 + rate, -periods));
 }
 
-const futureValue = calculateFutureValue(1000, 0.05, 2);
-console.log("Future Value:", futureValue);
+const annuityPayment = calculateAnnuityPayment(10000, 0.05, 12);
+console.log("Annuity Payment:", annuityPayment);
