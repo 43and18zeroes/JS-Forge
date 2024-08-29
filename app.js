@@ -53,8 +53,10 @@ kitchen();
 
 // advanced functions
 
-const worker = new Worker("worker.js");
-worker.onmessage = (event) => {
-  console.log(event.data);
-};
-worker.postMessage("Hello from the main thread");
+self.addEventListener("install", event => {
+  event.waitUntil(
+    caches.open("cache-name").then(cache => {
+      return cache.addAll(["index.html", "style.css", "app.js"]);
+    })
+  );
+});
