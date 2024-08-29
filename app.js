@@ -53,6 +53,10 @@ kitchen();
 
 // advanced functions
 
-const numbers = [1, 2, 3, 4, 5];
-const sum = numbers.reduce((acc, cur) => acc + cur, 0);
-console.log(sum); // Output: 15
+async function fetchData() {
+  const data = await fetch("https://api.example.com/data");
+  const json = await data.json();
+  return json;
+}
+
+fetchData().then(data => console.log(data)).catch(error => console.error(error));
