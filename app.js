@@ -53,10 +53,7 @@ kitchen();
 
 // advanced functions
 
-self.addEventListener("install", event => {
-  event.waitUntil(
-    caches.open("cache-name").then(cache => {
-      return cache.addAll(["index.html", "style.css", "app.js"]);
-    })
-  );
-});
+const wasmModule = new WebAssembly.Module(wasmBytes);
+const wasmInstance = new WebAssembly.Instance(wasmModule);
+const exportedFunction = wasmInstance.exports.myFunction;
+exportedFunction();
