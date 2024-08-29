@@ -53,13 +53,18 @@ kitchen();
 
 // advanced functions
 
-function* count() {
-  let i = 1;
-  while (true) {
-    yield i++;
-  }
+function loggingDecorator(target, propertyKey, descriptor) {
+  const originalMethod = descriptor.value;
+  descriptor.value = function() {
+    console.log(`Calling ${propertyKey}`);
+    return originalMethod.apply(this, arguments);
+  };
+  return descriptor;
 }
 
-const counter = count();
-console.log(counter.next().value); // Output: 1
-console.log(counter.next().value); // Output: 2
+class MyClass {
+  @loggingDecorator
+  method() {
+    console.log("Method called");
+  }
+}
