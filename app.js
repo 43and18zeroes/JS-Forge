@@ -53,10 +53,13 @@ kitchen();
 
 // advanced functions
 
-async function fetchData() {
-  const data = await fetch("https://api.example.com/data");
-  const json = await data.json();
-  return json;
+function* count() {
+  let i = 1;
+  while (true) {
+    yield i++;
+  }
 }
 
-fetchData().then(data => console.log(data)).catch(error => console.error(error));
+const counter = count();
+console.log(counter.next().value); // Output: 1
+console.log(counter.next().value); // Output: 2
