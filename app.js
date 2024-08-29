@@ -53,6 +53,6 @@ kitchen();
 
 // advanced functions
 
-const words = ["apple", "banana", "cherry", "date"];
-const longWords = words.filter(word => word.length > 5);
-console.log(longWords); // Output: ["banana", "cherry"]
+const numbers = [1, 2, 3, 4, 5];
+const sum = numbers.reduce((acc, cur) => acc + cur, 0);
+console.log(sum); // Output: 15
