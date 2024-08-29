@@ -53,12 +53,13 @@ kitchen();
 
 // advanced functions
 
-function createCounter() {
-  let count = 0;
-  return function() {
-  return count++;
-  };
+const target = { name: "John" };
+const handler = {
+  get(target, property) {
+    console.log(`Getting property ${property}`);
+    return target[property];
   }
-  const counter = createCounter();
-  console.log(counter()); // Output: 0
-  console.log(counter()); // Output: 1
+};
+
+const proxy = new Proxy(target, handler);
+console.log(proxy.name); // Output: Getting property name
