@@ -50,3 +50,9 @@ async function kitchen() {
 }
 
 kitchen();
+
+// advanced functions
+
+const numbers = [1, 2, 3, 4, 5];
+const squaredNumbers = numbers.map(x => x * x);
+console.log(squaredNumbers); // Output: [1, 4, 9, 16, 25]
