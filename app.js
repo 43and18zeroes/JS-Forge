@@ -53,13 +53,8 @@ kitchen();
 
 // advanced functions
 
-const target = { name: "John" };
-const handler = {
-  get(target, property) {
-    console.log(`Getting property ${property}`);
-    return target[property];
-  }
+const worker = new Worker("worker.js");
+worker.onmessage = (event) => {
+  console.log(event.data);
 };
-
-const proxy = new Proxy(target, handler);
-console.log(proxy.name); // Output: Getting property name
+worker.postMessage("Hello from the main thread");
