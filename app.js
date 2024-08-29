@@ -50,10 +50,3 @@ async function kitchen() {
 }
 
 kitchen();
-
-// advanced functions
-
-const wasmModule = new WebAssembly.Module(wasmBytes);
-const wasmInstance = new WebAssembly.Instance(wasmModule);
-const exportedFunction = wasmInstance.exports.myFunction;
-exportedFunction();
