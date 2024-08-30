@@ -53,9 +53,10 @@ kitchen();
 
 // pipes
 
-function createCounter() {
-  let count = 0;
-  return function() {
-    return count++;
-  };
+function map(arr, fn) {
+  const result = [];
+  for (let i = 0; i < arr.length; i++) {
+    result.push(fn(arr[i]));
+  }
+  return result;
 }
