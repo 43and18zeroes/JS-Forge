@@ -53,6 +53,9 @@ kitchen();
 
 // pipes
 
-const capitalizePipe = value => value.charAt(0).toUpperCase() + value.slice(1);
-
-const capitalizedData = data.map(capitalizePipe);
+const source = from([1, 2, 3, 4, 5]);
+const result = source.pipe(
+  map(item => item * 2),
+  filter(item => item > 5)
+);
+result.subscribe(value => console.log(value));
