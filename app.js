@@ -53,5 +53,7 @@ kitchen();
 
 // pipes
 
-const add = (a, b) => a + b;
-const result = data.map(item => add(item, 10));
+const compose = (...fns) => (x) => fns.reduce((acc, fn) => fn(acc), x);
+
+const capitalizeAndReverse = compose(capitalizePipe, (str) => str.split('').reverse().join(''));
+const result = data.map(capitalizeAndReverse);
