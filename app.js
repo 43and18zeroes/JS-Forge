@@ -50,3 +50,7 @@ async function kitchen() {
 }
 
 kitchen();
+
+// pipes
+
+const transformedData = data.map(item => item * 2);
