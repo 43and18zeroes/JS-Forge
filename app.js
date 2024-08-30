@@ -50,13 +50,3 @@ async function kitchen() {
 }
 
 kitchen();
-
-// pipes
-
-function map(arr, fn) {
-  const result = [];
-  for (let i = 0; i < arr.length; i++) {
-    result.push(fn(arr[i]));
-  }
-  return result;
-}
