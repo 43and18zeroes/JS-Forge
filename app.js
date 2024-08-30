@@ -53,4 +53,6 @@ kitchen();
 
 // pipes
 
-const transformedData = data.map(item => item * 2);
+const capitalizePipe = value => value.charAt(0).toUpperCase() + value.slice(1);
+
+const capitalizedData = data.map(capitalizePipe);
