@@ -53,10 +53,5 @@ kitchen();
 
 // pipes
 
-const source = from([1, 2, 3, 4, 5]);
-const result = source.pipe(
-  map(item => item * 2),
-  filter(item => item > 5),
-  switchMap(item => from([item, item + 1]))
-);
-result.subscribe(value => console.log(value));
+const add = (a, b) => a + b;
+const result = data.map(item => add(item, 10));
