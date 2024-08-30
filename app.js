@@ -53,7 +53,6 @@ kitchen();
 
 // pipes
 
-const result = data
-  .filter(item => item > 10)
-  .map(item => item.toUpperCase())
-  .join(', ');
+const capitalizePipe = value => value.charAt(0).toUpperCase() + value.slice(1);
+
+const capitalizedData = data.map(capitalizePipe);
