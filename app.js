@@ -53,8 +53,10 @@ kitchen();
 
 // loc
 
-function isPalindrome(str) {
-  str = str.toLowerCase().replace(/[^a-z0-9]/g, '');
-  let reversed = str.split('').reverse().join('');
-  return str === reversed;
+function randomSentence(words) {
+  let sentence = '';
+  for (let i = 0; i < Math.floor(Math.random() * 10) + 5; i++) {
+    sentence += words[Math.floor(Math.random() * words.length)] + ' ';
+  }
+  return sentence.trim();
 }
