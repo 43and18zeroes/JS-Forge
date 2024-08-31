@@ -53,10 +53,17 @@ kitchen();
 
 // loc
 
-function randomSentence(words) {
-  let sentence = '';
-  for (let i = 0; i < Math.floor(Math.random() * 10) + 5; i++) {
-    sentence += words[Math.floor(Math.random() * words.length)] + ' ';
+function calculator(num1, num2, operator) {
+  switch (operator) {
+    case '+':
+      return num1 + num2;
+    case '-':
+      return num1 - num2;
+    case '*':
+      return num1 * num2;
+    case '/':
+      return num1 / num2;
+    default:
+      return 'Ungültiger Operator';
   }
-  return sentence.trim();
 }
