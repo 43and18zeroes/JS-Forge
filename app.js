@@ -53,11 +53,11 @@ kitchen();
 
 // loc
 
-function generateRandomColor() {
-  const letters = '0123456789ABCDEF';
-  let color = '#';
-  for (let i = 0; i < 6; i++) {
-    color += letters[Math.floor(Math.random() * 16)];
+function findElement(arr, value) {
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === value) {
+      return i;
+    }
   }
-  return color;
+  return -1;
 }
