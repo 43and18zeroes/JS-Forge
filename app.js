@@ -53,13 +53,13 @@ kitchen();
 
 // rnd
 
-function createElement(tag, attributes, text) {
-  const element = document.createElement(tag);
-  for (const attribute in attributes) {
-    element.setAttribute(attribute, attributes[attribute]);
-  }
-  if (text) {
-    element.textContent = text;
-  }
-  return element;
+function animateElement(element) {
+  let position = 0;
+  const interval = setInterval(() => {
+    position += 10;
+    element.style.left = position + 'px';
+    if (position >= 300) {
+      clearInterval(interval);
+    }
+  }, 10);
 }
