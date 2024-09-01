@@ -53,8 +53,17 @@ kitchen();
 
 // rnd
 
-function isPalindrome(str) {
-  str = str.toLowerCase().replace(/[^a-z0-9]/g, '');
-  let reversed = str.split('').reverse().join('');
-  return str === reversed;
+function calculator(num1, num2, operator) {
+  switch (operator) {
+    case '+':
+      return num1 + num2;
+    case '-':
+      return num1 - num2;
+    case '*':
+      return num1 * num2;
+    case '/':
+      return num1 / num2;
+    default:
+      return 'Ungültiger Operator';
+  }
 }
