@@ -53,13 +53,7 @@ kitchen();
 
 // rnd
 
-function animateElement(element) {
-  let position = 0;
-  const interval = setInterval(() => {
-    position += 10;
-    element.style.left = position + 'px';
-    if (position >= 300) {
-      clearInterval(interval);
-    }
-  }, 10);
+function formatDate(date) {
+  const options = { year: 'numeric', month: 'long', day: 'numeric' };
+  return date.toLocaleDateString('de-DE', options);
 }
