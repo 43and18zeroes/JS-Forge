@@ -1,3 +1,5 @@
+content-type: application/xml
+
 <users>
     <name adress="Rosenheimerstr. 122">Junus</name>
     <name adress="Rosenheimerstr. 122">Manu</name>
