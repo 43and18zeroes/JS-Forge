@@ -9,12 +9,12 @@ init();
 
 
 fetch('https://api.example.com/data/1', {
-  method: 'PUT',
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  body: JSON.stringify({ key: 'newValue' }),
+  method: 'DELETE',
 })
-  .then(response => response.json())
-  .then(data => console.log(data))
+  .then(response => {
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    console.log('Resource deleted');
+  })
   .catch(error => console.error('Error:', error));
